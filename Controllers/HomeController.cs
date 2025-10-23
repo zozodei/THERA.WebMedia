@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using THERA.Models;
+using THERA.WEBMEDIA;
 
 namespace THERA.Controllers;
 
@@ -15,6 +16,13 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        ViewBag.estaLogeado = false;
+        return View("Index");
+    }
+    public IActionResult irDiario()
+    {
+        List<Nota> notas = BD.levantarNotas(int.Parse((HttpContext.Session.GetString("idPaciente"))));
+        ViewBag.notas = notas;
+        return View("VerNotas");
     }
 }

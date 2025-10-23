@@ -10,16 +10,18 @@
 
 <body>
     <header>
-        <nav>
-            <img src="/Imagenes/AveBlanca" alt="">
-            <ul>
-                <li>IA CHAT</li>
-                <li>TERAPEUTAS</li>
-                <li>DIARIO</li>
-                <li>AYUDA RAPIDA</li>
-                <li>CERRAR SESION</li>
-            </ul>
-        </nav>
+        @if(@ViewBag.estaLogeado){
+            <nav>
+                <img src="/Imagenes/AveBlanca" alt="">
+                <ul>
+                    <li>CHATBOT</li>
+                    <li>TERAPEUTAS</li>
+                    <li>DIARIO</li>
+                    <li>AYUDA RAPIDA</li>
+                    <li>CERRAR SESION</li>
+                </ul>
+            </nav>
+        }
     </header>
 
     <main role="main">

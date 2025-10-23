@@ -1,0 +1,13 @@
+@if(@ViewBag.Destacado){
+    <img src="" alt="bookmark seleccionado">
+} 
+else{
+    <img src="" alt="bookmark no seleccionado">
+}
+<form>
+    @if(@ViewBag.Nota.titulo == null){
+        <input type="text" placeholder="Añadir título"> <input>
+    }else{
+        <input type="text" value="@ViewBag.Nota.titulo"> <input>
+    }
+</form>

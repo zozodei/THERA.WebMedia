@@ -1,0 +1,26 @@
+<main>
+    <section>
+        <h1>Diario</h1>
+    </section>
+    <section>
+        <div class="add-note-card mb-4">
+            <h5>Añadir nota</h5>
+            <a href="@Url.Action("AñadirNota", "Home")"><span class="plus-icon">+</span>
+        </div>
+        @if (ViewBag.Notas != null)
+        {
+            foreach (var nota in ViewBag.Notas)
+            {
+                <div class="note-card">
+                    <div class="note-date">@nota.Fecha</div>
+                    <div class="note-title">@nota.Titulo</div>
+                    <div class="note-text">@nota.Texto</div>
+                </div>
+            }
+        }
+        else
+        { 
+            <p class="text-muted">No hay notas disponibles.</p>
+        }
+    <section>
+<main>
