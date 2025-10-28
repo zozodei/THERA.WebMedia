@@ -1,0 +1,12 @@
+<h1>
+    Audios
+</h1>
+
+<section>
+    @foreach(Audio audio in ViewBag.Audios){
+        <h2> @audio.nombre </h2>
+        <audio controls>
+            <source src="@audio.ruta" type="audio/mp3">
+        </audio>
+    }
+</section>

@@ -38,6 +38,11 @@ public class HomeController : Controller
         ViewBag.estaLogeado = true;
         return View("Respiraciones");
     }
+    public IActionResult irAyudaRapida()
+    {
+        ViewBag.estaLogeado = true;
+        return View("AyudaRapida");
+    }
     public IActionResult irFrases()
     {
         ViewBag.estaLogeado = true;
@@ -46,6 +51,7 @@ public class HomeController : Controller
     public IActionResult irAudios()
     {
         ViewBag.estaLogeado = true;
+        ViewBag.Audios = BD.levantarAudios();
         return View("Audios");
     }
     public IActionResult irBuscarTerapeuta()
@@ -69,5 +75,10 @@ public class HomeController : Controller
         ViewBag.estaLogeado = true;
         ViewBag.terapeutas = BD.levantarTerapeutas();
         return View("Home");
+    }
+    public IActionResult irChatBot()
+    {
+        ViewBag.estaLogeado = true;
+        return View("ChatBot");
     }
 }
