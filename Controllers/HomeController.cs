@@ -57,6 +57,8 @@ public class HomeController : Controller
     public IActionResult irBuscarTerapeuta()
     {
         ViewBag.estaLogeado = true;
+        ViewBag.terapeutas = BD.levantarTerapeutas();
+        ViewBag.frases
         return View ("BuscarTerapeuta");
     }
     public IActionResult irPerfilTerapeuta()
@@ -72,6 +74,7 @@ public class HomeController : Controller
     public IActionResult irHome()
     {
         ViewBag.estaLogeado = true;
+        ViewBag.terapeutas = BD.levantarTerapeutas();
         return View("Home");
     }
     public IActionResult irChatBot()

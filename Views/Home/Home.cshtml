@@ -1,2 +1,12 @@
-<h1>testeando</h1>
-<a href = '@Url.Action("irDiario", "Home")'>Diario</a>
+<img src=""> @*IMAGEN DEL FIGMA*@
+@foreach (var terapeuta in ViewBag.terapeutas)
+{
+    <div>
+
+        @*<img src = "@ViewBag.terapeutas.foto">*@
+        <h3>@ViewBag.terapeutas.nombre</h3>
+        <p>@ViewBag.terapeutas.descripcion</p>
+        
+        
+    </div>
+}
