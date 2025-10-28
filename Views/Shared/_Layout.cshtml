@@ -10,16 +10,20 @@
 
 <body>
     <header>
-        @if(@ViewBag.estaLogeado){
+        @if(ViewBag.estaLogeado){
             <nav>
                 <img src="/Imagenes/AveBlanca" alt="">
                 <ul>
-                    <li>CHATBOT</li>
-                    <li>TERAPEUTAS</li>
-                    <li>DIARIO</li>
-                    <li>AYUDA RAPIDA</li>
-                    <li>CERRAR SESION</li>
+                    <a href="@Url.Action("Chatbot", "Home")"><li>CHATBOT</li></a>
+                    <a href="@Url.Action("ListarTerapeutas", "Home")"><li>TERAPEUTAS</li></a>
+                    <a href="@Url.Action("Diario", "Home")"><li>DIARIO</li></a>
+                    <a href="@Url.Action("AyudaRapida","Home")"><li>AYUDA RAPIDA</li></a>
+                    <a href="@Url.Action("CerrarSesion", "Account")"><li>CERRAR SESION</li></a>
                 </ul>
+            </nav>
+        }else{
+            <nav>
+            <img src="/Imagenes/AveBlanca" alt="">
             </nav>
         }
     </header>
@@ -31,7 +35,6 @@
     <footer>
         <h2>Soporte</h2>
         <h2>Contacto</h2>
-        <h2>Volver Arriba</h2>
 
         <div class = "Redes">
         <img src="" alt="">   

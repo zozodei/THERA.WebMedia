@@ -7,9 +7,9 @@
             <h5>Añadir nota</h5>
             <a href="@Url.Action("AñadirNota", "Home")"><span class="plus-icon">+</span>
         </div>
-        @if (ViewBag.Notas != null)
+        @if (ViewBag.diario != null)
         {
-            foreach (var nota in ViewBag.Notas)
+            foreach (var nota in ViewBag.diario)
             {
                 <div class="note-card">
                     <div class="note-date">@nota.Fecha</div>

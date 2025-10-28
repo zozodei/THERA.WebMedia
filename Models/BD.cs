@@ -5,15 +5,15 @@ namespace THERA.WEBMEDIA
     public static class BD
     {
         private static string _connectionString = @"Server=localhost;DataBase=NOMBRE ACÁ;IntegratedSecurity=True;TrustServerCertificate=True;"; //AÑADIR NOMBRE DE BASE DE DATOS
-        public static List<Nota> levantarNotas(int idPaciente)
+        public static List<Nota> levantarDiario(int idPaciente)
         {
-            List<Nota> notas = new List<Nota>();
+            List<Nota> diario = new List<Nota>();
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 string query = "SELECT * FROM Notas WHERE idPaciente = @pidPaciente";
-                notas = connection.Query<Nota>(query, new {pidPaciente = idPaciente}).ToList();
+                diario = connection.Query<Nota>(query, new {pidPaciente = idPaciente}).ToList();
             }
-            return notas;
+            return diario;
         }
         public static int Login(string Username, string Contraseña)
         {
@@ -25,14 +25,37 @@ namespace THERA.WEBMEDIA
             }
             return idUsuario;
         }
-        public static void CompartirTarea(Tarea tarea, string usernameCompartir)
+        // public static void CompartirTarea(Tarea tarea, string usernameCompartir)
+        // {
+        //     user = ObtenerUsuarioPorUsername(usernameCompartir);
+        //     string query = "INSERT INTO Tarea (Titulo, Descripcion, FechaTarea, Finalizado, IdUsuario) VALUES (@pTitulo, @pDescripcion, @pFechaTarea, @pFinalizado, @pIdUsuario)";
+        //     using (SqlConnection connection = new SqlConnection(_connectionString))
+        //     {
+        //         connection.Execute(query, new { pTitulo = tarea.Titulo, pDescripcion = tarea.Descripcion, pFechaTarea = tarea.FechaTarea, pFinalizado = false, pIdUsuario = user.IdUsuario });
+        //     }
+        // }
+        public static int Registro(string username, string contraseña, int tipoDeUsuario)
         {
-             user = ObtenerUsuarioPorUsername(usernameCompartir);
-            string query = "INSERT INTO Tarea (Titulo, Descripcion, FechaTarea, Finalizado, IdUsuario) VALUES (@pTitulo, @pDescripcion, @pFechaTarea, @pFinalizado, @pIdUsuario)";
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                connection.Execute(query, new { pTitulo = tarea.Titulo, pDescripcion = tarea.Descripcion, pFechaTarea = tarea.FechaTarea, pFinalizado = false, pIdUsuario = user.IdUsuario });
+                string query = "INSERT INTO Usuario (username, contraseña, tipoDeUsuario) VALUES (@pusername, @pcontraseña, @ptipoDeUsuario)";
+                connection.Execute(query, new {pusername = username, pcontraseña = contraseña, ptipoDeUsuario = tipoDeUsuario});
             }
+
+            int idUsuario = Login(username, contraseña);
+
+            return (idUsuario);
+
+        }
+        public static Nota levantarNota(int idNota)
+        {
+            Nota nota = new Nota();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Notas WHERE id = @pidNota";
+                nota = connection.QueryFirstOrDefault<Nota>(query, new {pidNota = idNota});
+            }
+            return nota;
         }
     }
 }

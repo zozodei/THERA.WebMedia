@@ -16,8 +16,29 @@ public class AccountController : Controller
     public IActionResult Login(string username, string contraseña)
     {
         int idUsuario = BD.Login(username, contraseña);
+        HttpContext.Session.SetString("idUsuario", idUsuario.ToString());
         ViewBag.idUsuario = idUsuario;
         return View("Home");
     }
-    public IActionResult Registro()
+    public IActionResult Registro(string username, string contraseña, int tipoDeUsuario)
+    {
+        int idUsuario = BD.Registro(username, contraseña, tipoDeUsuario);
+        HttpContext.Session.SetString("idUsuario", idUsuario.ToString());
+        return RedirectToAction("Login", "Account");
+    }
+    public IActionResult CerrarSesion()
+    {
+        HttpContext.Session.Remove("IdUsuario");
+        return View("Index");
+    }
+    public IActionResult LoginView()
+    {
+        ViewBag.estaLogeado = false;
+        return View("Login");
+    }
+    public IActionResult RegistroView()
+    {
+        ViewBag.estaLogeado = false;
+        return View("Registro");
+    }
 }
