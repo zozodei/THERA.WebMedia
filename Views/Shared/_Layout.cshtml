@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - NombreProyecto</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    
 </head>
 
 <body>
@@ -32,17 +33,33 @@
         @RenderBody()
     </main>
 
-    <footer>
-        <h2>Soporte</h2>
-        <h2>Contacto</h2>
+    <footer class="footer-custom text-center">
+        <div class="container py-4">
+            <!-- Logo -->
+            <div class="footer-logo mb-3">
+                <h2 class="thera-logo">Thera</h2>
+            </div>
 
-        <div class = "Redes">
-        <img src="" alt="">   
-        <img src="" alt=""> 
+            <!-- Línea divisoria -->
+            <hr class="footer-divider">
+
+            <!-- Íconos -->
+            <div class="footer-icons d-flex justify-content-center gap-4 my-3">
+                <img src="img/facebook.png" alt="Facebook" class="social-iconyoutube.png
+                img/linkedin.png
+            </div>
+
+            <!-- Links -->
+            <div class="footer-links my-2">
+                <a href="#" class="footer-link">Soporte</a>
+    -separator">|</span>
+                #Contacto</a>
+            </div>
+
+            <!-- Copyright -->
+            <p class="footer-copy mt-3">© 2025 THERA Argentina</p>
         </div>
-        <p>Copyright © 2025 THERA Argentina</p>
     </footer>
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
