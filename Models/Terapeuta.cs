@@ -8,5 +8,6 @@ namespace THERA.WEBMEDIA
         public float rating{get; private set;}
         public string descripcion{get; private set;}
         public int edad{get; private set;}
+        public string foto{get; private set;}
     }
 }

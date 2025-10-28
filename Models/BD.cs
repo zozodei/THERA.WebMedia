@@ -4,7 +4,7 @@ namespace THERA.WEBMEDIA
 {
     public static class BD
     {
-        private static string _connectionString = @"Server=localhost;DataBase=NOMBRE ACÁ;IntegratedSecurity=True;TrustServerCertificate=True;"; //AÑADIR NOMBRE DE BASE DE DATOS
+        private static string _connectionString = @"Server=localhost;DataBase=Thera;IntegratedSecurity=True;TrustServerCertificate=True;";
         public static List<Nota> levantarDiario(int idPaciente)
         {
             List<Nota> diario = new List<Nota>();
@@ -14,6 +14,16 @@ namespace THERA.WEBMEDIA
                 diario = connection.Query<Nota>(query, new {pidPaciente = idPaciente}).ToList();
             }
             return diario;
+        }
+        public static List<Audio> levantarAudios()
+        {
+            List<Audio> audios = new List<Audio>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Audios";
+                diario = connection.Query<Nota>(query).ToList();
+            }
+            return audios;
         }
         public static int Login(string Username, string Contraseña)
         {
@@ -56,6 +66,16 @@ namespace THERA.WEBMEDIA
                 nota = connection.QueryFirstOrDefault<Nota>(query, new {pidNota = idNota});
             }
             return nota;
+        }
+        public static List<Terapeuta> levantarTerapeutas()
+        {
+            List<Terapeuta> terapeutas = new List<Terapeuta>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Terapeuta";
+                terapeutas = connection.Query<Terapeuta>(query).ToList();
+            }
+            return terapeutas;
         }
     }
 }
