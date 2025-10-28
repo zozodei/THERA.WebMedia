@@ -15,6 +15,16 @@ namespace THERA.WEBMEDIA
             }
             return diario;
         }
+        public static List<Audio> levantarAudios()
+        {
+            List<Audio> audios = new List<Audio>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Audios";
+                diario = connection.Query<Nota>(query).ToList();
+            }
+            return audios;
+        }
         public static int Login(string Username, string Contraseña)
         {
             int idUsuario = -1;
