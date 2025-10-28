@@ -52,7 +52,6 @@ public class HomeController : Controller
     {
         ViewBag.estaLogeado = true;
         ViewBag.terapeutas = BD.levantarTerapeutas();
-        ViewBag.frases
         return View ("BuscarTerapeuta");
     }
     public IActionResult irPerfilTerapeuta()
