@@ -57,5 +57,15 @@ namespace THERA.WEBMEDIA
             }
             return nota;
         }
+        public static List<Terapeuta> levantarTerapeutas()
+        {
+            List<Terapeuta> terapeutas = new List<Terapeuta>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Terapeuta";
+                terapeutas = connection.Query<Terapeuta>().ToList();
+            }
+            return terapeutas;
+        }
     }
 }
