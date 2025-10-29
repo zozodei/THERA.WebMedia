@@ -1,6 +1,6 @@
 using Microsoft.Data.SqlClient;
 using Dapper;
-namespace THERA.WEBMEDIA
+namespace THERA.Models
 {
     public static class BD
     {
@@ -21,7 +21,7 @@ namespace THERA.WEBMEDIA
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 string query = "SELECT * FROM Audios";
-                diario = connection.Query<Nota>(query).ToList();
+                audios = connection.Query<Audio>(query).ToList();
             }
             return audios;
         }

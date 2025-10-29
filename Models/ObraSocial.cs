@@ -1,4 +1,4 @@
-namespace THERA.WEBMEDIA
+namespace THERA.Models
 {
     public class ObraSocial
     {
