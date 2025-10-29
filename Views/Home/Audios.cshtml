@@ -1,8 +1,10 @@
+
+<div class = "Audios">
+
 <h1>
     Audios
 </h1>
-
-<section>
+<section class = "Audio">
     @foreach(Audio audio in ViewBag.Audios){
         <h2> @audio.nombre </h2>
         <audio controls>
@@ -10,3 +12,5 @@
         </audio>
     }
 </section>
+
+</div>
