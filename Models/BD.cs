@@ -127,5 +127,22 @@ namespace THERA.Models
             }
             return terapeutas;
         }
+        public static List<int> levantarCantidadResenas()
+        {
+            List<int> cantidadResenas = new List<int>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = @"
+                    SELECT ISNULL(COUNT(r.Id), 0) AS CantidadResenas
+                    FROM Terapeuta t
+                    LEFT JOIN Resenas r ON t.Id = r.IdTerapeuta
+                    GROUP BY t.Id
+                    ORDER BY t.Id";
+                
+                cantidadResenas = connection.Query<int>(query).ToList();
+            }
+            return cantidadResenas;
+        }
+
     }
 }

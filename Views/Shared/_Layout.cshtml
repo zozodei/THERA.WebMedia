@@ -13,14 +13,16 @@
     <header>
         @if(ViewBag.estaLogeado){
             <nav>
-                <img src="/Imagenes/AveBlanca" alt="">
+                <img src="/Imagenes/AveBlanca" alt="ave">
                 <ul>
                     <a href="@Url.Action("irChatbot", "Home")"><li>CHATBOT</li></a>
                     <a href="@Url.Action("irListarTerapeutas", "Home")"><li>TERAPEUTAS</li></a>
                     <a href="@Url.Action("irDiario", "Home")"><li>DIARIO</li></a>
                     <a href="@Url.Action("irAyudaRapida","Home")"><li>AYUDA RAPIDA</li></a>
                     <a href="@Url.Action("CerrarSesion", "Account")"><li>CERRAR SESION</li></a>
-                </ul>
+                <div>
+                <img src="/Imagenes/FotoPerfil" alt="FotoPerfil">
+                </div>
             </nav>
         }else{
             <nav>
@@ -28,6 +30,8 @@
             </nav>
         }
     </header>
+
+
 
     <main role="main">
         @RenderBody()

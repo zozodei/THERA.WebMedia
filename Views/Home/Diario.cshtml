@@ -12,11 +12,12 @@
             foreach (Nota nota in ViewBag.diario)
             {
                 <div class="note-card">
-                    <div class="note-date">@nota.Fecha</div>
-                    <div class="note-title">@nota.Titulo</div>
-                    <div class="note-text">@nota.Texto</div>
+                    <div class="note-date">@nota.fecha</div>
+                    <div class="note-title">@nota.titulo</div>
+                    <div class="note-text">@nota.descripcion</div>
                 </div>
             }
+            
         }
         else
         { 
