@@ -1,4 +1,11 @@
-    @foreach(Mensaje mensaje in ViewBag.mensajes)
+@foreach(Mensaje mensaje in ViewBag.mensajes)
     {
         <p>@mensaje.mensaje</p>
     }
+ <form action='@Url.Action("enviarMensaje", "Home")'>
+
+    <input type="text" required name = "mensaje">
+    <input type="hidden" name = "idChat" value="@ViewBag.idChat">
+    <input type="submit" value = "Enviar mensaje">
+
+ </form>

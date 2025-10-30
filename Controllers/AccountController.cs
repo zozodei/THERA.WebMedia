@@ -15,14 +15,20 @@ public class AccountController : Controller
     public IActionResult Login(string username, string contraseña)
     {
         int idUsuario = BD.Login(username, contraseña);
+        
+        bool tipoUsuario = BD.levantarTipoUsuario(idUsuario);
+        HttpContext.Session.SetString("usuario", Objeto.ObjectToString(usu));
         HttpContext.Session.SetString("idUsuario", idUsuario.ToString());
+        HttpContext.Session.SetString("tipoUsuario", tipoUsuario.ToString());
         ViewBag.idUsuario = idUsuario;
         return RedirectToAction("irHome", "Home");
     }
     public IActionResult Registro(string username, string contraseña, int tipoDeUsuario)
     {
         int idUsuario = BD.Registro(username, contraseña, tipoDeUsuario);
+        bool tipoUsuario = BD.levantarTipoUsuario(idUsuario);
         HttpContext.Session.SetString("idUsuario", idUsuario.ToString());
+        HttpContext.Session.SetString("tipoUsuario", tipoUsuario.ToString());
         return RedirectToAction("Login", "Account");
     }
     public IActionResult CerrarSesion()
