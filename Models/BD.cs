@@ -35,6 +35,7 @@ namespace THERA.Models
             }
             return frases;
         }
+
         public static int Login(string Username, string Contraseña)
         {
             int idUsuario = -1;
@@ -45,6 +46,16 @@ namespace THERA.Models
             }
             return idUsuario;
         }
+        public static int levantarIdChat(int idPaciente, int idTerapeuta)
+        {
+            int idChat = -1;
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT id FROM Chat WHERE IdTerapeuta = @pIdTerapeuta AND IdPaciente = @pIdPaciente";
+                idChat = connection.QueryFirstOrDefault<int>(query, new {pIdTerapeuta = idTerapeuta, pIdPaciente = idPaciente});
+            }
+        }
+        public static 
         // public static void CompartirTarea(Tarea tarea, string usernameCompartir)
         // {
         //     user = ObtenerUsuarioPorUsername(usernameCompartir);
