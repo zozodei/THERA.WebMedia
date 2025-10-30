@@ -1,12 +1,12 @@
 
 
-<div>
+<div class="home">
 <img src=""> @*IMAGEN DEL FIGMA*@
-@foreach (Terapeuta terapeuta in ViewBag.terapeutas)
+@for (int i = 0; i < 2; i++)
 {
     <div>
 
-        @*<img src = "@ViewBag.terapeutas.foto">*@
+        <img src = "@terapeuta.foto">
         <h3>@terapeuta.nombre</h3>
         <p>@terapeuta.descripcion</p>
         
