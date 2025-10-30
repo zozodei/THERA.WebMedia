@@ -55,7 +55,15 @@ namespace THERA.Models
                 idChat = connection.QueryFirstOrDefault<int>(query, new {pIdTerapeuta = idTerapeuta, pIdPaciente = idPaciente});
             }
         }
-        public static 
+        public static List<Mensaje> levantarMensajes(int idChat)
+        {
+            List<Mensaje> mensajes = new List<Mensaje>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT TOP(15) * FROM Mensaje WHERE IdChat = @pIdChat";
+                mensajes = connection.Execute(query, new {pIdChat = idChat});
+            }
+        } 
         // public static void CompartirTarea(Tarea tarea, string usernameCompartir)
         // {
         //     user = ObtenerUsuarioPorUsername(usernameCompartir);
