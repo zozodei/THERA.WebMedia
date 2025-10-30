@@ -66,9 +66,13 @@ namespace THERA.Models
             }
             return mensajes;
         }
-        public static void enviarMensaje(string mensaje, int idUsuario, int idChat, bool esPaciente)
+        public static  levantarUsuario(int idUsuario)
         {
-            if (esPaciente)
+            
+        }
+        public static void enviarMensaje(string mensaje, int idUsuario, int idChat, bool tipoUsuario)
+        {
+            if (!tipoUsuario)
             {
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
@@ -126,6 +130,16 @@ namespace THERA.Models
                 terapeutas = connection.Query<Terapeuta>(query).ToList();
             }
             return terapeutas;
+        }
+        public static bool levantarTipoUsuario(int idUsuario)
+        {
+            bool tipoDeUsuario;
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT TipoUsuario FROM Usuario WHERE Id = @pId";
+                tipoDeUsuario = connection.QueryFirstOrDefault<bool>(query, new {pId = idUsuario});
+            }
+            return tipoDeUsuario;
         }
     }
 }

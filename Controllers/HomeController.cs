@@ -74,8 +74,11 @@ public class HomeController : Controller
     public IActionResult irChatTerapeuta(int idChat)
     {
         ViewBag.estaLogeado = true;
+        int idUsuario = int.Parse(HttpContext.Session.GetString("idUsuario"));
+        Paciente paciente = BD.levantarPaciente(idUsuario);
         ViewBag.idChat = BD.levantarIdChat(1, 1);
         ViewBag.mensajes = BD.levantarMensajes(ViewBag.idChat);
+
         return View("ChatTerapeuta");
     }
     public IActionResult irHome()
@@ -89,5 +92,15 @@ public class HomeController : Controller
     {
         ViewBag.estaLogeado = true;
         return View("ChatBot");
+    }
+    public IActionResult enviarMensaje(string mensaje)
+    {
+        ViewBag.estaLogeado = true;
+        int idChat = BD.levantarIdChat(1, 1);
+        int idUsuario = int.Parse(HttpContext.Session.GetString("idUsuario"));
+        bool tipoUsuario = bool.Parse(HttpContext.Session.GetString("tipoUsuario"));
+        BD.enviarMensaje(mensaje, idUsuario, idChat, tipoUsuario);
+        ViewBag.mensajes = BD.levantarMensajes(idChat);
+        return View("ChatTerapeuta");
     }
 }
