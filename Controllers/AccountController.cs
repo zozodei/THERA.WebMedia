@@ -26,7 +26,9 @@ public class AccountController : Controller
     public IActionResult Registro(string username, string contraseña, int tipoDeUsuario)
     {
         int idUsuario = BD.Registro(username, contraseña, tipoDeUsuario);
+
         bool tipoUsuario = BD.levantarTipoUsuario(idUsuario);
+        HttpContext.Session.SetString("usuario", Objeto.ObjetoATexto<Usuario>(BD.levantarUsuario(idUsuario)));
         HttpContext.Session.SetString("idUsuario", idUsuario.ToString());
         HttpContext.Session.SetString("tipoUsuario", tipoUsuario.ToString());
         return RedirectToAction("Login", "Account");
@@ -34,6 +36,8 @@ public class AccountController : Controller
     public IActionResult CerrarSesion()
     {
         HttpContext.Session.Remove("IdUsuario");
+        HttpContext.Session.Remove("tipoUsuario");
+        HttpContext.Session.Remove("usuario");
         return View("Index", "Home");
     }
     public IActionResult LoginView()

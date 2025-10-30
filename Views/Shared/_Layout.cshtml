@@ -20,7 +20,9 @@
                     <a href="@Url.Action("irDiario", "Home")"><li>DIARIO</li></a>
                     <a href="@Url.Action("irAyudaRapida","Home")"><li>AYUDA RAPIDA</li></a>
                     <a href="@Url.Action("CerrarSesion", "Account")"><li>CERRAR SESION</li></a>
-                </ul>
+                <div>
+                <img src="/Imagenes/FotoPerfil" alt="FotoPerfil">
+                </div>
             </nav>
         }else{
             <nav>
@@ -28,6 +30,8 @@
             </nav>
         }
     </header>
+
+
 
     <main role="main">
         @RenderBody()
