@@ -45,6 +45,7 @@ public class HomeController : Controller
     public IActionResult irFrases()
     {
         ViewBag.estaLogeado = true;
+        ViewBag.Frases = BD.levantarFrases();
         return View("Frases");
     }
     public IActionResult irAudios()

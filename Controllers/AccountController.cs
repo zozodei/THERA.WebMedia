@@ -17,7 +17,7 @@ public class AccountController : Controller
         int idUsuario = BD.Login(username, contraseña);
         HttpContext.Session.SetString("idUsuario", idUsuario.ToString());
         ViewBag.idUsuario = idUsuario;
-        return View("Home");
+        return RedirectToAction("irHome", "Home");
     }
     public IActionResult Registro(string username, string contraseña, int tipoDeUsuario)
     {
@@ -28,7 +28,7 @@ public class AccountController : Controller
     public IActionResult CerrarSesion()
     {
         HttpContext.Session.Remove("IdUsuario");
-        return View("Index");
+        return View("Index", "Home");
     }
     public IActionResult LoginView()
     {

@@ -4,7 +4,7 @@ namespace THERA.Models
 {
     public static class BD
     {
-        private static string _connectionString = @"Server=localhost;DataBase=Thera;IntegratedSecurity=True;TrustServerCertificate=True;";
+        private static string _connectionString = @"Server=localhost;DataBase=Thera;Integrated Security=True;TrustServerCertificate=True;";
         public static List<Nota> levantarDiario(int idPaciente)
         {
             List<Nota> diario = new List<Nota>();
@@ -25,12 +25,22 @@ namespace THERA.Models
             }
             return audios;
         }
+        public static List<Frase> levantarFrases()
+        {
+            List<Frase> frases = new List<Frase>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Frases";
+                frases = connection.Query<Frase>(query).ToList();
+            }
+            return frases;
+        }
         public static int Login(string Username, string Contraseña)
         {
             int idUsuario = -1;
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                string query = "SELECT id FROM Usuario WHERE username = @pUsername AND contraseña = @pContraseña";
+                string query = "SELECT id FROM Usuario WHERE username = @pUsername AND Contrasena = @pContraseña";
                 idUsuario = connection.QueryFirstOrDefault<int>(query, new { pUsername = Username, pContraseña = Contraseña });
             }
             return idUsuario;
