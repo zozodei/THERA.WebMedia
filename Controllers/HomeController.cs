@@ -84,10 +84,21 @@ public class HomeController : Controller
     public IActionResult irHome()
     {
         ViewBag.estaLogeado = true;
-        ViewBag.terapeutas = BD.levantarTerapeutas();
-      //  ViewBag.notas = BD.levantarDiario();
+        List<Terapeuta> terapeutas = BD.levantarTerapeutas();
+        List<int> cantResenas = BD.levantarCantidadResenas();
+        Random random = new Random();
+        int numRandom1 = random.Next(0, terapeutas);
+        do{
+            int numRandom2 = random.Next(0, terapeutas);
+        }while(numRandom1 == numRandom2);
+        List<Terapeuta> terapeutasSeleccionados = new List<Terapeuta>() {terapeutas[numRandom1], terapeutas[numRandom2]};
+        List<int> cantResenasSeleccionadas = new List<int>() {cantResenas[numRandom1], cantResenas[numRandom2]};
+        ViewBag.terapeutas = terapeutasSeleccionados;
+        ViewBag.cantResenas = cantResenasSeleccionadas;
+        ViewBag.notas = BD.levantarDiario();
         return View("Home");
     }
+
     public IActionResult irChatBot()
     {
         ViewBag.estaLogeado = true;
