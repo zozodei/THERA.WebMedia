@@ -19,7 +19,7 @@ public class HomeController : Controller
         return View("Comenzar");
     }
 
-     public IActionResult IrIndex()
+     public IActionResult irIndex()
     {
         ViewBag.estaLogeado = false;
         return View("Index");
@@ -71,9 +71,11 @@ public class HomeController : Controller
         ViewBag.estaLogeado = true;
         return View ("PerfilTerapeuta");
     }
-    public IActionResult irChatTerapeuta()
+    public IActionResult irChatTerapeuta(int idChat)
     {
         ViewBag.estaLogeado = true;
+        ViewBag.idChat = BD.levantarIdChat(1, 1);
+        ViewBag.mensajes = BD.levantarMensajes(ViewBag.idChat);
         return View("ChatTerapeuta");
     }
     public IActionResult irHome()

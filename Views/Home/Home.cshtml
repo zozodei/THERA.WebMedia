@@ -13,13 +13,14 @@
         
     </div>
     }
-    @foreach (Nota nota in ViewBag.notas)
+    <a href='@Url.Action ("irChatTerapeuta", "Home")'>Chat terapeuta</a>
+    @*@foreach (Nota nota in ViewBag.notas)
     {
         <div>
 
-            @*<button><a href='@Url.Action ("irNota", "Home", new {id = @nota.id})'>@nota.titulo</a></button> *@
+            <button><a href='@Url.Action ("irNota", "Home", new {id = @nota.id})'>@nota.titulo</a></button>
 
         </div>
-    }
+    }*@
 
 </div>
