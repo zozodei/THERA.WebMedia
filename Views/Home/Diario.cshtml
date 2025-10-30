@@ -9,7 +9,7 @@
         </div>
         @if (ViewBag.diario != null)
         {
-            foreach (var nota in ViewBag.diario)
+            foreach (Nota nota in ViewBag.diario)
             {
                 <div class="note-card">
                     <div class="note-date">@nota.Fecha</div>
