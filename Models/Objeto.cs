@@ -1,8 +1,8 @@
-namespace TP_SalaDeEscape.Models;
+namespace THERA.Models{
 
 using Newtonsoft.Json;
 
-public static class objeto 
+public static class Objeto 
 {
     public static string ObjetoATexto<T> (T? objeto) 
     {
@@ -42,4 +42,5 @@ public static class objeto
     }
 
 
+}
 }

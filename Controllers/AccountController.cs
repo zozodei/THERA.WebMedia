@@ -2,7 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using THERA.Models;
 
-namespace ToDoList.Controllers;
+namespace THERA.Controllers;
 
 public class AccountController : Controller
 {
@@ -17,7 +17,7 @@ public class AccountController : Controller
         int idUsuario = BD.Login(username, contraseña);
         
         bool tipoUsuario = BD.levantarTipoUsuario(idUsuario);
-        HttpContext.Session.SetString("usuario", Objeto.ObjectToString(usu));
+        HttpContext.Session.SetString("usuario", Objeto.ObjetoATexto<Usuario>(BD.levantarUsuario(idUsuario)));
         HttpContext.Session.SetString("idUsuario", idUsuario.ToString());
         HttpContext.Session.SetString("tipoUsuario", tipoUsuario.ToString());
         ViewBag.idUsuario = idUsuario;

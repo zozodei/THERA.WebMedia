@@ -66,9 +66,15 @@ namespace THERA.Models
             }
             return mensajes;
         }
-        public static  levantarUsuario(int idUsuario)
+        public static Usuario levantarUsuario(int idUsuario)
         {
-            
+            Usuario usuairo = null;
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Usuarios WHERE Id = @pIdUsuario";
+                usuairo = connection.QueryFirstOrDefault<Usuario>(query, new {pIdUsuario = idUsuario});
+            }
+            return usuairo;
         }
         public static void enviarMensaje(string mensaje, int idUsuario, int idChat, bool tipoUsuario)
         {
