@@ -2,16 +2,24 @@
 
 <div class="home">
 <img src=""> @*IMAGEN DEL FIGMA*@
-@for (int i = 0; i < 2; i++)
-{
+    @foreach (Terapeuta terapeuta in ViewBag.terapeutas)
+    {
     <div>
 
-        <img src = "@terapeuta.foto">
+        @*<img src = "@ViewBag.terapeutas.foto">*@
         <h3>@terapeuta.nombre</h3>
         <p>@terapeuta.descripcion</p>
         
         
     </div>
-}
+    }
+    @foreach (Nota nota in ViewBag.notas)
+    {
+        <div>
+
+            <button><a href='@Url.Action ("irNota", "Home", new {id = @nota.id})'>@nota.titulo</a></button>
+
+        </div>
+    }
 
 </div>
