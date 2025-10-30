@@ -204,13 +204,29 @@ footer {
 
 /* PAGINA COMENZAR CSS*/
 
-.comenzar
-{
-    background-image: url("/Imagenes/Shapes/Shape1.png");
-    background-repeat: no-repeat;   
-    background-position: center;   
-    background-size: cover; 
+html, body { height: 100%; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: url("/Imagenes/Shape1.png") center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+
+/* Estilo del botón "Comenzar" (sin depender de la clase del div) */
+body > div > a {
+  display: inline-block;
+  padding: 12px 22px;
+  background: #fff;
+  color: #333;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+}
+
 
 
 

@@ -54,6 +54,7 @@ namespace THERA.Models
                 string query = "SELECT id FROM Chat WHERE IdTerapeuta = @pIdTerapeuta AND IdPaciente = @pIdPaciente";
                 idChat = connection.QueryFirstOrDefault<int>(query, new {pIdTerapeuta = idTerapeuta, pIdPaciente = idPaciente});
             }
+            return idChat;
         }
         public static List<Mensaje> levantarMensajes(int idChat)
         {
@@ -61,9 +62,29 @@ namespace THERA.Models
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 string query = "SELECT TOP(15) * FROM Mensaje WHERE IdChat = @pIdChat";
-                mensajes = connection.Execute(query, new {pIdChat = idChat});
+                mensajes = connection.Query<Mensaje>(query, new {pIdChat = idChat}).ToList();
             }
-        } 
+            return mensajes;
+        }
+        public static void enviarMensaje(string mensaje, int idUsuario, int idChat, bool esPaciente)
+        {
+            if (esPaciente)
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    string query = "INSERT INTO Mensaje (IdChat, IdPaciente, Mensaje, Hora) VALUES (@pIdChat, @pIdUsuario, @pMensaje, GETDATE())";
+                    connection.Execute(query, new {pIdChat = idChat, pIdUsuario = idUsuario, pMensaje = mensaje});
+                }
+            }
+            else
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    string query = "INSERT INTO Mensaje (IdChat, IdTerapeuta, Mensaje, Hora) VALUES (@pIdChat, @pIdUsuario, @pMensaje, GETDATE())";
+                    connection.Execute(query, new {pIdChat = idChat, pIdUsuario = idUsuario, pMensaje = mensaje});
+                }
+            }
+        }
         // public static void CompartirTarea(Tarea tarea, string usernameCompartir)
         // {
         //     user = ObtenerUsuarioPorUsername(usernameCompartir);
