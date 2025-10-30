@@ -81,10 +81,17 @@ public class HomeController : Controller
     public IActionResult irHome()
     {
         ViewBag.estaLogeado = true;
-        ViewBag.terapeutas = BD.levantarTerapeutas();
-      //  ViewBag.notas = BD.levantarDiario();
+        List<Terapeuta> terapeutas = BD.levantarTerapeutas();
+        List<int> cantResenas = BD.levantarCantidadResenas();
+        Random random = new Random();
+        int numRandom1 = random.Next(0, terapeutas);
+        do{
+            int numRandom2 = random.Next(0, terapeutas);
+        }while(numRandom1 == nnumRandom2);
+        ViewBag.notas = BD.levantarDiario();
         return View("Home");
     }
+
     public IActionResult irChatBot()
     {
         ViewBag.estaLogeado = true;
