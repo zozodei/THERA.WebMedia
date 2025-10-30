@@ -13,7 +13,13 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index()
+    public IActionResult Comenzar()
+    {
+        ViewBag.estaLogeado = false;
+        return View("Comenzar");
+    }
+
+     public IActionResult IrIndex()
     {
         ViewBag.estaLogeado = false;
         return View("Index");

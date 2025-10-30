@@ -195,7 +195,23 @@ header nav ul a:hover {
     }
 }
 
-/* ===== FOOTER BASE ===== */
+/*  FOOTER BASE  */
 footer {
   margin-top: 10px;
 }
+
+
+
+/* PAGINA COMENZAR CSS*/
+
+.comenzar
+{
+    background-image: url("/Imagenes/Shapes/Shape1.png");
+    background-repeat: no-repeat;   
+    background-position: center;   
+    background-size: cover; 
+}
+
+
+
+
