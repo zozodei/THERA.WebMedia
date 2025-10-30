@@ -74,6 +74,7 @@ public class HomeController : Controller
     {
         ViewBag.estaLogeado = true;
         ViewBag.terapeutas = BD.levantarTerapeutas();
+        ViewBag.notas = BD.levantarDiario();
         return View("Home");
     }
     public IActionResult irChatBot()
