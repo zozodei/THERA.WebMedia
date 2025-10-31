@@ -66,15 +66,15 @@ namespace THERA.Models
             }
             return mensajes;
         }
-        public static Usuario levantarUsuario(int idUsuario) //seguir!
+        public static Usuario levantarUsuario(int idUsuario)
         {
-            Usuario usuario = new Usuario();
+            Usuario usuairo = null;
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                string query = "SELECT id FROM Chat WHERE IdTerapeuta = @pIdTerapeuta AND IdPaciente = @pIdPaciente";
-                idChat = connection.QueryFirstOrDefault<int>(query, new {pIdTerapeuta = idTerapeuta, pIdPaciente = idPaciente});
+                string query = "SELECT * FROM Usuarios WHERE Id = @pIdUsuario";
+                usuairo = connection.QueryFirstOrDefault<Usuario>(query, new {pIdUsuario = idUsuario});
             }
-            return idChat;
+            return usuairo;
         }
         public static void enviarMensaje(string mensaje, int idUsuario, int idChat, bool tipoUsuario)
         {
@@ -137,6 +137,24 @@ namespace THERA.Models
             }
             return terapeutas;
         }
+    public static List<int> levantarCantidadResenas()
+        {
+            List<int> cantidadResenas = new List<int>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = @"
+                    SELECT ISNULL(COUNT(r.Id), 0) AS CantidadResenas
+                    FROM Terapeuta t
+                    LEFT JOIN Resenas r ON t.Id = r.IdTerapeuta
+                    GROUP BY t.Id
+                    ORDER BY t.Id";
+                
+                cantidadResenas = connection.Query<int>(query).ToList();
+            }
+            return cantidadResenas;
+        }
+
+
         public static bool levantarTipoUsuario(int idUsuario)
         {
             bool tipoDeUsuario;
@@ -145,7 +163,8 @@ namespace THERA.Models
                 string query = "SELECT TipoUsuario FROM Usuario WHERE Id = @pId";
                 tipoDeUsuario = connection.QueryFirstOrDefault<bool>(query, new {pId = idUsuario});
             }
-            return tipoDeUsuario;
+            return tipoDeUsuario;   
         }
+    
     }
 }

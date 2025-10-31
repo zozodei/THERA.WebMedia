@@ -2,7 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using THERA.Models;
 
-namespace ToDoList.Controllers;
+namespace THERA.Controllers;
 
 public class AccountController : Controller
 {
@@ -17,20 +17,27 @@ public class AccountController : Controller
         int idUsuario = BD.Login(username, contraseña);
         Usuario usuario = .....
         bool tipoUsuario = BD.levantarTipoUsuario(idUsuario);
-        HttpContext.Session.SetString("usuario", Objeto.ObjectToString(usu));
+        HttpContext.Session.SetString("usuario", Objeto.ObjetoATexto<Usuario>(BD.levantarUsuario(idUsuario)));
+        HttpContext.Session.SetString("idUsuario", idUsuario.ToString());
+        HttpContext.Session.SetString("tipoUsuario", tipoUsuario.ToString());
         ViewBag.idUsuario = idUsuario;
         return RedirectToAction("irHome", "Home");
     }
     public IActionResult Registro(string username, string contraseña, int tipoDeUsuario)
     {
         int idUsuario = BD.Registro(username, contraseña, tipoDeUsuario);
+
         bool tipoUsuario = BD.levantarTipoUsuario(idUsuario);
-//sesion del usuario
+        HttpContext.Session.SetString("usuario", Objeto.ObjetoATexto<Usuario>(BD.levantarUsuario(idUsuario)));
+        HttpContext.Session.SetString("idUsuario", idUsuario.ToString());
+        HttpContext.Session.SetString("tipoUsuario", tipoUsuario.ToString());
         return RedirectToAction("Login", "Account");
     }
     public IActionResult CerrarSesion()
     {
         HttpContext.Session.Remove("IdUsuario");
+        HttpContext.Session.Remove("tipoUsuario");
+        HttpContext.Session.Remove("usuario");
         return View("Index", "Home");
     }
     public IActionResult LoginView()
