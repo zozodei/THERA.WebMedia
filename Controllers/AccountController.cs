@@ -15,7 +15,6 @@ public class AccountController : Controller
     public IActionResult Login(string username, string contraseña)
     {
         int idUsuario = BD.Login(username, contraseña);
-        Usuario usuario = .....
         bool tipoUsuario = BD.levantarTipoUsuario(idUsuario);
         HttpContext.Session.SetString("usuario", Objeto.ObjetoATexto<Usuario>(BD.levantarUsuario(idUsuario)));
         HttpContext.Session.SetString("idUsuario", idUsuario.ToString());

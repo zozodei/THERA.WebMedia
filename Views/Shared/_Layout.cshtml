@@ -13,7 +13,7 @@
     <header>
         @if(ViewBag.estaLogeado){
             <nav>
-                <img src="/Imagenes/AveBlanca.png" alt="Logo">
+                <a href="@Url.Action("irHome", "Home")"><img src="/Imagenes/AveBlanca.png" alt="Logo"></a>
                 <ul>
                     <a href="@Url.Action("irChatbot", "Home")"><li>CHATBOT</li></a>
                     <a href="@Url.Action("irListarTerapeutas", "Home")"><li>TERAPEUTAS</li></a>
