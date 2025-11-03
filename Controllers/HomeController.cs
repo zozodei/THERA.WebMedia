@@ -27,7 +27,8 @@ public class HomeController : Controller
     public IActionResult irDiario()
     {
         ViewBag.estaLogeado = true;
-        List<Nota> diario = BD.levantarDiario(int.Parse((HttpContext.Session.GetString("idPaciente"))));
+        string idUsuario = HttpContext.Session.GetString("idUsuario");
+        List<Nota> diario = BD.levantarDiario(int.Parse((idUsuario)));
         ViewBag.diario = diario;
         return View("Diario");
     }
@@ -37,6 +38,11 @@ public class HomeController : Controller
         Nota nota = BD.levantarNota(id);
         ViewBag.nota = nota;
         return View("Nota");
+    }
+    public IActionResult irAgregarNota(int id)
+    {
+        ViewBag.estaLogeado = true;
+        return View("AgregarNota");
     }
     public IActionResult irRespiraciones()
     {

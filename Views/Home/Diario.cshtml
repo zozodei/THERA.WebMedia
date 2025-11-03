@@ -4,18 +4,21 @@
         <h1>Diario</h1>
     <section class = "Nota">
         <div class="add-note-card mb-4">
-            <h5>Añadir nota</h5>
-            <a href="@Url.Action("AñadirNota", "Home")"><span class="plus-icon">+</span>
+            <h4>Añadir nota</h4>
+            <a href="@Url.Action("irNota", "Home")"><span class="plus-icon">+</span>
         </div>
+        
         @if (ViewBag.diario != null)
         {
             foreach (Nota nota in ViewBag.diario)
             {
+                <a href="@Url.Action("irNota", "Home", new {id = @nota.id})">
                 <div class="note-card">
                     <div class="note-date">@nota.fecha</div>
                     <div class="note-title">@nota.titulo</div>
                     <div class="note-text">@nota.descripcion</div>
                 </div>
+                </a>
             }
             
         }

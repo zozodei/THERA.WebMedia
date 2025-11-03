@@ -71,7 +71,7 @@ namespace THERA.Models
             Usuario usuairo = null;
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                string query = "SELECT * FROM Usuarios WHERE Id = @pIdUsuario";
+                string query = "SELECT * FROM Usuario WHERE Id = @pIdUsuario";
                 usuairo = connection.QueryFirstOrDefault<Usuario>(query, new {pIdUsuario = idUsuario});
             }
             return usuairo;
@@ -118,15 +118,8 @@ namespace THERA.Models
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                string query = "INSERT INTO Usuario (Username, Contrasena, TipoUsuario) VALUES (@pusername, @pcontraseña, @ptipoDeUsuario)";
+                string query = "exec Registrarse @pusername, @pcontraseña, @ptipoDeUsuario";
                 connection.Execute(query, new {pusername = username, pcontraseña = contraseña, ptipoDeUsuario = tipoDeUsuario});
-            }
-            if(tipoDeUsuario==0){
-                using (SqlConnection connection = new SqlConnection(_connectionString))
-                {
-                    string query = "INSERT INTO Usuario (username, contraseña, tipoDeUsuario) VALUES (@pusername, @pcontraseña, @ptipoDeUsuario)";
-                    connection.Execute(query, new {pusername = username, pcontraseña = contraseña, ptipoDeUsuario = tipoDeUsuario});
-                }
             }
 
             int idUsuario = Login(username, contraseña);
