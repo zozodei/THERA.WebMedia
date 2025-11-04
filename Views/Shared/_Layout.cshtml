@@ -10,27 +10,58 @@
 </head>
 
 <body>
-    <header>
-        @if(ViewBag.estaLogeado){
-            <nav>
-                <a href="@Url.Action("irHome", "Home")"><img src="/Imagenes/AveBlanca.png" alt="Logo"></a>
-                <ul>
-                    <a href="@Url.Action("irChatbot", "Home")"><li>CHATBOT</li></a>
-                    <a href="@Url.Action("irListarTerapeutas", "Home")"><li>TERAPEUTAS</li></a>
-                    <a href="@Url.Action("irDiario", "Home")"><li>DIARIO</li></a>
-                    <a href="@Url.Action("irAyudaRapida","Home")"><li>AYUDA RAPIDA</li></a>
-                    <a href="@Url.Action("CerrarSesion", "Account")"><li>CERRAR SESION</li></a>
-                <div>
-                <img src="/Imagenes/FotoPerfil" alt="FotoPerfil">
-                </div>
-            </nav>
-        }else{
-            <nav>
-                <img src="/Imagenes/AveBlanca.png" alt="Logo">
-            </nav>
-        }
-    </header>
+   <header>
+    @if (ViewBag.estaLogeado)
+    {
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container">
+                <!-- LOGO -->
+                <a class="navbar-brand" href="@Url.Action("irHome", "Home")">
+                    <img src="/Imagenes/AveBlanca.png" alt="Logo" style="height:40px;">
+                </a>
 
+                <!-- BOTÓN HAMBURGUESA -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- MENÚ -->
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("irChatbot", "Home")">CHATBOT</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("irListarTerapeutas", "Home")">TERAPEUTAS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("irDiario", "Home")">DIARIO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("irAyudaRapida","Home")">AYUDA RÁPIDA</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" href="@Url.Action("CerrarSesion", "Account")">CERRAR SESIÓN</a>
+                        </li>
+                    </ul>
+
+                    <!-- FOTO DE PERFIL -->
+                    <div class="d-flex align-items-center">
+                        <img src="/Imagenes/FotoPerfil" alt="FotoPerfil" class="rounded-circle" style="height:40px; width:40px; object-fit:cover;">
+                    </div>
+                </div>
+            </div>
+        </nav>
+    }
+    else
+    {
+        <nav class="navbar bg-light">
+            <div class="container justify-content-center">
+                <img src="/Imagenes/AveBlanca.png" alt="Logo" style="height:40px;">
+            </div>
+        </nav>
+    }
+</header>
 
 
     <main role="main">
