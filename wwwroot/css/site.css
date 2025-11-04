@@ -1,66 +1,69 @@
-/* ===== GENERAL ===== */
-html {
-  font-size: 14px;
-  min-height: 100%;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
 body {
-  margin: 10px;
-  padding: 10px;
+    margin: 0; /* Eliminar margen extra */
+    padding: 0; /* Eliminar padding extra */
 }
 
-/* ===== HEADER PRINCIPAL ===== */
+
+/* ===== HEADER PRINCIPAL (Mobile First) ===== */
 header {
     width: 100%;
-    background-color: #ffffff; /* Fondo blanco */
-    border-bottom: 2px solid #C4661F; /* Línea inferior naranja */
+    background-color: #C4661F; /* Fondo naranja */
+    border-bottom: none;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 20px 20px; /* MÁS alto en mobile */
     box-sizing: border-box;
 }
 
-header nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 90%;
-}
-
 header nav img {
-    height: 50px; /* Ajustar según logo */
+    height: 45px; /* Logo un poco más grande en mobile */
 }
 
+/* Botón hamburguesa */
+.hamburger-btn {
+    display: block;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* ===== MEDIA QUERY DESKTOP ===== */
+@media (min-width: 992px) {
+    header {
+        padding: 10px 60px; /* MÁS compacto en desktop */
+    }
+
+    header nav img {
+        height: 50px; /* Logo más grande en desktop */
+    }
+}
+
+/* Menú horizontal oculto en móvil */
 header nav ul {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-    margin: 0;
-    padding: 0;
+    display: none;
 }
 
+/* Botón hamburguesa visible en móvil */
+.hamburger-btn {
+    display: block;
+    font-size: 24px;
+    color: #fff; /* Ícono blanco sobre fondo naranja */
+    cursor: pointer;
+}
+
+/* Links del menú hamburguesa */
 header nav ul a {
-    text-decoration: none;
-    color: #000000;
+    color: #fff; /* Texto blanco */
     font-family: 'Segoe UI', sans-serif;
     font-size: 16px;
     font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-header nav ul a:hover {
-    color: #C4661F; /* Hover naranja */
+    text-decoration: none;
 }
 
 /* ===== MENÚ HAMBURGUESA ===== */
 .menu-hamburguesa {
+    display: none; /* Oculto por defecto */
     position: fixed;
     top: 0;
     left: 0;
@@ -71,137 +74,33 @@ header nav ul a:hover {
     border-radius: 20px;
     padding-top: 20px;
     box-sizing: border-box;
-    display: flex;
     flex-direction: column;
     font-family: 'Segoe UI', sans-serif;
 }
 
-.menu-hamburguesa ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.menu-hamburguesa li {
-    display: flex;
-    align-items: center;
-    padding: 15px 20px;
-    border-bottom: 1px solid #e0e0e0;
-    font-size: 16px;
-    color: #000000;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.menu-hamburguesa li:hover {
-    background-color: #f9f9f9;
-}
-
-.menu-hamburguesa li img {
-    width: 24px;
-    height: 24px;
-    margin-right: 15px;
-}
-
-/* ===== FOOTER ===== */
-.footer-custom {
-    background-color: #C4661F; /* Color exacto */
-    color: #fff;
-    border-radius: 0 0 20px 20px;
-    text-align: center;
-    padding: 20px 10px;
-}
-
-.thera-logo {
-    font-family: 'Georgia', serif;
-    font-size: 2rem;
-    font-weight: bold;
-    color: #fff;
-    margin-bottom: 10px;
-}
-
-.footer-divider {
-    border: none;
-    border-top: 1px solid #fff;
-    width: 90%;
-    margin: 10px auto;
-}
-
-.footer-icons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: 15px 0;
-}
-
-.footer-icons .social-icon {
-    width: 32px;
-    height: 32px;
-    transition: opacity 0.3s ease;
-}
-
-.footer-icons .social-icon:hover {
-    opacity: 0.8;
-}
-
-.footer-links {
-    font-size: 1rem;
-    margin: 10px 0;
-}
-
-.footer-link {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 8px;
-}
-
-.footer-link:hover {
-    text-decoration: underline;
-}
-
-.footer-separator {
-    color: #fff;
-}
-
-.footer-copy {
-    font-size: 0.9rem;
-    margin-top: 10px;
-}
-
 /* ===== MEDIA QUERY DESKTOP ===== */
 @media (min-width: 992px) {
-    /* Footer ajustes */
-    .footer-custom {
-        padding: 40px 0;
-    }
-    .footer-icons .social-icon {
-        width: 40px;
-        height: 40px;
-    }
-    .thera-logo {
-        font-size: 2.5rem;
-    }
-    .footer-links {
-        font-size: 1.1rem;
+    /* Mostrar menú horizontal */
+    header nav ul {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+        margin: 0;
+        padding: 0;
     }
 
-    /* Header ajustes */
-    header {
-        padding: 20px 60px;
+    /* Ocultar botón hamburguesa */
+    .hamburger-btn {
+        display: none;
     }
+
     header nav ul a {
         font-size: 1.2rem;
         margin: 0 15px;
+        color: #fff; /* Texto blanco en desktop */
+    }
+
+    header nav ul a:hover {
+        text-decoration: underline;
     }
 }
-
-/*  FOOTER BASE  */
-footer {
-  margin-top: 10px;
-}
-
-
-
-
-
-

@@ -71,12 +71,20 @@ public class HomeController : Controller
         ViewBag.estaLogeado = true;
         return View ("PerfilTerapeuta");
     }
-    public IActionResult irChatTerapeuta(int idChat)
+    public IActionResult irChatTerapeuta()
     {
         ViewBag.estaLogeado = true;
-        int idUsuario = int.Parse(HttpContext.Session.GetString("idUsuario"));
-        Paciente paciente = BD.levantarPaciente(idUsuario);
-        ViewBag.idChat = BD.levantarIdChat(1, 1);
+        Usuario usuario = Objeto.TextoAObjeto<Usuario>(HttpContext.Session.GetString("usuario"));
+        Paciente paciente = BD.levantarPaciente(usuario.id);
+        ViewBag.idChat = null;
+        if (!usuario.tipoUsuario)
+        {
+            ViewBag.idChat = BD.levantarIdChat(paciente.id, paciente.idTerapeuta);
+        }
+        else
+        {
+
+        }
         ViewBag.mensajes = BD.levantarMensajes(ViewBag.idChat);
 
         return View("ChatTerapeuta");
@@ -87,30 +95,30 @@ public class HomeController : Controller
         List<Terapeuta> terapeutas = BD.levantarTerapeutas();
         List<int> cantResenas = BD.levantarCantidadResenas();
         Random random = new Random();
-        int numRandom1 = random.Next(0, terapeutas);
+        int numRandom1 = random.Next(0, terapeutas.Count);
+        int numRandom2 = 0;
         do{
-            int numRandom2 = random.Next(0, terapeutas);
+            numRandom2 = random.Next(0, terapeutas.Count);
         }while(numRandom1 == numRandom2);
         List<Terapeuta> terapeutasSeleccionados = new List<Terapeuta>() {terapeutas[numRandom1], terapeutas[numRandom2]};
         List<int> cantResenasSeleccionadas = new List<int>() {cantResenas[numRandom1], cantResenas[numRandom2]};
         ViewBag.terapeutas = terapeutasSeleccionados;
         ViewBag.cantResenas = cantResenasSeleccionadas;
-        ViewBag.notas = BD.levantarDiario();
+        //ViewBag.notas = BD.levantarDiario();
         return View("Home");
     }
-
+    
+    
     public IActionResult irChatBot()
     {
         ViewBag.estaLogeado = true;
         return View("ChatBot");
     }
-    public IActionResult enviarMensaje(string mensaje)
+    public IActionResult enviarMensaje(string mensaje, int idChat)
     {
         ViewBag.estaLogeado = true;
-        int idChat = BD.levantarIdChat(1, 1);
-        int idUsuario = int.Parse(HttpContext.Session.GetString("idUsuario"));
-        bool tipoUsuario = bool.Parse(HttpContext.Session.GetString("tipoUsuario"));
-        BD.enviarMensaje(mensaje, idUsuario, idChat, tipoUsuario);
+        Usuario usuario = Objeto.TextoAObjeto<Usuario>(HttpContext.Session.GetString("usuario"));
+        BD.enviarMensaje(mensaje, usuario.id, idChat, usuario.tipoUsuario);
         ViewBag.mensajes = BD.levantarMensajes(idChat);
         return View("ChatTerapeuta");
     }

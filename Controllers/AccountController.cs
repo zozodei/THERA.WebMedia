@@ -2,7 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using THERA.Models;
 
-namespace ToDoList.Controllers;
+namespace THERA.Controllers;
 
 public class AccountController : Controller
 {
@@ -15,22 +15,26 @@ public class AccountController : Controller
     public IActionResult Login(string username, string contraseña)
     {
         int idUsuario = BD.Login(username, contraseña);
-        Usuario usuario = .....
+        //if (idUsuario == -1) comprobar que existe usuario
+        //{
+
+        //}
         bool tipoUsuario = BD.levantarTipoUsuario(idUsuario);
-        HttpContext.Session.SetString("usuario", Objeto.ObjectToString(usu));
+        HttpContext.Session.SetString("usuario", Objeto.ObjetoATexto<Usuario>(BD.levantarUsuario(idUsuario)));
         ViewBag.idUsuario = idUsuario;
         return RedirectToAction("irHome", "Home");
     }
     public IActionResult Registro(string username, string contraseña, int tipoDeUsuario)
     {
         int idUsuario = BD.Registro(username, contraseña, tipoDeUsuario);
+
         bool tipoUsuario = BD.levantarTipoUsuario(idUsuario);
-//sesion del usuario
+        HttpContext.Session.SetString("usuario", Objeto.ObjetoATexto<Usuario>(BD.levantarUsuario(idUsuario)));
         return RedirectToAction("Login", "Account");
     }
     public IActionResult CerrarSesion()
     {
-        HttpContext.Session.Remove("IdUsuario");
+        HttpContext.Session.Remove("usuario");
         return View("Index", "Home");
     }
     public IActionResult LoginView()

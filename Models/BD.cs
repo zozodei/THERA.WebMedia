@@ -66,15 +66,25 @@ namespace THERA.Models
             }
             return mensajes;
         }
-        public static Usuario levantarUsuario(int idUsuario) //seguir!
+        public static Usuario levantarUsuario(int idUsuario)
         {
-            Usuario usuario = new Usuario();
+            Usuario usuario = null;
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                string query = "SELECT id FROM Chat WHERE IdTerapeuta = @pIdTerapeuta AND IdPaciente = @pIdPaciente";
-                idChat = connection.QueryFirstOrDefault<int>(query, new {pIdTerapeuta = idTerapeuta, pIdPaciente = idPaciente});
+                string query = "SELECT * FROM Usuario WHERE Id = @pIdUsuario";
+                usuario = connection.QueryFirstOrDefault<Usuario>(query, new {pIdUsuario = idUsuario});
             }
-            return idChat;
+            return usuario;
+        }
+        public static Paciente levantarPaciente(int idUsuario)
+        {
+            Paciente Paciente = null;
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Paciente WHERE Id = @pIdUsuario";
+                Paciente = connection.QueryFirstOrDefault<Paciente>(query, new {pIdUsuario = idUsuario});
+            }
+            return Paciente;
         }
         public static void enviarMensaje(string mensaje, int idUsuario, int idChat, bool tipoUsuario)
         {
@@ -108,8 +118,15 @@ namespace THERA.Models
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                string query = "INSERT INTO Usuario (username, contraseña, tipoDeUsuario) VALUES (@pusername, @pcontraseña, @ptipoDeUsuario)";
+                string query = "INSERT INTO Usuario (Username, Contrasena, TipoUsuario) VALUES (@pusername, @pcontraseña, @ptipoDeUsuario)";
                 connection.Execute(query, new {pusername = username, pcontraseña = contraseña, ptipoDeUsuario = tipoDeUsuario});
+            }
+            if(tipoDeUsuario==0){
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    string query = "INSERT INTO Usuario (username, contraseña, tipoDeUsuario) VALUES (@pusername, @pcontraseña, @ptipoDeUsuario)";
+                    connection.Execute(query, new {pusername = username, pcontraseña = contraseña, ptipoDeUsuario = tipoDeUsuario});
+                }
             }
 
             int idUsuario = Login(username, contraseña);
@@ -137,6 +154,24 @@ namespace THERA.Models
             }
             return terapeutas;
         }
+    public static List<int> levantarCantidadResenas()
+        {
+            List<int> cantidadResenas = new List<int>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = @"
+                    SELECT ISNULL(COUNT(r.Id), 0) AS CantidadResenas
+                    FROM Terapeuta t
+                    LEFT JOIN Resenas r ON t.Id = r.IdTerapeuta
+                    GROUP BY t.Id
+                    ORDER BY t.Id";
+                
+                cantidadResenas = connection.Query<int>(query).ToList();
+            }
+            return cantidadResenas;
+        }
+
+
         public static bool levantarTipoUsuario(int idUsuario)
         {
             bool tipoDeUsuario;
@@ -145,7 +180,8 @@ namespace THERA.Models
                 string query = "SELECT TipoUsuario FROM Usuario WHERE Id = @pId";
                 tipoDeUsuario = connection.QueryFirstOrDefault<bool>(query, new {pId = idUsuario});
             }
-            return tipoDeUsuario;
+            return tipoDeUsuario;   
         }
+    
     }
 }
