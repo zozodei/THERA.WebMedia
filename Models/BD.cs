@@ -81,7 +81,7 @@ namespace THERA.Models
             Paciente Paciente = null;
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                string query = "SELECT * FROM Paciente WHERE Id = @pIdUsuario";
+                string query = "SELECT * FROM Paciente WHERE idUsuario = @pIdUsuario";
                 Paciente = connection.QueryFirstOrDefault<Paciente>(query, new {pIdUsuario = idUsuario});
             }
             return Paciente;
@@ -118,15 +118,8 @@ namespace THERA.Models
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                string query = "INSERT INTO Usuario (Username, Contrasena, TipoUsuario) VALUES (@pusername, @pcontraseña, @ptipoDeUsuario)";
+                string query = "exec Registrarse @pusername, @pcontraseña, @ptipoDeUsuario";
                 connection.Execute(query, new {pusername = username, pcontraseña = contraseña, ptipoDeUsuario = tipoDeUsuario});
-            }
-            if(tipoDeUsuario==0){
-                using (SqlConnection connection = new SqlConnection(_connectionString))
-                {
-                    string query = "INSERT INTO Usuario (username, contraseña, tipoDeUsuario) VALUES (@pusername, @pcontraseña, @ptipoDeUsuario)";
-                    connection.Execute(query, new {pusername = username, pcontraseña = contraseña, ptipoDeUsuario = tipoDeUsuario});
-                }
             }
 
             int idUsuario = Login(username, contraseña);
@@ -181,6 +174,16 @@ namespace THERA.Models
                 tipoDeUsuario = connection.QueryFirstOrDefault<bool>(query, new {pId = idUsuario});
             }
             return tipoDeUsuario;   
+        }
+        public static List<Paciente> levantarPacientes(int idTerapeuta)
+        {
+            List<Paciente> pacientes = new List<Paciente>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Paciente WHERE IdTerapeuta = @pidTerapeuta";
+                pacientes = connection.Query<Paciente>(query, new {pidTerapeuta = idTerapeuta}).ToList();
+            }
+            return pacientes;
         }
     
     }
