@@ -40,7 +40,7 @@ public class AccountController : Controller
     public IActionResult CerrarSesion()
     {
         HttpContext.Session.Remove("usuario");
-        return View("Index", "Home");
+        return View("irIndex", "Home");
     }
     public IActionResult LoginView()
     {
