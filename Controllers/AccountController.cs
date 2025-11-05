@@ -37,12 +37,12 @@ public class AccountController : Controller
 
         bool tipoUsuario = BD.levantarTipoUsuario(idUsuario);
         HttpContext.Session.SetString("usuario", Objeto.ObjetoATexto<Usuario>(BD.levantarUsuario(idUsuario)));
-        return RedirectToAction("Login", "Account");
+        return RedirectToAction("irHome", "Home");
     }
     public IActionResult CerrarSesion()
     {
         HttpContext.Session.Remove("usuario");
-        return View("Index", "Home");
+        return View("irIndex", "Home");
     }
     public IActionResult LoginView()
     {
