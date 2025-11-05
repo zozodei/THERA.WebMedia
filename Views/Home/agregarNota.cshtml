@@ -1,1 +1,11 @@
-<form action=""></form>
+@* @if(@ViewBag.nota.favorito != null && @ViewBag.nota.favorito){
+    <img src="" alt="bookmark seleccionado">
+} 
+else{
+    <img src="" alt="bookmark no seleccionado">
+} *@
+<form>
+    <input type="text" value="Añadir título">
+    <textarea type="text">Añadir texto</textarea>
+    <input type="checkbox"> Compartir con terapeuta
+</form>
