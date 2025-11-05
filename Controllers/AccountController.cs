@@ -17,10 +17,8 @@ public class AccountController : Controller
         int idUsuario = BD.Login(username, contraseña);
         if(idUsuario != 0)
         {
-            bool tipoUsuario = BD.levantarTipoUsuario(idUsuario);
-            HttpContext.Session.SetString("usuario", Objeto.ObjetoATexto<Usuario>(BD.levantarUsuario(idUsuario)));
-            HttpContext.Session.SetString("idUsuario", idUsuario.ToString());
-            HttpContext.Session.SetString("tipoUsuario", tipoUsuario.ToString());
+            Usuario usuario = BD.levantarUsuario(idUsuario);
+            HttpContext.Session.SetString("usuario", Objeto.ObjetoATexto(usuario));
             ViewBag.idUsuario = idUsuario;
             return RedirectToAction("irHome", "Home");
         }
@@ -35,8 +33,8 @@ public class AccountController : Controller
     {
         int idUsuario = BD.Registro(username, contraseña, tipoDeUsuario);
 
-        bool tipoUsuario = BD.levantarTipoUsuario(idUsuario);
-        HttpContext.Session.SetString("usuario", Objeto.ObjetoATexto<Usuario>(BD.levantarUsuario(idUsuario)));
+        Usuario usuario = BD.levantarUsuario(idUsuario);
+        HttpContext.Session.SetString("usuario", Objeto.ObjetoATexto(usuario));
         return RedirectToAction("Login", "Account");
     }
     public IActionResult CerrarSesion()
