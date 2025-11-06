@@ -28,7 +28,8 @@ public class HomeController : Controller
     {
         ViewBag.estaLogeado = true;
         Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
-        List<Nota> diario = BD.levantarDiario(usuario.id);
+        Paciente paciente = BD.levantarPaciente(usuario.id);
+        List<Nota> diario = BD.levantarDiario(paciente.id);
         ViewBag.diario = diario;
         return View("Diario");
     }
@@ -129,11 +130,20 @@ public class HomeController : Controller
         Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
         BD.enviarMensaje(mensaje, usuario.id, idChat, usuario.tipoUsuario);
         ViewBag.mensajes = BD.levantarMensajes(idChat);
+        ViewBag.idChat = idChat;
         return View("ChatTerapeuta");
     }
     public IActionResult irHomeTerapeuta()
     {
         ViewBag.estaLogeado = true;
         return View("HomeTerapeuta");
+    }
+    public IActionResult modificarNota(int idNota, string titulo, string descripcion, bool visibleTerapeuta)
+    {
+        ViewBag.estaLogeado = true;
+        BD.modificarNota(idNota, titulo, descripcion, visibleTerapeuta);
+        Nota nota = BD.levantarNota(idNota);
+        ViewBag.nota = nota;
+        return View("Nota");
     }
 }
