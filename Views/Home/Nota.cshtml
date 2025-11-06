@@ -4,12 +4,19 @@
 else{
     <img src="" alt="bookmark no seleccionado">
 } *@
-@* <form>
-    <input type="text" value="@ViewBag.nota.titulo">
-    <textarea type="text">@ViewBag.nota.descripcion</textarea>
-    @if(@ViewBag.nota.visibleParaTerapeuta){
-        <input type="checkbox" checked> Compartir con terapeuta
-    }else{
-        <input type="checkbox"> Compartir con terapeuta
+<form action = '@Url.Action("modificarNota", "Home")'>
+    <input type="hidden" value = "@ViewBag.nota.id" name = "idNota">
+    <input type="text" value="@ViewBag.nota.titulo" name = "titulo">
+    <textarea type="text" name = "descripcion">@ViewBag.nota.descripción</textarea>
+    @if(@ViewBag.nota.visibleParaTerapeuta)
+    {
+        <label>Compartir con terapeuta</label>
+        <input type="checkbox" checked name = "visibleTerapeuta">
     }
-</form> *@
+    else
+    {
+        <label>Compartir con terapeuta</label>
+        <input type="checkbox" name = "visibleTerapeuta">
+    }
+    <input type="submit" value = "Editar">
+</form>

@@ -195,6 +195,14 @@ namespace THERA.Models
             }
             return pacientes;
         }
+        public static void modificarNota(int idNota, string titulo, string descripcion, bool visibleTerapeuta)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "UPDATE Notas SET Titulo = @ptitulo, Descripción = @pdescripcion, Fecha = GETDATE(), VisibleParaTerapeuta = @pvisibleTerapeuta WHERE Id = @pidNota";
+                connection.Execute(query, new {ptitulo = titulo, pdescripcion = descripcion, pvisibleTerapeuta = visibleTerapeuta, pidNota = idNota});
+            }
+        }
     
     }
 }
