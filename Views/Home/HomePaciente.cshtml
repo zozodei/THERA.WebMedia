@@ -1,6 +1,6 @@
 
 
-<div class="home">
+<div class="homePaciente">
 <img src=""> @*IMAGEN DEL FIGMA*@
     @for (int i = 0; i< @ViewBag.terapeutas.Count; i++)
     {
@@ -17,6 +17,7 @@
 
     </div>
     <a href='@Url.Action("irChatTerapeuta", "Home")'>Chat terapeuta</a>
+    <a href='@Url.Action("irAyudaRapida", "Home")'>Ayuda rapida</a>
     @*@foreach (Nota nota in ViewBag.notas)
     {
         <div>

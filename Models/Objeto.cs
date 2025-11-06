@@ -4,24 +4,17 @@ using Newtonsoft.Json;
 
 public static class Objeto 
 {
-    public static string ObjetoATexto<T> (T? objeto) 
-    {
-        return JsonConvert.SerializeObject(objeto);
-    }
-
-    public static T? TextoAObjeto<T> (string texto)
-    {
-        if(string.IsNullOrEmpty(texto))
+    public static string ObjectToString<T>(T? obj)
         {
-            return default;
-        } 
-        else 
-        {
-            return JsonConvert.DeserializeObject<T> (texto);
-
+            return JsonConvert.SerializeObject(obj);
         }
-
-    }
+        public static T? StringToObject<T>(string txt)
+        {
+            if (string.IsNullOrEmpty(txt))
+                return default;
+            else
+                return JsonConvert.DeserializeObject<T>(txt);
+        }
 
     public static string ListaATexto<T> (List<T> lista) 
     {

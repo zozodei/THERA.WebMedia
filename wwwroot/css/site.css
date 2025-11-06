@@ -1,106 +1,417 @@
-body {
-    margin: 0; /* Eliminar margen extra */
-    padding: 0; /* Eliminar padding extra */
-}
 
-
-/* ===== HEADER PRINCIPAL (Mobile First) ===== */
-header {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* ==== HEADER ==== */
+  header {
+    background-color: #C4661F;
+    color: white;
     width: 100%;
-    background-color: #C4661F; /* Fondo naranja */
-    border-bottom: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  }
+  
+  /* ==== NAV ==== */
+  nav {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 20px 20px; /* MÁS alto en mobile */
-    box-sizing: border-box;
-}
-
-header nav img {
-    height: 45px; /* Logo un poco más grande en mobile */
-}
-
-/* Botón hamburguesa */
-.hamburger-btn {
-    display: block;
-    font-size: 24px;
-    color: #fff;
-    cursor: pointer;
-}
-
-/* ===== MEDIA QUERY DESKTOP ===== */
-@media (min-width: 992px) {
-    header {
-        padding: 10px 60px; /* MÁS compacto en desktop */
-    }
-
-    header nav img {
-        height: 50px; /* Logo más grande en desktop */
-    }
-}
-
-/* Menú horizontal oculto en móvil */
-header nav ul {
-    display: none;
-}
-
-/* Botón hamburguesa visible en móvil */
-.hamburger-btn {
-    display: block;
-    font-size: 24px;
-    color: #fff; /* Ícono blanco sobre fondo naranja */
-    cursor: pointer;
-}
-
-/* Links del menú hamburguesa */
-header nav ul a {
-    color: #fff; /* Texto blanco */
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 16px;
-    font-weight: 500;
+    justify-content: space-between;
+    padding: 12px 26px;
+    height: 78px;
+  }
+  
+  /* ==== LOGO ==== */
+  .logo img {
+    height: 70px;
+    width: auto;
+    transition: 0.3s ease;
+  }
+  
+  /* ==== LINKS (web) ==== */
+  .nav-links {
+    display: flex;
+    gap: 22px;
+  }
+  
+  .nav-links a {
+    color: white;
     text-decoration: none;
-}
-
-/* ===== MENÚ HAMBURGUESA ===== */
-.menu-hamburguesa {
-    display: none; /* Oculto por defecto */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 100%;
-    background-color: #ffffff;
-    border: 3px solid #C4661F;
-    border-radius: 20px;
-    padding-top: 20px;
-    box-sizing: border-box;
+    font-weight: 600;
+    font-size: 0.92rem;
+    letter-spacing: 0.3px;
+    transition: 0.3s;
+  }
+  
+  .nav-links a:hover {
+    text-decoration: underline;
+  }
+  
+  .cerrar-sesion {
+    color: #ffe8d1 !important;
+  }
+  
+  /* ==== PERFIL Y HAMBURGUESA ==== */
+  .right-side {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* Foto de perfil */
+  .profile img {
+    height: 42px;
+    width: 42px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  
+  /* ==== HAMBURGUESA ==== */
+  .hamburger {
+    display: none;
     flex-direction: column;
-    font-family: 'Segoe UI', sans-serif;
-}
-
-/* ===== MEDIA QUERY DESKTOP ===== */
-@media (min-width: 992px) {
-    /* Mostrar menú horizontal */
-    header nav ul {
-        display: flex;
-        list-style: none;
-        gap: 30px;
-        margin: 0;
-        padding: 0;
+    cursor: pointer;
+    gap: 6px;
+  }
+  
+  .hamburger span {
+    height: 3px;
+    width: 26px;
+    background-color: white;
+    border-radius: 4px;
+    transition: 0.3s;
+  }
+  
+  /* ==== MENÚ MOBILE ==== */
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 85px;
+    right: 20px;
+    width: 70%;
+    background-color: #fff;
+    border-radius: 14px;
+    border: 2px solid #C4661F;  /* ← Borde naranja */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    text-align: right;
+    padding: 22px 20px;
+    transform: translateY(-15px);
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+  
+  .mobile-menu.active {
+    display: flex;
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  .mobile-menu a {
+    color: #C4661F;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 12px 0;
+    border-bottom: 1px solid #C4661F20;
+    transition: 0.3s;
+  }
+  
+  .mobile-menu a:hover {
+    color: #8a3d10;
+  }
+  
+  /* ==== WEB ==== */
+  @media (min-width: 391px) {
+    .mobile-menu {
+      display: none !important;
     }
-
-    /* Ocultar botón hamburguesa */
-    .hamburger-btn {
-        display: none;
+  
+    .hamburger {
+      display: none;
     }
-
-    header nav ul a {
-        font-size: 1.2rem;
-        margin: 0 15px;
-        color: #fff; /* Texto blanco en desktop */
+  
+    .nav-links {
+      display: flex;
     }
-
-    header nav ul a:hover {
-        text-decoration: underline;
+  
+    .logo img {
+      height: 65px;
     }
-}
+  }
+  
+  /* ==== MOBILE (iPhone 12 Pro – hasta 390 px) ==== */
+  @media (max-width: 390px) {
+    nav {
+      justify-content: space-between;
+      height: 88px;
+      padding: 10px 20px;
+    }
+  
+    .nav-links {
+      display: none;
+    }
+  
+    .logo img {
+      height: 60px;
+    }
+  
+    .right-side {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+  
+    .profile img {
+      height: 38px;
+      width: 38px;
+      border-radius: 8px;
+    }
+  
+    .hamburger {
+      display: flex;
+      height: 38px;
+      width: 38px;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  
+  
+  
+  
+
+
+
+  
+/*FOOOTER*/
+/* Footer base */
+.footer-custom {
+    background-color: #C4661F;
+    color: white;
+    width: 100%;
+    padding: 40px 0 25px 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 900px;
+  }
+  
+  /* Logo */
+  .thera-logo {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+  
+  /* Línea divisoria */
+  .footer-divider {
+    border: none;
+    height: 2px;
+    width: 60%;
+    background-color: white;
+    opacity: 0.6;
+    margin: 10px auto 20px auto;
+  }
+  
+  /* Íconos */
+  .footer-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 20px;
+  }
+  
+  .social-icon {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0) invert(1);
+    transition: transform 0.25s ease, filter 0.25s ease;
+    cursor: pointer;
+  }
+  
+  .social-icon:hover {
+    transform: scale(1.15);
+    filter: brightness(0.9) invert(1);
+  }
+  
+  /* Links */
+  .footer-links {
+    margin-bottom: 10px;
+  }
+  
+  .footer-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin: 0 8px;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-link:hover {
+    color: #ffe0c2;
+  }
+  
+  .separator {
+    color: white;
+  }
+  
+  /* Copyright */
+  .footer-copy {
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .thera-logo {
+      font-size: 1.8rem;
+    }
+  
+    .footer-divider {
+      width: 80%;
+    }
+  
+    .social-icon {
+      width: 26px;
+      height: 26px;
+    }
+  
+    .footer-link {
+      font-size: 0.9rem;
+    }
+  }
+
+
+
+
+
+
+  /*PAGINA COMENZAR*/
+
+  .main-inicio {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 160px); /* Resta el header y footer en web */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* CONTENEDOR PRINCIPAL */
+  .main-inicio .comenzar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  /* IMAGEN CENTRAL */
+  .main-inicio .comenzar img {
+    width: 160px;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  /* BOTÓN “COMENZAR” ESTILO PREMIUM */
+  .btn-comenzar {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 35px;
+    padding: 14px 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #C4661F;
+    letter-spacing: 0.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  /* HOVER */
+  .btn-comenzar:hover {
+    background-color: #C4661F;
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(196, 102, 31, 0.4);
+    transform: translateY(-3px);
+  }
+  
+  /* A dentro del botón (por si usás <a> dentro) */
+  .main-inicio .comenzar button a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* EFECTO HOVER TAMBIÉN EN EL LINK */
+  .main-inicio .comenzar button:hover a {
+    color: #fff;
+  }
+  
+  /* ==========================
+     MOBILE (iPhone 12 Pro)
+     🔸 NO TOCAR — se mantiene igual
+  ========================== */
+
+  
+    .main-inicio {
+      width: 100%;
+      height: 100vh;
+      background-image: url("Imagenes/Shapes/Shape1.png");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .main-inicio .comenzar img {
+      width: 220px; /* 🔸 tamaño original */
+    }
+  
+    .main-inicio .comenzar a {
+      font-size: 1.3rem;
+      padding: 16px 50px;
+      border-radius: 40px;
+    }
+  
+  
+  /* ==========================
+     WEB
+  ========================== */
+  @media (min-width: 769px) {
+    .main-inicio {
+      background: #F8F4F1; /* 🔸 fondo liso y cálido */
+      height: calc(100vh - 160px);
+      padding-top: 40px;
+    }
+  
+    .main-inicio .comenzar img {
+      width: 180px;
+    }
+  
+    .btn-comenzar {
+      font-size: 1.1rem;
+      padding: 12px 45px; /* 🔸 más compacto */
+    }
+  }
+
+
+

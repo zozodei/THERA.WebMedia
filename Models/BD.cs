@@ -81,7 +81,7 @@ namespace THERA.Models
             Paciente Paciente = null;
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                string query = "SELECT * FROM Paciente WHERE idUsuario = @pIdUsuario";
+                string query = "SELECT * FROM Paciente WHERE IdUsuario = @pIdUsuario";
                 Paciente = connection.QueryFirstOrDefault<Paciente>(query, new {pIdUsuario = idUsuario});
             }
             return Paciente;

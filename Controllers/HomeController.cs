@@ -27,8 +27,8 @@ public class HomeController : Controller
     public IActionResult irDiario()
     {
         ViewBag.estaLogeado = true;
-        string idUsuario = HttpContext.Session.GetString("idUsuario");
-        List<Nota> diario = BD.levantarDiario(int.Parse((idUsuario)));
+        Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
+        List<Nota> diario = BD.levantarDiario(usuario.id);
         ViewBag.diario = diario;
         return View("Diario");
     }
@@ -80,7 +80,7 @@ public class HomeController : Controller
     public IActionResult irChatTerapeuta()
     {
         ViewBag.estaLogeado = true;
-        Usuario usuario = Objeto.TextoAObjeto<Usuario>(HttpContext.Session.GetString("usuario"));
+        Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
         ViewBag.idChat = null;
         if (!usuario.tipoUsuario)
         {
@@ -98,7 +98,7 @@ public class HomeController : Controller
         //     return View("VerChatsPacientes");
         // }
     }
-    public IActionResult irHome()
+    public IActionResult irHomePaciente()
     {
         ViewBag.estaLogeado = true;
         List<Terapeuta> terapeutas = BD.levantarTerapeutas();
@@ -114,7 +114,7 @@ public class HomeController : Controller
         ViewBag.terapeutas = terapeutasSeleccionados;
         ViewBag.cantResenas = cantResenasSeleccionadas;
         //ViewBag.notas = BD.levantarDiario();
-        return View("Home");
+        return View("HomePaciente");
     }
     
     
@@ -126,9 +126,14 @@ public class HomeController : Controller
     public IActionResult enviarMensaje(string mensaje, int idChat)
     {
         ViewBag.estaLogeado = true;
-        Usuario usuario = Objeto.TextoAObjeto<Usuario>(HttpContext.Session.GetString("usuario"));
+        Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
         BD.enviarMensaje(mensaje, usuario.id, idChat, usuario.tipoUsuario);
         ViewBag.mensajes = BD.levantarMensajes(idChat);
         return View("ChatTerapeuta");
+    }
+    public IActionResult irHomeTerapeuta()
+    {
+        ViewBag.estaLogeado = true;
+        return View("HomeTerapeuta");
     }
 }

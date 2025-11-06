@@ -13,48 +13,44 @@
     <header>
     @if (ViewBag.estaLogeado)
     {
-        <nav class="navbar navbar-expand-lg bg-light">
-            <div class="container">
-                <!-- LOGO -->
-                <a class="navbar-brand" href="@Url.Action("irHome", "Home")">
-                    <img src="/Imagenes/AveBlanca.png" alt="Logo" style="height:40px;">
-                </a>
+        <nav>
+      <!-- LOGO -->
+      <div class="logo">
+        <a href="#"><img src="Imagenes/Ave blanca.png" alt="Logo"></a>
+      </div>
 
+      <!-- LINKS (web) -->
+      <div class="nav-links" id="navLinks">
+        <a href="#">CHATBOT</a>
+        <a href="#">TERAPEUTAS</a>
+        <a href="#">DIARIO</a>
+        <a href="#">AYUDA RÁPIDA</a>
+        <a href="#" class="cerrar-sesion">CERRAR SESIÓN</a>
+      </div>
 
-                <!-- BOTÓN HAMBURGUESA -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+      <!-- PERFIL + MENÚ -->
+      <div class="right-side">
+        <div class="profile">
+          <img src="/Imagenes/FotoPerfil" alt="Foto de perfil">
+        </div>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
 
-
-                <!-- MENÚ -->
-                <div class="collapse navbar-collapse" id="menuPrincipal">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("irChatbot", "Home")">CHATBOT</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("irListarTerapeutas", "Home")">TERAPEUTAS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("irDiario", "Home")">DIARIO</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("irAyudaRapida","Home")">AYUDA RÁPIDA</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-danger" href="@Url.Action("CerrarSesion", "Account")">CERRAR SESIÓN</a>
-                        </li>
-                    </ul>
-
-
-                    <!-- FOTO DE PERFIL -->
-                    <div class="d-flex align-items-center">
-                        <img src="/Imagenes/FotoPerfil" alt="FotoPerfil" class="rounded-circle" style="height:40px; width:40px; object-fit:cover;">
-                    </div>
-                </div>
-            </div>
-        </nav>
+    <!-- MENÚ MOBILE -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#">CHATBOT</a>
+      <a href="#">TERAPEUTAS</a>
+      <a href="#">DIARIO</a>
+      <a href="#">AYUDA RÁPIDA</a>
+      <a href="#" class="cerrar-sesion">CERRAR SESIÓN</a>
+    </div>
+     
+ 
     }
     else
     {
@@ -71,36 +67,45 @@
         @RenderBody()
     </main>
 
-    <footer class="footer-custom text-center">
-        <div class="container py-4">
-            <!-- Logo -->
-            <div class="footer-logo mb-3">
-                <h2 class="thera-logo">Thera</h2>
-            </div>
+    <footer class="footer-custom">
+    <div class="footer-container">
+      <!-- Logo -->
+      <h2 class="thera-logo">Thera</h2>
+  
+      <!-- Línea divisoria -->
+      <hr class="footer-divider">
+  
+      <!-- Íconos -->
+      <div class="footer-icons">
+        <img src="img/facebook.png" alt="Facebook" class="social-icon">
+        <img src="img/youtube.png" alt="YouTube" class="social-icon">
+        <img src="img/linkedin.png" alt="LinkedIn" class="social-icon">
+        <img src="img/instagram.png" alt="Instagram" class="social-icon">
+      </div>
+  
+      <!-- Links -->
+      <div class="footer-links">
+        <a href="#" class="footer-link">Soporte</a>
+        <span class="separator">|</span>
+        <a href="#" class="footer-link">Contacto</a>
+      </div>
+  
+      <!-- Copyright -->
+      <p class="footer-copy">© 2025 THERA Argentina</p>
+    </div>
+  </footer>
+  
+ <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const hamburger = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobileMenu");
 
-            <!-- Línea divisoria -->
-            <hr class="footer-divider">
+    hamburger.addEventListener("click", () => {
+      mobileMenu.classList.toggle("active");
+    });
+  });
+  </script>
 
-            <!-- Íconos -->
-            <div class="footer-icons d-flex justify-content-center gap-4 my-3">
-                <img src="img/facebook.png" alt="Facebook" class="social-iconyoutube.png
-                img/linkedin.png
-            </div>
-
-            <!-- Links -->
-            <div class="footer-links my-2">
-                <a href="#" class="footer-link">Soporte</a>
-    -separator">|</span>
-                #Contacto</a>
-            </div>
-
-            <!-- Copyright -->
-            <p class="footer-copy mt-3">© 2025 THERA Argentina</p>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>
