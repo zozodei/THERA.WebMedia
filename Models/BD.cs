@@ -86,9 +86,9 @@ namespace THERA.Models
             }
             return Paciente;
         }
-        public static void enviarMensaje(string mensaje, int idUsuario, int idChat, bool tipoUsuario)
+        public static void enviarMensaje(string mensaje, int idUsuario, int idChat, int tipoUsuario)
         {
-            if (!tipoUsuario)
+            if (tipoUsuario==1)
             {
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
@@ -116,15 +116,25 @@ namespace THERA.Models
         // }
         public static int Registro(string username, string contraseña, int tipoDeUsuario)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                string query = "exec Registrarse @pusername, @pcontraseña, @ptipoDeUsuario";
-                connection.Execute(query, new {pusername = username, pcontraseña = contraseña, ptipoDeUsuario = tipoDeUsuario});
+            try{
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    string query = "exec Registrarse @pusername, @pcontraseña, @ptipoDeUsuario";
+                    connection.Execute(query, new {pusername = username, pcontraseña = contraseña, ptipoDeUsuario = tipoDeUsuario});
+                    int idUsuario = Login(username, contraseña);
+                    return (idUsuario);
+                }
+            }catch (SqlException ex){
+                if (ex.Message.Contains("ya está en uso"))
+                {
+                    return -1;
+                }
+                else
+                {
+                    return -2;
+                }
             }
 
-            int idUsuario = Login(username, contraseña);
-
-            return (idUsuario);
 
         }
         public static Nota levantarNota(int idNota)

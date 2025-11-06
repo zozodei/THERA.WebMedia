@@ -82,7 +82,7 @@ public class HomeController : Controller
         ViewBag.estaLogeado = true;
         Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
         ViewBag.idChat = null;
-        if (!usuario.tipoUsuario)
+        if (usuario.tipoUsuario ==1)
         {
             Paciente paciente = BD.levantarPaciente(usuario.id);
             ViewBag.idChat = BD.levantarIdChat(paciente.id, paciente.idTerapeuta);

@@ -19,7 +19,7 @@ public class AccountController : Controller
         if(idUsuario != -1)
         {
             HttpContext.Session.SetString("usuario", Objeto.ObjectToString(usuario));
-            if (!usuario.tipoUsuario)
+            if (usuario.tipoUsuario == 1)
             {
                 return RedirectToAction("irHomePaciente", "Home");
             }
@@ -37,11 +37,22 @@ public class AccountController : Controller
     }
     public IActionResult Registro(string username, string contraseña, int tipoDeUsuario)
     {
-        int idUsuario = BD.Registro(username, contraseña, tipoDeUsuario);
-
-        Usuario usuario = BD.levantarUsuario(idUsuario);
-        HttpContext.Session.SetString("usuario", Objeto.ObjectToString(usuario));
-        return RedirectToAction("Login", "Account");
+        int idUsuario = BD.Registro(username, contraseña, tipoDeUsuario); 
+        if(idUsuario!=-1 && idUsuario !=-2){ 
+            Usuario usuario = BD.levantarUsuario(idUsuario); 
+            HttpContext.Session.SetString("usuario", Objeto.ObjectToString(usuario)); 
+            return RedirectToAction("Login", "Account"); 
+        }else if(idUsuario ==-1){ 
+            ViewBag.error = "El username ya está en uso. Intente nuevamente."; 
+            ViewBag.segundoIntento = true; 
+            ViewBag.estaLogeado = false;
+            return View("Registro", "Account"); 
+        }else{ 
+            ViewBag.error = "Ocurrió un error inesperado. Intente nuevamente."; 
+            ViewBag.segundoIntento = true; 
+            ViewBag.estaLogeado = false;
+            return View("Registro", "Account"); 
+        }
     }
     public IActionResult CerrarSesion()
     {
@@ -57,6 +68,8 @@ public class AccountController : Controller
     public IActionResult RegistroView()
     {
         ViewBag.estaLogeado = false;
+        ViewBag.segundoIntento = false; 
+
         return View("Registro");
     }
 }
