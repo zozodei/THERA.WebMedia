@@ -203,6 +203,31 @@ namespace THERA.Models
                 connection.Execute(query, new {ptitulo = titulo, pdescripcion = descripcion, pvisibleTerapeuta = visibleTerapeuta, pidNota = idNota});
             }
         }
-    
+        public static void modificarDatosPaciente(int id, string nombre, string apellido, string correo, string ubicacion, DateTime fechaNacimiento, int telefono, string ocupacion)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = @"UPDATE Paciente 
+                                SET Nombre = @pnombre, 
+                                    Apellido = @papellido, 
+                                    Correo = @pcorreo, 
+                                    FechaNacimiento = @pfechaNacimiento, 
+                                    Telefono = @ptelefono, 
+                                    Ocupacion = @pocupacion
+                                WHERE Id = @pid";
+
+                connection.Execute(query, new
+                {
+                    pnombre = nombre,
+                    papellido = apellido,
+                    pcorreo = correo,
+                    pfechaNacimiento = fechaNacimiento,
+                    ptelefono = telefono,
+                    pubicacion = ubicacion,
+                    pocupacion = ocupacion,
+                    pid = id
+                });
+            }
+        }    
     }
 }

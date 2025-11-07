@@ -72,4 +72,21 @@ public class AccountController : Controller
 
         return View("Registro");
     }
+    public IActionResult verPerfilPaciente(){
+        Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
+        if(usuario.tipoUsuario == 1){
+            Paciente paciente = BD.levantarPaciente(usuario.id);
+            ViewBag.paciente = paciente;
+            return View("PerfilPaciente", "Account");
+        }else{
+            return RedirectToAction("irHomePaciente", "Home");
+        }
+    }
+    public IActionResult guardarPerfilPaciente(string nombre, string apellido, string correo, string ubicacion, DateTime fechaNacimiento, int telefono, string ocupacion)
+    {
+        Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
+        Paciente paciente = BD.levantarPaciente(usuario.id); //agregar a la bd el campo ubicacion en paciente!!
+        BD.modificarDatosPaciente(paciente.id, nombre, apellido, correo, ubicacion, fechaNacimiento, telefono, ocupacion);
+        return RedirectToAction("irHomePaciente", "Home");
+    }
 }
