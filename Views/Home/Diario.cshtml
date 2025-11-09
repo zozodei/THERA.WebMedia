@@ -1,26 +1,31 @@
-<main>
-    <section>
+
+
+<div class = "Diario">
         <h1>Diario</h1>
-    </section>
-    <section>
+    <section class = "Nota">
         <div class="add-note-card mb-4">
-            <h5>Añadir nota</h5>
-            <a href="@Url.Action("AñadirNota", "Home")"><span class="plus-icon">+</span>
+            <h4>Añadir nota</h4>
+            <a href="@Url.Action("irAgregarNota", "Home")"><span class="plus-icon">+</span>
         </div>
-        @if (ViewBag.Notas != null)
+        
+        @if (ViewBag.diario != null)
         {
-            foreach (var nota in ViewBag.Notas)
+            foreach (Nota nota in ViewBag.diario)
             {
+                <a href="@Url.Action("irNota", "Home", new {id = @nota.id})">
                 <div class="note-card">
-                    <div class="note-date">@nota.Fecha</div>
-                    <div class="note-title">@nota.Titulo</div>
-                    <div class="note-text">@nota.Texto</div>
+                    <div class="note-date">@nota.fecha</div>
+                    <div class="note-title">@nota.titulo</div>
+                    <div class="note-text">@nota.descripción</div>
                 </div>
+                </a>
             }
+            
         }
         else
         { 
             <p class="text-muted">No hay notas disponibles.</p>
         }
     <section>
-<main>
+</div>
+    

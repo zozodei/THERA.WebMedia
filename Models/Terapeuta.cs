@@ -1,4 +1,4 @@
-namespace THERA.WEBMEDIA
+namespace THERA.Models
 {
     public class Terapeuta
     {
@@ -8,5 +8,8 @@ namespace THERA.WEBMEDIA
         public float rating{get; private set;}
         public string descripcion{get; private set;}
         public int edad{get; private set;}
+        public string foto{get; private set;}
+        public string Universidad {get; private set;}
+        public string FotoTitulo {get; private set;}
     }
 }

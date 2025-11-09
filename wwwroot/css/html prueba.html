@@ -1,0 +1,16 @@
+@* @if(@ViewBag.nota.favorito != null && @ViewBag.nota.favorito){
+    <img src="" alt="bookmark seleccionado">
+} 
+else{
+    <img src="" alt="bookmark no seleccionado">
+} *@
+<form>
+    <input type="text" value="@ViewBag.nota.titulo">
+    <textarea type="text">@ViewBag.nota.descripcion</textarea>
+    @if(@ViewBag.nota.visibleParaTerapeuta){
+        <input type="checkbox" checked> Compartir con terapeuta
+    }else{
+        <input type="checkbox"> Compartir con terapeuta
+    }
+    
+</form>

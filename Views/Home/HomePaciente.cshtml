@@ -1,0 +1,26 @@
+
+
+<div class="homePaciente">
+<img src=""> @*IMAGEN DEL FIGMA*@
+    @for (int i = 0; i< @ViewBag.terapeutas.Count; i++)
+    {
+    <div>
+        <h3>@ViewBag.terapeutas[i].nombre @ViewBag.terapeutas[i].apellido</h3>
+        <h4>@ViewBag.terapeutas[i].Universidad • @ViewBag.cantResenas[i]</h4>        
+    </div>
+    }
+    <div>
+        <a href='@Url.Action("irDiario", "Home")'>Tus notas</a>
+    </div>
+    <a href='@Url.Action("irChatTerapeuta", "Home")'>Chat terapeuta</a>
+    <a href='@Url.Action("irAyudaRapida", "Home")'>Ayuda rapida</a>
+    @*@foreach (Nota nota in ViewBag.notas)
+    {
+        <div>
+
+            <button><a href='@Url.Action ("irNota", "Home", new {id = @nota.id})'>@nota.titulo</a></button>
+
+        </div>
+    }*@
+
+</div>

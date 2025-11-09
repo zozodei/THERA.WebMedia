@@ -1,13 +1,42 @@
-@if(@ViewBag.Destacado){
+@* @if(@ViewBag.nota.favorito != null && @ViewBag.nota.favorito){
     <img src="" alt="bookmark seleccionado">
 } 
 else{
     <img src="" alt="bookmark no seleccionado">
-}
-<form>
-    @if(@ViewBag.Nota.titulo == null){
-        <input type="text" placeholder="Añadir título"> <input>
-    }else{
-        <input type="text" value="@ViewBag.Nota.titulo"> <input>
-    }
+} *@
+<form method = "post" action = '@Url.Action("modificarNota", "Home")'>
+
+    <input type="hidden" value = "@ViewBag.nota.id" name = "idNota">
+
+    <label>Título:</label>
+    <input type="text" value="@ViewBag.nota.titulo" name = "titulo">
+    
+    <label>Disparadora:</label>
+    <select name="idDisparadora">
+    
+            @foreach (Disparadora disparadora in ViewBag.disparadoras)
+            {
+                if (ViewBag.nota.idDisparadora == disparadora.id)
+                {
+                    <option value="@disparadora.id" selected>@disparadora.pregunta</option>
+                }
+                else
+                {
+                    <option value="@disparadora.id">@disparadora.pregunta</option>
+                }
+            }
+        
+    </select>
+
+    <label>Descripción:</label>
+    <textarea type="text" name = "descripcion">@ViewBag.nota.descripción</textarea>
+
+    <label>Compartir con terapeuta</label>
+    <input type="checkbox" name="visibleTerapeuta" value="true" @(ViewBag.nota.visibleParaTerapeuta ? "checked" : "") />
+    <input type="hidden" name="visibleTerapeuta" value="false" />
+
+    <input type="submit" value = "Editar">
+
 </form>
+
+<a href='@Url.Action("eliminarNota", "Home", new {idNota = ViewBag.nota.id})'>Eliminar nota</a>

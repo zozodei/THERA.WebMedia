@@ -1,0 +1,21 @@
+
+<div class = "registro">
+<h1>Registrarse</h1>
+@if(@ViewBag.segundoIntento){
+     <h3 style="color: red">@ViewBag.error</h3>
+}
+<form action='@Url.Action("Registro", "Account")' method = "POST" enctype="multipart/form-data">
+    
+    <label>Username</label>
+    <input type="text" name="username" required />
+    
+    <label>Contraseña</label>
+    <input type="password" name="contraseña" required minlength="6"/>
+    
+    <label>0 si sos paciente / 1 si sos terapeuta</label>
+    <input type = "number" name = "tipoDeUsuario" min = "0" max = "1"/>
+
+    <input type ="submit" value = "Entrar">
+
+</form>
+</div>

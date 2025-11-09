@@ -1,0 +1,16 @@
+
+<div class = "Audios">
+
+<h1>
+    Audios
+</h1>
+<section class = "Audio">
+    @foreach(Audio audio in ViewBag.Audios){
+        <h2> @audio.nombre </h2>
+        <audio controls>
+            <source src="/Audios/@audio.ruta" type="audio/mp3">
+        </audio>
+    }
+</section>
+
+</div>

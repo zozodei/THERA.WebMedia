@@ -1,0 +1,30 @@
+@* @if(@ViewBag.nota.favorito != null && @ViewBag.nota.favorito){
+    <img src="" alt="bookmark seleccionado">
+} 
+else{
+    <img src="" alt="bookmark no seleccionado">
+} *@
+<form method = "post" action = '@Url.Action("agregarNota", "Home")'>
+
+    <label>Titulo:</label>
+    <input type="text" value="Añadir título" name = "titulo">
+
+    <label>Disparadora:</label>
+    <select name="idDisparadora">
+
+        @foreach (Disparadora disparadora in ViewBag.disparadoras)
+        {
+            <option value="@disparadora.id">@disparadora.pregunta</option>
+        }
+
+    </select>
+
+    <label>Descripción:</label>
+    <textarea type="text" name = "descripcion">Añadir texto</textarea>
+
+    <label>Compartir con terapeuta</label>
+    <input type="hidden" name="visibleTerapeuta" value="false" />
+    <input type="checkbox" name="visibleTerapeuta" value="true" />
+
+    <input type="submit" value = "Agregar">
+</form>

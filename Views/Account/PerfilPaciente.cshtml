@@ -1,0 +1,22 @@
+<div class="perfil-paciente">
+    <img src="@ViewBag.paciente.foto" alt="Imagen del paciente">
+    <h1>@ViewBag.paciente.nombre @ViewBag.paciente.apellido</h1>
+    <form action="@Url.Action("guardarPerfilPaciente", "Account")" method="post">
+        Nombre:
+        <input type="text" name="nombre" value="@ViewBag.paciente.nombre" required>
+        Apellido:
+        <input type="text" name="apellido" value="@ViewBag.paciente.apellido" required>
+        Correo electrónico:
+        <input type="email" name="correo" value="@ViewBag.paciente.correo" required>
+        Ubicación:
+        <input type="text" name="ubicacion" value="@ViewBag.paciente.ubicacion" required>
+        Fecha de nacimiento:
+        <input type="date"name="fechaNacimiento" value="@ViewBag.paciente.fechaNacimiento" required>
+        Teléfono:
+        <input type="tel" name="telefono" value="@ViewBag.paciente.telefono" required>
+        Ocupación:
+        <input type="text" name="ocupacion" value="@ViewBag.paciente.ocupacion" required> 
+        <input type="submit" value="Guardar cambios">
+    </form>
+    <a href="@Url.Action("CerrarSesion", "Account")"></a><button></button>
+</div>

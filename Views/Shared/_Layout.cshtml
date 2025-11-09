@@ -6,43 +6,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - NombreProyecto</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    
 </head>
 
 <body>
     <header>
-        @if(@ViewBag.estaLogeado){
-            <nav>
-                <img src="/Imagenes/AveBlanca" alt="">
-                <ul>
-                    <li>CHATBOT</li>
-                    <li>TERAPEUTAS</li>
-                    <li>DIARIO</li>
-                    <li>AYUDA RAPIDA</li>
-                    <li>CERRAR SESION</li>
-                </ul>
-            </nav>
-        }
-    </header>
+    @if (ViewBag.estaLogeado)
+    {
+        <nav>
+      <!-- LOGO -->
+      <div class="logo">
+        <a href="#"><img src="Imagenes/AveBlanca.png" alt="Logo"></a>
+      </div>
+
+      <!-- LINKS (web) -->
+      <div class="nav-links" id="navLinks">
+        <a href="#">CHATBOT</a>
+        <a href="#">TERAPEUTAS</a>
+        <a href="#">DIARIO</a>
+        <a href="#">AYUDA RÁPIDA</a>
+        <a href="#" class="cerrar-sesion">CERRAR SESIÓN</a>
+      </div>
+
+      <!-- PERFIL + MENÚ -->
+      <div class="right-side">
+        <div class="profile">
+          <img src="/Imagenes/FotoPerfil" alt="Foto de perfil">
+        </div>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MENÚ MOBILE -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#">CHATBOT</a>
+      <a href="#">TERAPEUTAS</a>
+      <a href="#">DIARIO</a>
+      <a href="#">AYUDA RÁPIDA</a>
+      <a href="#" class="cerrar-sesion">CERRAR SESIÓN</a>
+    </div>
+     
+ 
+    }
+    else
+    {
+        <nav class="navbar bg-light">
+            <a href="@Url.Action("irIndex", "Home")">
+            <div class="container justify-content-center">
+                <img src="Imagenes/AveBlanca.png" alt="Logo" style="height:40px;">
+            </div>
+            </a>
+        </nav>
+    }
+</header>
+
 
     <main role="main">
         @RenderBody()
     </main>
 
-    <footer>
-        <h2>Soporte</h2>
-        <h2>Contacto</h2>
-        <h2>Volver Arriba</h2>
+    <footer class="footer-custom">
+    <div class="footer-container">
+      <!-- Logo -->
+      <h2 class="thera-logo">Thera</h2>
+  
+      <!-- Línea divisoria -->
+      <hr class="footer-divider">
+  
+      <!-- Íconos -->
+      <div class="footer-icons">
+        <img src="img/facebook.png" alt="Facebook" class="social-icon">
+        <img src="img/youtube.png" alt="YouTube" class="social-icon">
+        <img src="img/linkedin.png" alt="LinkedIn" class="social-icon">
+        <img src="img/instagram.png" alt="Instagram" class="social-icon">
+      </div>
+  
+      <!-- Links -->
+      <div class="footer-links">
+        <a href="#" class="footer-link">Soporte</a>
+        <span class="separator">|</span>
+        <a href="#" class="footer-link">Contacto</a>
+      </div>
+  
+      <!-- Copyright -->
+      <p class="footer-copy">© 2025 THERA Argentina</p>
+    </div>
+  </footer>
+  
+ <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const hamburger = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobileMenu");
 
-        <div class = "Redes">
-        <img src="" alt="">   
-        <img src="" alt=""> 
-        </div>
-        <p>Copyright © 2025 THERA Argentina</p>
-    </footer>
+    hamburger.addEventListener("click", () => {
+      mobileMenu.classList.toggle("active");
+    });
+  });
+  </script>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>
