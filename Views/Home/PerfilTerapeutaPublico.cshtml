@@ -29,6 +29,10 @@
     @foreach(string especialidad in @ViewBag.especialidades){
         <h3>@especialidad</h3>
     }
+    <h3>@ViewBag.terapeuta.nombre @ViewBag.terapeuta.apellido atiende estas obras sociales/prepagas:</h3>
+    @foreach(ObraSocial obraSocial in @ViewBag.obrasSociales){
+        <h3>@obraSocial.nombre</h3>
+    }
 </div>
 <div>
     <p>@ViewBag.terapeuta.descripcion</p>

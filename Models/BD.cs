@@ -294,6 +294,16 @@ namespace THERA.Models
             }
             return lista;
         }
+        public static List<ObraSocial> levantarObrasSocialesXTerapeuta(int idTerapeuta)
+        {
+            List<ObraSocial> lista = new List<ObraSocial>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "exec obtenerObrasSocialesXTerapeuta @pIdTerapeuta";
+                lista = connection.Query<ObraSocial>(query, new { pidTerapeuta = idTerapeuta }).ToList();
+            }
+            return lista;
+        }
         public static decimal levantarPromedioRatingPorTerapeuta(int idTerapeuta)
         {
             decimal promedio = 0;

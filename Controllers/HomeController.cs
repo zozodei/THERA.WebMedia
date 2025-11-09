@@ -100,6 +100,7 @@ public class HomeController : Controller
         ViewBag.rating = BD.levantarPromedioRatingPorTerapeuta(idTerapeuta);
         ViewBag.resenas = BD.levantarResenasPorTerapeuta(idTerapeuta);
         ViewBag.frasesFav = BD.levantarFrasesFavTerapeuta(idTerapeuta);
+        ViewBag.obrasSociales = BD.levantarObrasSocialesXTerapeuta(idTerapeuta);
         return View ("PerfilTerapeutaPublico");
     }
     public IActionResult irChatTerapeuta()
