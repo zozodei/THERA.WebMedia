@@ -31,6 +31,7 @@ public class AccountController : Controller
         else
         {
             ViewBag.estaLogeado = false;
+            ViewBag.terapeutaLogeado = false;
             ViewBag.segundoIntento = true;
             return View("Login");
         }
@@ -62,12 +63,14 @@ public class AccountController : Controller
     public IActionResult LoginView()
     {
         ViewBag.estaLogeado = false;
+        ViewBag.terapeutaLogeado = false;
         ViewBag.segundoIntento = false;
         return View("Login");
     }
     public IActionResult RegistroView()
     {
         ViewBag.estaLogeado = false;
+        ViewBag.terapeutaLogeado = false;
         ViewBag.segundoIntento = false; 
 
         return View("Registro");

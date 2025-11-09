@@ -16,17 +16,20 @@ public class HomeController : Controller
     public IActionResult Comenzar()
     {
         ViewBag.estaLogeado = false;
+        ViewBag.terapeutaLogeado = false;
         return View("Comenzar");
     }
 
      public IActionResult irIndex()
     {
         ViewBag.estaLogeado = false;
+        ViewBag.terapeutaLogeado = false;
         return View("Index");
     }
     public IActionResult irDiario()
     {
         ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = false;
         Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
         Paciente paciente = BD.levantarPaciente(usuario.id);
         List<Nota> diario = BD.levantarDiario(paciente.id);
@@ -36,6 +39,7 @@ public class HomeController : Controller
     public IActionResult irNota(int id)
     {
         ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = false;
         Nota nota = BD.levantarNota(id);
         ViewBag.nota = nota;
         ViewBag.disparadoras = BD.levantarDisparadoras();
@@ -44,45 +48,53 @@ public class HomeController : Controller
     public IActionResult irAgregarNota(int id)
     {
         ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = false;
         ViewBag.disparadoras = BD.levantarDisparadoras();
         return View("AgregarNota");
     }
     public IActionResult irRespiraciones()
     {
         ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = false;
         return View("Respiraciones");
     }
     public IActionResult irAyudaRapida()
     {
         ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = false;
         return View("AyudaRapida");
     }
     public IActionResult irFrases()
     {
         ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = false;
         ViewBag.Frases = BD.levantarFrases();
         return View("Frases");
     }
     public IActionResult irAudios()
     {
         ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = false;
         ViewBag.Audios = BD.levantarAudios();
         return View("Audios");
     }
     public IActionResult irBuscarTerapeuta()
     {
         ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = false;
         ViewBag.terapeutas = BD.levantarTerapeutas();
         return View ("BuscarTerapeuta");
     }
     public IActionResult irPerfilTerapeuta()
     {
         ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = false;
         return View ("PerfilTerapeuta");
     }
     public IActionResult irChatTerapeuta()
     {
         ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = false;
         Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
         ViewBag.idChat = null;
         if (!usuario.tipoUsuario)
@@ -104,6 +116,7 @@ public class HomeController : Controller
     public IActionResult irHomePaciente()
     {
         ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = false;
         List<Terapeuta> terapeutas = BD.levantarTerapeutas();
         List<int> cantResenas = BD.levantarCantidadResenas();
         Random random = new Random();
@@ -124,12 +137,14 @@ public class HomeController : Controller
     public IActionResult irChatBot()
     {
         ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = false;
         return View("ChatBot");
     }
     [HttpPost]
     public IActionResult enviarMensaje(string mensaje, int idChat)
     {
         ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = false;
         Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
         BD.enviarMensaje(mensaje, usuario.id, idChat, usuario.tipoUsuario);
         ViewBag.mensajes = BD.levantarMensajes(idChat);
@@ -138,13 +153,15 @@ public class HomeController : Controller
     }
     public IActionResult irHomeTerapeuta()
     {
-        ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = true;
+        ViewBag.estaLogeado = false;
         return View("HomeTerapeuta");
     }
     [HttpPost]
     public IActionResult modificarNota(int idNota, string titulo, string descripcion, bool visibleTerapeuta, int idDisparadora)
     {
         ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = false;
         BD.modificarNota(idNota, titulo, descripcion, visibleTerapeuta, idDisparadora);
         Nota nota = BD.levantarNota(idNota);
         ViewBag.nota = nota;
