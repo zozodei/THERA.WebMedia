@@ -23,6 +23,11 @@ public class HomeController : Controller
     {
         List<Nota> notas = BD.levantarNotas(int.Parse((HttpContext.Session.GetString("idPaciente"))));
         ViewBag.notas = notas;
-        return View("VerNotas");
+        return View("Diario");
     }
+    public IActionResult irNota()
+    {
+        return View("Nota");
+    }
+    public IActionResult 
 }
