@@ -6,10 +6,12 @@
     </h1>
     <section class = "Frases">
         @foreach(Frase frase in ViewBag.Frases){
-            <h1>"</h1>
-            <h2>@frase.frase</h2>
-            <h2>@frase.autor</h2>
-            <h1>"</h1>
+            <div class="card" style="width: 18rem; float:left;">
+            <div class="card-body">
+                <h5 class="card-title">"@frase.frase"</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">@frase.autor</h6>
+            </div>
+            </div>
         }
     </section>
 

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - NombreProyecto</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 
 <body>
@@ -16,13 +16,13 @@
         <nav>
       <!-- LOGO -->
       <div class="logo">
-        <a href="#"><img src="Imagenes/AveBlanca.png" alt="Logo"></a>
+        <a href="@Url.Action("irHomePaciente", "Home")"><img src="/Imagenes/AveBlanca.png" alt="Logo"></a>
       </div>
 
       <!-- LINKS (web) -->
       <div class="nav-links" id="navLinks">
         <a href="#">CHATBOT</a>
-        <a href="#">TERAPEUTAS</a>
+        <a href="@Url.Action("irBuscarTerapeuta", "Home")">TERAPEUTAS</a>
         <a href="#">DIARIO</a>
         <a href="#">AYUDA RÁPIDA</a>
         <a href="#" class="cerrar-sesion">CERRAR SESIÓN</a>
@@ -41,14 +41,6 @@
       </div>
     </nav>
 
-    <!-- MENÚ MOBILE -->
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="#">CHATBOT</a>
-      <a href="#">TERAPEUTAS</a>
-      <a href="#">DIARIO</a>
-      <a href="#">AYUDA RÁPIDA</a>
-      <a href="#" class="cerrar-sesion">CERRAR SESIÓN</a>
-    </div>
      
  
     }
@@ -110,6 +102,8 @@
     });
   });
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
 
 </body>
 

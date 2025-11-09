@@ -1,3 +1,6 @@
+using System.Net.Http;
+using System.Text;
+using Newtonsoft.Json;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using THERA.Models;
@@ -83,13 +86,21 @@ public class HomeController : Controller
         ViewBag.estaLogeado = true;
         ViewBag.terapeutaLogeado = false;
         ViewBag.terapeutas = BD.levantarTerapeutas();
+        List<int> cantResenas = BD.levantarCantidadResenas();
+        ViewBag.cantResenas = cantResenas;
         return View ("BuscarTerapeuta");
     }
-    public IActionResult irPerfilTerapeuta()
+    public IActionResult irPerfilTerapeutaPublico(int idTerapeuta)
     {
         ViewBag.estaLogeado = true;
         ViewBag.terapeutaLogeado = false;
-        return View ("PerfilTerapeuta");
+        Terapeuta terapeuta = BD.levantarTerapeutaConIdTerapeuta(idTerapeuta);
+        ViewBag.terapeuta = terapeuta;
+        ViewBag.especialidades = BD.levantarEspecialidadesXTerapeuta(idTerapeuta);
+        ViewBag.rating = BD.levantarPromedioRatingPorTerapeuta(idTerapeuta);
+        ViewBag.resenas = BD.levantarResenasPorTerapeuta(idTerapeuta);
+        ViewBag.frasesFav = BD.levantarFrasesFavTerapeuta(idTerapeuta);
+        return View ("PerfilTerapeutaPublico");
     }
     public IActionResult irChatTerapeuta()
     {
@@ -104,7 +115,7 @@ public class HomeController : Controller
             ViewBag.mensajes = BD.levantarMensajes(ViewBag.idChat);
             return View("ChatTerapeuta");
         }
-            return View("ChatTerapeuta");
+        return View("ChatTerapeuta");
 
         // else
         // {
@@ -112,6 +123,13 @@ public class HomeController : Controller
         //     ViewBag.pacientes = BD.levantarPacientes(terapeuta.id);
         //     return View("VerChatsPacientes");
         // }
+    }
+    public IActionResult irChatNuevoTerapeuta(int idTerapeuta) //terminar esto
+    {
+        ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = false;
+        Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
+        return View("ChatTerapeuta");
     }
     public IActionResult irHomePaciente()
     {

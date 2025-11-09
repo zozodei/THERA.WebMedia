@@ -1,0 +1,11 @@
+@for(int i = 0; i < @ViewBag.terapeutas.Count; i++){
+    <div class="card" style="width: 18rem; float:left;">
+    <img src="/Imagenes/FotosTerapeuta/@ViewBag.terapeutas[i].foto" class="card-img-top" alt="Pfp terapeuta">
+        <div class="card-body">
+            <h5 class="card-title">@ViewBag.terapeutas[i].nombre @ViewBag.terapeutas[i].apellido</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">@ViewBag.terapeutas[i].Universidad • @ViewBag.cantResenas[i] reseñas</h6>
+            <p class="card-text">@ViewBag.terapeutas[i].descripcion</p>
+            <a href="@Url.Action("irPerfilTerapeutaPublico", "Home", new {idTerapeuta = @ViewBag.terapeutas[i].id})" class="btn btn-primary">Ver más</a>
+        </div>
+    </div>
+}

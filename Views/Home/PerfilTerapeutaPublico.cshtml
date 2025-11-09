@@ -1,0 +1,63 @@
+<div id="carouselExampleIndicators" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/Imagenes/FotosTerapeuta/@ViewBag.terapeuta.foto" class="d-block w-100" alt="Imagen terapeuta">
+    </div>
+    <div class="carousel-item">
+      <img src="/Imagenes/Titulos/@ViewBag.terapeuta.FotoTitulo" class="d-block w-100" alt="Imagen título terapeuta">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<div>
+    <h1>@ViewBag.terapeuta.nombre @ViewBag.terapeuta.apellido</h1>
+    <h3>@ViewBag.rating</h3>
+    <h3>@ViewBag.terapeuta.Universidad</h3>
+</div>
+<div>
+    @foreach(string especialidad in @ViewBag.especialidades){
+        <h3>@especialidad</h3>
+    }
+</div>
+<div>
+    <p>@ViewBag.terapeuta.descripcion</p>
+</div>
+<div>
+    <h2>Reseñas</h2>
+    @foreach(Resenas resena in @ViewBag.resenas){
+        <div class="card" style="width: 18rem; float:left;">
+        <div class="card-body">
+            <h5 class="card-title">@resena.Titulo</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">@resena.rating</h6>
+            <p class="card-text">@resena.Contenido</p>
+        </div>
+        </div>
+    }
+</div>
+<div>
+    <h2>Frases favoritas</h2>
+    @foreach(Frase frase in @ViewBag.frasesFav){
+        <div class="card" style="width: 18rem; float:left;">
+        <div class="card-body">
+            <h5 class="card-title">"@frase.frase"</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">@frase.autor</h6>
+        </div>
+        </div>
+    }
+</div>
+<div>
+    <a href="@Url.Action("irChatNuevoTerapeuta", "Home", new {idTerapeuta = @ViewBag.terapeuta.id})">
+        <button>Contactar</button>
+    </a>
+</div>

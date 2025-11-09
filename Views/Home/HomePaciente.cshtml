@@ -4,10 +4,12 @@
 <img src=""> @*IMAGEN DEL FIGMA*@
     @for (int i = 0; i< @ViewBag.terapeutas.Count; i++)
     {
-    <div>
-        <h3>@ViewBag.terapeutas[i].nombre @ViewBag.terapeutas[i].apellido</h3>
-        <h4>@ViewBag.terapeutas[i].Universidad • @ViewBag.cantResenas[i]</h4>        
-    </div>
+    <a href="@Url.Action("irPerfilTerapeutaPublico", "Home", new {idTerapeuta = @ViewBag.terapeutas[i].id})">
+        <div>
+            <h3>@ViewBag.terapeutas[i].nombre @ViewBag.terapeutas[i].apellido</h3>
+            <h4>@ViewBag.terapeutas[i].Universidad • @ViewBag.cantResenas[i] reseñas</h4>        
+        </div>
+    </a>
     }
     <div>
         <a href='@Url.Action("irDiario", "Home")'>Tus notas</a>
@@ -18,9 +20,10 @@
     {
         <div>
 
-            <button><a href='@Url.Action ("irNota", "Home", new {id = @nota.id})'>@nota.titulo</a></button>
+            <button><a href='@Url.Action("irNota", "Home", new {id = @nota.id})'>@nota.titulo</a></button>
 
         </div>
     }*@
 
 </div>
+        <a href="@Url.Action("irBuscarTerapeuta", "Home")">buscar TERAPEUTAS</a>

@@ -82,9 +82,19 @@ namespace THERA.Models
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 string query = "SELECT * FROM Paciente WHERE IdUsuario = @pIdUsuario";
-                Paciente = connection.QueryFirstOrDefault<Paciente>(query, new {pIdUsuario = idUsuario});
+                Paciente = connection.QueryFirstOrDefault<Paciente>(query, new { pIdUsuario = idUsuario });
             }
             return Paciente;
+        }
+        public static Terapeuta levantarTerapeutaConIdTerapeuta(int idTerapeuta)
+        {
+            Terapeuta terapeuta = null;
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Terapeuta WHERE Id = @pIdTerapeuta";
+                terapeuta = connection.QueryFirstOrDefault<Terapeuta>(query, new {pIdTerapeuta = idTerapeuta});
+            }
+            return terapeuta;
         }
         public static void enviarMensaje(string mensaje, int idUsuario, int idChat, bool tipoUsuario)
         {
@@ -264,5 +274,46 @@ namespace THERA.Models
                 connection.Execute(query, new { pidNota = idNota });
             }
         }
+        public static List<string> levantarEspecialidadesXTerapeuta(int idTerapeuta)
+        {
+            List<string> lista = new List<string>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "exec ObtenerEspecialidadesPorTerapeuta @pIdTerapeuta";
+                lista = connection.Query<string>(query, new { pidTerapeuta = idTerapeuta }).ToList();
+            }
+            return lista;
+        }
+        public static List<Frase> levantarFrasesFavTerapeuta(int idTerapeuta)
+        {
+            List<Frase> lista = new List<Frase>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "exec ObtenerFrasesFavTerapeuta @pIdTerapeuta";
+                lista = connection.Query<Frase>(query, new { pidTerapeuta = idTerapeuta }).ToList();
+            }
+            return lista;
+        }
+        public static decimal levantarPromedioRatingPorTerapeuta(int idTerapeuta)
+        {
+            decimal promedio = 0;
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "exec ObtenerPromedioRatingPorTerapeuta @pIdTerapeuta";
+                promedio = connection.QueryFirstOrDefault<decimal>(query, new { pIdTerapeuta = idTerapeuta });
+            }
+            return promedio;
+        }
+        public static List<Resenas> levantarResenasPorTerapeuta(int idTerapeuta)
+        {
+            List<Resenas> lista = new List<Resenas>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "exec ObtenerResenasXTerapeuta @pIdTerapeuta";
+                lista = connection.Query<Resenas>(query, new { pidTerapeuta = idTerapeuta }).ToList();
+            }
+            return lista;
+        }
+
     }
 }
