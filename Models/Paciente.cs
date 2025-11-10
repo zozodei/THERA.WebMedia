@@ -18,6 +18,7 @@ namespace THERA.Models
         public string correo{get; private set;}
         public string foto {get; private set;}
         public string ocupacion{get; private set;}
-        public int idUsuario{get; private set;}
+        public int idUsuario { get; private set; }
+        public int IdObraSocial { get; private set; }
     }
 }

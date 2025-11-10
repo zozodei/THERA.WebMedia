@@ -1,24 +1,150 @@
+<div class="respiraciones">
+  <h1>Ejercicios de respiración</h1>
+  <section class="guia-respiracion">
+    <div id="fase">
+      <img id="imgRespiracion" src="/Imagenes/Respiraciones/1.png" alt="Paso 1">
+      <h2 id="textoFase">Inhalá profundo</h2>
+      <div id="temporizador">5</div>
+    </div>
 
-<div class = "Respiraciones">
-
-<h1>Ejercicios de respiración</h1>
-<section class = "respiraciones">
-    <div> 
-        <img src="/Imagenes/Respiraciones/1.png" alt="Paso 1">
-        <h2>Respirá hondo</h2>
-    </div>
-    <div> 
-        <img src="/Imagenes/Respiraciones/2.png" alt="Paso 2">
-        <h2>Mantené unos segundos</h2>
-    </div>
-    <div> 
-        <img src="/Imagenes/Respiraciones/3.png" alt="Paso 3">
-        <h2>Exhalá lentamente</h2>
-    </div>
-    <div> 
-        <img src="\Imagenes\Respiraciones\4.png" alt="Paso 4">
-        <h2>Repetí 3 veces</h2> 
-    </div>
-</section>
-
+    <button id="iniciarBtn">Comenzar</button>
+  </section>
 </div>
+
+<style>
+.respiraciones {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.guia-respiracion img {
+  width: 180px;
+  height: auto;
+  margin-bottom: 15px;
+  transition: transform 1s ease-in-out;
+}
+
+#temporizador {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #5F6F52;
+}
+
+#iniciarBtn {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 10px;
+  background-color: #5F6F52;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#iniciarBtn:hover {
+  background-color: #005bb5;
+}
+</style>
+
+<script>
+const fases = [
+  { texto: "Inhalá profundo", img: "/Imagenes/Respiraciones/1.png", duracion: 5 },
+  { texto: "Mantené el aire", img: "/Imagenes/Respiraciones/2.png", duracion: 5 },
+  { texto: "Exhalá lentamente", img: "/Imagenes/Respiraciones/3.png", duracion: 5 }
+];
+
+const textoFase = document.getElementById("textoFase");
+const imgRespiracion = document.getElementById("imgRespiracion");
+const temporizador = document.getElementById("temporizador");
+const iniciarBtn = document.getElementById("iniciarBtn");
+
+let faseActual = 0;
+let repeticionActual = 1;
+const totalRepeticiones = 3;
+let intervalo;
+let enEjecucion = false;
+
+iniciarBtn.addEventListener("click", () => {
+  if (!enEjecucion) {
+    // Iniciar rutina
+    enEjecucion = true;
+    iniciarBtn.textContent = "Parar";
+    faseActual = 0;
+    repeticionActual = 1;
+    ejecutarFase();
+  } else {
+    // Parar rutina
+    detenerEjercicio();
+  }
+});
+
+function ejecutarFase() {
+  if (!enEjecucion) return;
+
+  if (faseActual >= fases.length) {
+    // Terminó un ciclo
+    if (repeticionActual < totalRepeticiones) {
+      mostrarRepeticion();
+    } else {
+      textoFase.textContent = "¡Buen trabajo! 🌿";
+      imgRespiracion.src = "/Imagenes/Respiraciones/4.png";
+      temporizador.textContent = "";
+      reiniciarBoton();
+    }
+    return;
+  }
+
+  const fase = fases[faseActual];
+  textoFase.textContent = fase.texto;
+  imgRespiracion.src = fase.img;
+  let tiempoRestante = fase.duracion;
+  temporizador.textContent = tiempoRestante;
+
+  clearInterval(intervalo);
+  intervalo = setInterval(() => {
+    if (!enEjecucion) {
+      clearInterval(intervalo);
+      return;
+    }
+    tiempoRestante--;
+    temporizador.textContent = tiempoRestante;
+    if (tiempoRestante <= 0) {
+      clearInterval(intervalo);
+      faseActual++;
+      ejecutarFase();
+    }
+  }, 1000);
+}
+
+function mostrarRepeticion() {
+    if((totalRepeticiones - repeticionActual) > 1){
+    textoFase.textContent = `Repetí ${totalRepeticiones - repeticionActual} veces más`;
+    }else{
+    textoFase.textContent = `Repetí ${totalRepeticiones - repeticionActual} vez más`;
+    }
+  imgRespiracion.src = "/Imagenes/Respiraciones/4.png";
+  temporizador.textContent = "";
+
+  setTimeout(() => {
+    if (!enEjecucion) return;
+    repeticionActual++;
+    faseActual = 0;
+    ejecutarFase();
+  }, 2000);
+}
+
+function detenerEjercicio() {
+  enEjecucion = false;
+  clearInterval(intervalo);
+  textoFase.textContent = "Ejercicio detenido";
+  temporizador.textContent = "";
+  imgRespiracion.src = "/Imagenes/Respiraciones/4.png";
+  reiniciarBoton();
+}
+
+function reiniciarBoton() {
+  enEjecucion = false;
+  iniciarBtn.textContent = "Comenzar";
+}
+</script>

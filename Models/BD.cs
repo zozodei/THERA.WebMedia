@@ -221,7 +221,7 @@ namespace THERA.Models
                     connection.Execute(query, new {pidDisparadora = idDisparadora, ptitulo = titulo, pdescripcion = descripcion, pvisibleParaTerapeuta = visibleTerapeuta, pidNota = idNota});
                 }
             }
-        public static void modificarDatosPaciente(int id, string nombre, string apellido, string correo, string ubicacion, DateTime fechaNacimiento, int telefono, string ocupacion)
+        public static void modificarDatosPaciente(int id, string nombre, string apellido, string correo, string ubicacion, DateTime fechaNacimiento, int telefono, string ocupacion, int idObraSocial)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -231,7 +231,9 @@ namespace THERA.Models
                                     Correo = @pcorreo, 
                                     FechaNacimiento = @pfechaNacimiento, 
                                     Telefono = @ptelefono, 
-                                    Ocupacion = @pocupacion
+                                    Ocupacion = @pocupacion,
+                                    Ubicacion = @pUbicacion,
+                                    IdObraSocial = @pidObraSocial
                                 WHERE Id = @pid";
 
                 connection.Execute(query, new
@@ -243,7 +245,8 @@ namespace THERA.Models
                     ptelefono = telefono,
                     pubicacion = ubicacion,
                     pocupacion = ocupacion,
-                    pid = id
+                    pid = id,
+                    pidObraSocial = idObraSocial
                 });
             }
         }
@@ -257,14 +260,25 @@ namespace THERA.Models
             }
             return disparadoras;
         }
+        public static List<ObraSocial> levantarObrasSociales()
+        {
+            List<ObraSocial> obras = new List<ObraSocial>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM [Obra Social]";
+                obras = connection.Query<ObraSocial>(query).ToList();
+            }
+            return obras;
+        }
         public static void agregarNota(int idPaciente, string titulo, string descripcion, bool visibleTerapeuta, int idDisparadora)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 string query = "INSERT INTO Notas (idPaciente, idDisparadora, titulo, descripción, fecha, favorito, visibleParaTerapeuta) VALUES (@pidPaciente, @pidDisparadora, @ptitulo, @pdescripcion, GETDATE(), 0, @pvisibleParaTerapeuta)";
-                connection.Execute(query, new {pidPaciente = idPaciente, pidDisparadora = idDisparadora, ptitulo = titulo, pdescripcion = descripcion, pvisibleParaTerapeuta = visibleTerapeuta});
+                connection.Execute(query, new { pidPaciente = idPaciente, pidDisparadora = idDisparadora, ptitulo = titulo, pdescripcion = descripcion, pvisibleParaTerapeuta = visibleTerapeuta });
             }
         }
+        
 
         public static void eliminarNota(int idNota)
         {

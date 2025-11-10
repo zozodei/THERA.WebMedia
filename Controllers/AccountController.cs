@@ -77,20 +77,23 @@ public class AccountController : Controller
     }
     public IActionResult verPerfilPaciente(){
         Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
-        if(usuario.tipoUsuario)
+        if(!usuario.tipoUsuario)
         {
+            ViewBag.estaLogeado = true;
+            ViewBag.terapeutaLogeado = false;
             Paciente paciente = BD.levantarPaciente(usuario.id);
             ViewBag.paciente = paciente;
+            ViewBag.obrasSociales = BD.levantarObrasSociales();
             return View("PerfilPaciente", "Account");
         }else{
             return RedirectToAction("irHomePaciente", "Home");
         }
     }
-    public IActionResult guardarPerfilPaciente(string nombre, string apellido, string correo, string ubicacion, DateTime fechaNacimiento, int telefono, string ocupacion)
+    public IActionResult guardarPerfilPaciente(string nombre, string apellido, string correo, string ubicacion, DateTime fechaNacimiento, int telefono, string ocupacion, int idObraSocial)
     {
         Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
         Paciente paciente = BD.levantarPaciente(usuario.id); //agregar a la bd el campo ubicacion en paciente!!
-        BD.modificarDatosPaciente(paciente.id, nombre, apellido, correo, ubicacion, fechaNacimiento, telefono, ocupacion);
+        BD.modificarDatosPaciente(paciente.id, nombre, apellido, correo, ubicacion, fechaNacimiento, telefono, ocupacion, idObraSocial);
         return RedirectToAction("irHomePaciente", "Home");
     }
 }

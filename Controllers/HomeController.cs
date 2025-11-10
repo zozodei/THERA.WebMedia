@@ -27,7 +27,7 @@ public class HomeController : Controller
     {
         ViewBag.estaLogeado = false;
         ViewBag.terapeutaLogeado = false;
-        return View("Index");
+        return View("Index", "Home");
     }
     public IActionResult irDiario()
     {
