@@ -4,7 +4,7 @@ namespace THERA.Models
 {
     public static class BD
     {
-        private static string _connectionString = @"Server=localhost\SQLEXPRESS;DataBase=Thera;Integrated Security=True;TrustServerCertificate=True;";
+        private static string _connectionString = @"Server=localhost;DataBase=Thera;Integrated Security=True;TrustServerCertificate=True;";
         public static List<Nota> levantarDiario(int idPaciente)
         {
             List<Nota> diario = new List<Nota>();
