@@ -46,7 +46,7 @@ namespace THERA.Models
             }
             return idUsuario;
         }
-        public static int levantarIdChat(int idPaciente, int idTerapeuta)
+        public static int levantarIdChat(int idPaciente, int? idTerapeuta)
         {
             int idChat = -1;
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -113,6 +113,13 @@ namespace THERA.Models
                     string query = "INSERT INTO Mensaje (IdChat, IdTerapeuta, Mensaje, Hora) VALUES (@pIdChat, @pIdUsuario, @pMensaje, GETDATE())";
                     connection.Execute(query, new {pIdChat = idChat, pIdUsuario = idUsuario, pMensaje = mensaje});
                 }
+            }
+        }
+        public static void CrearNuevoChat(int idPaciente, int idTerapeuta){
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "INSERT INTO Chat (IdTerapeuta, IdPaciente) VALUES (@pIdTerapeuta, @pIdPaciente)";
+                connection.Execute(query, new {pIdPaciente = idPaciente, pIdTerapeuta = idTerapeuta});
             }
         }
         // public static void CompartirTarea(Tarea tarea, string usernameCompartir)
@@ -338,17 +345,16 @@ namespace THERA.Models
             }
             return lista;
         }
-        public static Sesión levantarUltimaTareaYRespuesta(int idTerapeuta, int idPaciente)
+        public static Sesión levantarUltimaTareaYRespuesta(int idPaciente)
         {
             Sesión ultimaSesion = null;
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                string query = "exec ObtenerUltimaTareaYRespuesta @pIdTerapeuta, @pIdPaciente";
-                ultimaSesion = connection.QueryFirstOrDefault<Sesión>(query, new { pIdTerapeuta = idTerapeuta, pIdPaciente = idPaciente });
+                string query = "exec ObtenerUltimaTareaYRespuesta @pIdPaciente";
+                ultimaSesion = connection.QueryFirstOrDefault<Sesión>(query, new {pIdPaciente = idPaciente});
             }
             return ultimaSesion;
         }
-
 
     }
 }

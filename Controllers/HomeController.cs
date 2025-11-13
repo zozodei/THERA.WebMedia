@@ -125,18 +125,26 @@ public class HomeController : Controller
         //     return View("VerChatsPacientes");
         // }
     }
-    public IActionResult irChatNuevoTerapeuta(int idTerapeuta) //terminar esto
+    public IActionResult irChatNuevoTerapeuta(int idTerapeuta)
     {
         ViewBag.estaLogeado = true;
         ViewBag.terapeutaLogeado = false;
         Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
+        Paciente paciente = BD.levantarPaciente(usuario.id);
+        ViewBag.idChat = BD.levantarIdChat(paciente.id, paciente.idTerapeuta);
+        if(ViewBag.idChat == -1){
+            BD.CrearNuevoChat(paciente.id, idTerapeuta);
+            ViewBag.mensajes = new List<Mensaje>();
+        }else{
+            ViewBag.mensajes = BD.levantarMensajes(ViewBag.idChat);
+        }
         return View("ChatTerapeuta");
     }
     public IActionResult irHomePaciente()
     {
         Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
         Paciente paciente = BD.levantarPaciente(usuario.id);
-        if(paciente.idTerapeuta == null){
+        if(paciente.idTerapeuta != null){
             return RedirectToAction("irHomePacienteConTerapeuta");
         }
         ViewBag.estaLogeado = true;
@@ -160,7 +168,10 @@ public class HomeController : Controller
         Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
         ViewBag.estaLogeado = true;
         ViewBag.terapeutaLogeado = false;
-        
+        Sesión ultimaTarea = BD.levantarUltimaTareaYRespuesta(BD.levantarPaciente(usuario.id).id);
+        ViewBag.tarea = ultimaTarea.Tarea;
+        ViewBag.respuesta = ultimaTarea.RespuestaPaciente;
+        ViewBag.fecha = ultimaTarea.Fecha;
         return View("HomePacienteConTerapeuta", "Home");
     }
 
@@ -211,4 +222,5 @@ public class HomeController : Controller
         BD.eliminarNota(idNota);
         return RedirectToAction("irDiario", "Home");
     }
+
 }
