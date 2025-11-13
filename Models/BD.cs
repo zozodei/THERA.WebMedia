@@ -338,7 +338,7 @@ namespace THERA.Models
             }
             return lista;
         }
-        public static Sesión levantarUltimaTareaYRespuesta(int idTerapeuta, int idPaciente)
+      /*  public static Sesión levantarUltimaTareaYRespuesta(int idTerapeuta, int idPaciente)
         {
             Sesión ultimaSesion = null;
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -348,7 +348,7 @@ namespace THERA.Models
             }
             return ultimaSesion;
         }
-
+*/
 
     }
 }

@@ -2,57 +2,61 @@
     ViewData["Title"] = "Thera - Tu impulso, tu cambio";
 }
 
-<div class="container py-4" style="max-width: 420px;">
-    <!-- Header -->
-    <div class="text-center mb-3">
-        <img src="~/images/thera-header.jpg" alt="Thera" class="img-fluid rounded mb-3" />
-        <h2 class="fw-bold">Thera</h2>
-        <p class="text-muted">Tu impulso, tu cambio</p>
-    </div>
+<div class="pagina-thera">
+    <div class="contenedor-principal">
 
-    <!-- Fecha y clima -->
-    <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
-        <h6 class="mb-0 fw-semibold">@DateTime.Now.ToString("dddd d 'de' MMMM")</h6>
-        <span class="text-muted small">55° / 40° ☀️</span>
-    </div>
-
-    <!-- Título principal -->
-    <div class="text-center mb-4">
-        <h5 class="fw-bold">Tomá un momento para vos</h5>
-    </div>
-
-    <!-- Botones principales -->
-    <div class="d-grid gap-2 mb-3">
-        <a href="@Url.Action("irRespiraciones", "Home")" class="btn btn-success rounded-pill">Respiración</a>
-        <a href="@Url.Action("irFrases", "Home")" class="btn btn-success rounded-pill">Frases</a>
-        <a href="@Url.Action("irAudios", "Home")" class="btn btn-success rounded-pill">Audios</a>
-        <a href="@Url.Action("irChatBot", "Home")" class="btn btn-success rounded-pill">Chatbot</a>
-    </div>
-
-    <!-- Texto adicional -->
-    <p class="text-center small text-muted mb-3">También podés escribir lo que necesites</p>
-
-    <!-- Botón notas -->
-    <div class="d-grid mb-4">
-        <a href="@Url.Action("irDiario", "Home")" class="btn btn-warning rounded-pill fw-semibold text-white">
-            Tus Notas →
-        </a>
-    </div>
-
-    <!-- Ejercicio de la última sesión -->
-    <div class="mb-4">
-        <p class="fw-semibold mb-1">Ejercicio de la última sesión (12/11)</p>
-        <div class="card border-success rounded-4 p-3">
-            <p class="fw-semibold">Reflexionar sobre tu actitud ante tus papás en la pelea</p>
-            <textarea class="form-control border-success rounded-3" rows="4" placeholder="Escribí aquí..."></textarea>
+        <!-- Encabezado -->
+        <div class="encabezado text-center mb-3">
+            <img src="~/images/thera-header.jpg" alt="Thera" class="imagen-encabezado mb-3" />
+            <h2 class="titulo-principal">Thera</h2>
+            <p class="subtitulo">Tu impulso, tu cambio</p>
         </div>
-    </div>
 
-    <!-- Cambiar terapeuta -->
-    <div class="text-center mt-4">
-        <p class="small text-muted mb-2">¿Te sentís incómodo con tu terapeuta?<br>No hay problema</p>
-        <a href="@Url.Action("irBuscarTerapeuta", "Home")" class="btn btn-outline-dark rounded-pill px-3">
-            Buscar un nuevo terapeuta →
-        </a>
+        <!-- Fecha y clima -->
+        <div class="info-fecha d-flex justify-content-between align-items-center mb-3 borde-abajo pb-2">
+            <h6 class="texto-fecha">@DateTime.Now.ToString("dddd d 'de' MMMM")</h6>
+            <span class="texto-clima">55° / 40° ☀️</span>
+        </div>
+
+        <!-- Título principal -->
+        <div class="bloque-titulo text-center mb-4">
+            <h5>Tomá un momento para vos</h5>
+        </div>
+
+        <!-- Botones principales -->
+        <div class="botones-principales d-grid gap-2 mb-3">
+            <a href="@Url.Action("irRespiraciones", "Home")" class="boton-verde">Respiración</a>
+            <a href="@Url.Action("irFrases", "Home")" class="boton-verde">Frases</a>
+            <a href="@Url.Action("irAudios", "Home")" class="boton-verde">Audios</a>
+            <a href="@Url.Action("irChatBot", "Home")" class="boton-verde">Chatbot</a>
+        </div>
+
+        <!-- Texto adicional -->
+        <p class="texto-nota text-center mb-3">También podés escribir lo que necesites</p>
+
+        <!-- Botón Notas -->
+        <div class="boton-notas d-grid mb-4">
+            <a href="@Url.Action("irDiario", "Home")" class="boton-naranja">
+                Tus Notas →
+            </a>
+        </div>
+
+        <!-- Ejercicio de la última sesión -->
+        <div class="bloque-ejercicio mb-4">
+            <p class="titulo-ejercicio">Ejercicio de la última sesión (12/11)</p>
+            <div class="tarjeta">
+                <p class="texto-ejercicio">Reflexionar sobre tu actitud ante tus papás en la pelea</p>
+                <textarea class="entrada-texto" rows="4" placeholder="Escribí aquí..."></textarea>
+            </div>
+        </div>
+
+        <!-- Cambiar terapeuta -->
+        <div class="bloque-terapeuta text-center mt-4">
+            <p class="texto-terapeuta mb-2">¿Te sentís incómodo con tu terapeuta?<br>No hay problema</p>
+            <a href="@Url.Action("irBuscarTerapeuta", "Home")" class="boton-borde">
+                Buscar un nuevo terapeuta →
+            </a>
+        </div>
+
     </div>
 </div>
