@@ -175,7 +175,15 @@ public class HomeController : Controller
         return View("HomePacienteConTerapeuta", "Home");
     }
 
-
+    public IActionResult guardarRespuestaPaciente(string Respuesta){
+        Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
+        ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = false;
+        Paciente paciente = BD.levantarPaciente(usuario.id);
+        Sesión sesion = BD.levantarUltimaSesion(paciente.id);
+        BD.guardarRespuestaPaciente(Respuesta, sesion.Id);
+        return RedirectToAction("irHomePacienteConTerapeuta", "Home");
+    }
     public IActionResult irChatBot()
     {
         ViewBag.estaLogeado = true;

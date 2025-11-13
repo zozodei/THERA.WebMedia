@@ -345,7 +345,7 @@ namespace THERA.Models
             }
             return lista;
         }
-        public static Sesión levantarUltimaTareaYRespuesta(int idPaciente)
+      public static Sesión levantarUltimaTareaYRespuesta(int idPaciente)
         {
             Sesión ultimaSesion = null;
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -355,6 +355,34 @@ namespace THERA.Models
             }
             return ultimaSesion;
         }
+        public static Sesión levantarUltimaSesion(int idPaciente){
+            Sesión ultimaSesion = null;
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = @"select *
+                    from Sesión
+                    INNER JOIN Paciente p ON Sesión.IdTerapeuta = p.IdTerapeuta AND Sesión.IdPaciente = p.Id
+                    WHERE p.Id = @pIdPaciente
+                    ORDER BY Sesión.Fecha DESC";
+                ultimaSesion = connection.QueryFirstOrDefault<Sesión>(query, new {pIdPaciente = idPaciente});
+            }
+            return ultimaSesion;
+        }
+        public static void guardarRespuestaPaciente(string respuesta, int idSesion){
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = @"UPDATE Sesión 
+                                SET RespuestaPaciente = @pRespuestaPaciente
+                                WHERE Id = @pId";
+
+                connection.Execute(query, new
+                {
+                    pRespuestaPaciente = respuesta,
+                    pid = idSesion
+                });
+            }
+        }
+
 
     }
 }

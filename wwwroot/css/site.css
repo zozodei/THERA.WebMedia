@@ -5,9 +5,11 @@
   box-sizing: border-box;
 }
 
+
 body {
   font-family: Arial, sans-serif;
 }
+
 
 /* ==== HEADER ==== */
 header {
@@ -16,6 +18,7 @@ header {
   width: 100%;
   box-shadow: 0 2px 5px rgba(0,0,0,0.15);
 }
+
 
 /* ==== NAV ==== */
 nav {
@@ -26,6 +29,7 @@ nav {
   height: 78px;
 }
 
+
 /* ==== LOGO ==== */
 .logo img {
   height: 70px;
@@ -33,11 +37,13 @@ nav {
   transition: 0.3s ease;
 }
 
+
 /* ==== LINKS (web) ==== */
 .nav-links {
   display: flex;
   gap: 22px;
 }
+
 
 .nav-links a {
   color: white;
@@ -48,13 +54,16 @@ nav {
   transition: 0.3s;
 }
 
+
 .nav-links a:hover {
   text-decoration: underline;
 }
 
+
 .cerrar-sesion {
   color: #ffe8d1 !important;
 }
+
 
 /* ==== PERFIL Y HAMBURGUESA ==== */
 .right-side {
@@ -62,6 +71,7 @@ nav {
   align-items: center;
   gap: 8px;
 }
+
 
 /* Foto de perfil */
 .profile img {
@@ -71,6 +81,7 @@ nav {
   object-fit: cover;
 }
 
+
 /* ==== HAMBURGUESA ==== */
 .hamburger {
   display: none;
@@ -79,6 +90,7 @@ nav {
   gap: 6px;
 }
 
+
 .hamburger span {
   height: 3px;
   width: 26px;
@@ -86,6 +98,7 @@ nav {
   border-radius: 4px;
   transition: 0.3s;
 }
+
 
 /* ==== MENÃš MOBILE ==== */
 .mobile-menu {
@@ -106,11 +119,13 @@ nav {
   transition: all 0.3s ease;
 }
 
+
 .mobile-menu.active {
   display: flex;
   transform: translateY(0);
   opacity: 1;
 }
+
 
 .mobile-menu a {
   color: #C4661F;
@@ -121,9 +136,11 @@ nav {
   transition: 0.3s;
 }
 
+
 .mobile-menu a:hover {
   color: #8a3d10;
 }
+
 
 /* ==== WEB ==== */
 @media (min-width: 391px) {
@@ -131,18 +148,22 @@ nav {
     display: none !important;
   }
 
+
   .hamburger {
     display: none;
   }
+
 
   .nav-links {
     display: flex;
   }
 
+
   .logo img {
     height: 65px;
   }
 }
+
 
 /* ==== MOBILE (iPhone 12 Pro â€“ hasta 390 px) ==== */
 @media (max-width: 390px) {
@@ -152,13 +173,16 @@ nav {
     padding: 10px 20px;
   }
 
+
   .nav-links {
     display: none;
   }
 
+
   .logo img {
     height: 60px;
   }
+
 
   .right-side {
     display: flex;
@@ -166,11 +190,13 @@ nav {
     gap: 4px;
   }
 
+
   .profile img {
     height: 38px;
     width: 38px;
     border-radius: 8px;
   }
+
 
   .hamburger {
     display: flex;
@@ -180,6 +206,7 @@ nav {
     justify-content: center;
   }
 }
+
 
 /*FOOOTER*/
 /* Footer base */
@@ -193,6 +220,7 @@ nav {
   justify-content: center;
 }
 
+
 .footer-container {
   display: flex;
   flex-direction: column;
@@ -201,6 +229,7 @@ nav {
   max-width: 900px;
 }
 
+
 /* Logo */
 .thera-logo {
   font-size: 2.2rem;
@@ -208,6 +237,7 @@ nav {
   margin-bottom: 10px;
   letter-spacing: 1px;
 }
+
 
 /* LÃ­nea divisoria */
 .footer-divider {
@@ -219,6 +249,7 @@ nav {
   margin: 10px auto 20px auto;
 }
 
+
 /* Ãconos */
 .footer-icons {
   display: flex;
@@ -228,6 +259,7 @@ nav {
   margin-bottom: 20px;
 }
 
+
 .social-icon {
   width: 32px;
   height: 32px;
@@ -236,15 +268,18 @@ nav {
   cursor: pointer;
 }
 
+
 .social-icon:hover {
   transform: scale(1.15);
   filter: brightness(0.9) invert(1);
 }
 
+
 /* Links */
 .footer-links {
   margin-bottom: 10px;
 }
+
 
 .footer-link {
   color: white;
@@ -254,13 +289,16 @@ nav {
   transition: color 0.3s ease;
 }
 
+
 .footer-link:hover {
   color: #ffe0c2;
 }
 
+
 .separator {
   color: white;
 }
+
 
 /* Copyright */
 .footer-copy {
@@ -268,20 +306,24 @@ nav {
   opacity: 0.9;
 }
 
+
 /* Responsive */
 @media (max-width: 600px) {
   .thera-logo {
     font-size: 1.8rem;
   }
 
+
   .footer-divider {
     width: 80%;
   }
+
 
   .social-icon {
     width: 26px;
     height: 26px;
   }
+
 
   .footer-link {
     font-size: 0.9rem;
@@ -297,9 +339,20 @@ nav {
 
 
 
+
+
+
+
+
+
+
+
+
+
 /* ==========================
    MAIN DE PANTALLA DE INICIO
 ========================== */
+
 
 .main-inicio {
   position: relative;
@@ -310,6 +363,7 @@ nav {
   align-items: center;
 }
 
+
 /* CONTENEDOR PRINCIPAL */
 .main-inicio .comenzar {
   display: flex;
@@ -318,12 +372,14 @@ nav {
   gap: 30px;
 }
 
+
 /* IMAGEN CENTRAL */
 .main-inicio .comenzar img {
   width: 160px;
   height: auto;
   object-fit: contain;
 }
+
 
 /* BOTÃ“N â€œCOMENZARâ€ ESTILO PREMIUM */
 .btn-comenzar {
@@ -345,6 +401,7 @@ nav {
   text-align: center;
 }
 
+
 /* HOVER */
 .btn-comenzar:hover {
   background-color: #C4661F;
@@ -353,16 +410,19 @@ nav {
   transform: translateY(-3px);
 }
 
+
 /* A dentro del botÃ³n (por si usÃ¡s <a> dentro) */
 .main-inicio .comenzar button a {
   text-decoration: none;
   color: inherit;
 }
 
+
 /* EFECTO HOVER TAMBIÃ‰N EN EL LINK */
 .main-inicio .comenzar button:hover a {
   color: #fff;
 }
+
 
 /* ==========================
    MOBILE (iPhone 12 Pro)
@@ -373,6 +433,7 @@ nav {
   footer {
     display: none;
   }
+
 
   .main-inicio {
     width: 100%;
@@ -385,9 +446,11 @@ nav {
     align-items: center;
   }
 
+
   .main-inicio .comenzar img {
     width: 220px; /* ðŸ”¸ tamaÃ±o original */
   }
+
 
   .main-inicio .comenzar a {
     font-size: 1.3rem;
@@ -395,6 +458,7 @@ nav {
     border-radius: 40px;
   }
 }
+
 
 /* ==========================
    WEB
@@ -406,15 +470,32 @@ nav {
     padding-top: 40px;
   }
 
+
   .main-inicio .comenzar img {
     width: 180px;
   }
+
 
   .btn-comenzar {
     font-size: 1.1rem;
     padding: 12px 45px; /* ðŸ”¸ mÃ¡s compacto */
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -442,17 +523,20 @@ nav {
   align-items: center;
 }
 
+
 /* ==== SHAPE SUPERIOR ==== */
 .ShapeArriba {
   position: relative;
   width: 100%;
 }
 
+
 .ShapeArriba img {
   display: block;
   width: 100%;
   height: auto;
 }
+
 
 /* ==== CONTENIDO CENTRAL ==== */
 .Inicio {
@@ -465,6 +549,7 @@ nav {
   margin-top: 25px;
 }
 
+
 .Inicio h1 {
   font-family: "Poppins", sans-serif;
   font-weight: 800;
@@ -472,6 +557,7 @@ nav {
   font-size: 1.8rem;
   margin-bottom: 8px;
 }
+
 
 .Inicio p {
   font-family: "Poppins", sans-serif;
@@ -481,12 +567,14 @@ nav {
   font-size: 1rem;
 }
 
+
 .Inicio img {
   width: 80%;
   max-width: 300px;
   height: auto;
   margin-bottom: 30px;
 }
+
 
 /* ==== BOTONES ==== */
 .Inicio button {
@@ -502,10 +590,12 @@ nav {
   transition: all 0.3s ease;
 }
 
+
 .Inicio button a {
   text-decoration: none;
   color: inherit;
 }
+
 
 /* BotÃ³n LOGIN */
 .Inicio button:first-of-type {
@@ -514,10 +604,12 @@ nav {
   box-shadow: 0 6px 16px rgba(196, 102, 31, 0.4);
 }
 
+
 .Inicio button:first-of-type:hover {
   background-color: #a65318;
   transform: translateY(-2px);
 }
+
 
 /* BotÃ³n REGISTRARSE */
 .Inicio button:last-of-type {
@@ -526,11 +618,13 @@ nav {
   border: 2px solid #C4661F;
 }
 
+
 .Inicio button:last-of-type:hover {
   background-color: #C4661F;
   color: #ffffff;
   transform: translateY(-2px);
 }
+
 
 /* ==========================
    MOBILE (iPhone 12 Pro)
@@ -541,10 +635,12 @@ nav {
     display: none;
   }
 
+
   .INDEX {
     height: 100vh;
     justify-content: flex-start;
   }
+
 
   .ShapeArriba {
     position: relative;
@@ -553,29 +649,35 @@ nav {
     z-index: 0;
   }
 
+
   .ShapeArriba img {
     display: block;
     width: 100%;
     height: auto;
   }
 
+
   .Inicio {
     margin-top: 40px;
   }
+
 
   .Inicio h1 {
     font-size: 1.7rem;
   }
 
+
   .Inicio p {
     font-size: 0.95rem;
   }
+
 
   .Inicio button {
     width: 200px;
     padding: 12px 0;
   }
 }
+
 
 /* ==========================
    WEB
@@ -584,6 +686,7 @@ nav {
   .ShapeArriba {
     display: none; /* Sin shape en web */
   }
+
 
   .INDEX {
     min-height: calc(100vh - 160px);
@@ -594,6 +697,7 @@ nav {
     padding: 40px 0;
   }
 
+
   .Inicio {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -603,12 +707,14 @@ nav {
     max-width: 1200px;
   }
 
+
   /* Columna de texto */
   .Inicio h1,
   .Inicio p,
   .Inicio button {
     text-align: left;
   }
+
 
   .Inicio h1 {
     font-size: 2.5rem;
@@ -617,12 +723,14 @@ nav {
     margin-bottom: 10px;
   }
 
+
   .Inicio p {
     font-size: 1.2rem;
     color: #5F6F52;
     margin-bottom: 30px;
     max-width: 400px;
   }
+
 
   /* Imagen a la derecha */
   .Inicio img {
@@ -633,6 +741,7 @@ nav {
     order: 2;
   }
 
+
   /* Botones */
   .Inicio button {
     width: 220px;
@@ -640,17 +749,254 @@ nav {
     border-radius: 40px;
   }
 
+
   .Inicio button:first-of-type {
     margin-top: 20px;
   }
+
 
   /* AnimaciÃ³n sutil */
   .Inicio img {
     transition: transform 0.4s ease, box-shadow 0.4s ease;
   }
 
+
   .Inicio img:hover {
     transform: scale(1.03);
     box-shadow: 0 8px 20px rgba(95, 111, 82, 0.3);
   }
 }
+
+
+/* ============================
+   PÁGINA THERA - PACIENTE
+============================ */
+.pagina-thera {
+  background-color: #fafaf8;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+
+.contenedor-principal {
+  max-width: 440px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+}
+
+
+/* ENCABEZADO */
+.imagen-encabezado {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+
+.titulo-principal {
+  font-weight: 700;
+  color: #2c2c2c;
+  margin-bottom: 0.25rem;
+}
+
+
+.subtitulo {
+  color: #7a7a7a;
+}
+
+
+/* FECHA Y CLIMA */
+.info-fecha {
+  border-bottom: 1px solid #dcdcdc;
+}
+
+
+.texto-fecha {
+  color: #2c2c2c;
+  font-weight: 600;
+}
+
+
+.texto-clima {
+  color: #7a7a7a;
+  font-size: 0.9rem;
+}
+
+
+/* TÍTULO PRINCIPAL */
+.bloque-titulo h5 {
+  color: #2c2c2c;
+  font-weight: 700;
+}
+
+
+/* BOTONES PRINCIPALES */
+.boton-verde {
+  display: block;
+  text-align: center;
+  background-color: #5F6F52;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+
+.boton-verde:hover {
+  background-color: #A9B388;
+}
+
+
+/* BOTÓN “TUS NOTAS” */
+.boton-naranja {
+  display: block;
+  text-align: center;
+  background-color: #C4661F;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+
+.boton-naranja:hover {
+  background-color: #C4661F;
+}
+
+
+/* BLOQUE EJERCICIO */
+.titulo-ejercicio {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #2c2c2c;
+}
+
+
+.tarjeta {
+  background-color: #5F6F52;
+  border: 2px solid #5F6F52;
+  border-radius: 16px;
+  padding: 1rem;
+}
+
+
+.texto-ejercicio {
+  color: #ffffff;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+
+.entrada-texto {
+  width: 100%;
+  resize: none;
+  border: 1.5px solid #5F6F52;
+  border-radius: 10px;
+  padding: 0.6rem;
+  font-size: 0.95rem;
+  transition: box-shadow 0.2s;
+}
+
+
+.entrada-texto:focus {
+  box-shadow: 0 0 6px rgba(85, 107, 47, 0.4);
+  outline: none;
+}
+
+
+/* BLOQUE TERAPEUTA */
+.texto-terapeuta {
+  color: #7a7a7a;
+  font-size: 0.9rem;
+}
+
+
+.boton-borde {
+  display: inline-block;
+  border: 1.5px solid #2c2c2c;
+  color: #2c2c2c;
+  border-radius: 50px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+
+.boton-borde:hover {
+  background-color: #2c2c2c;
+  color: #fff;
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  .contenedor-principal {
+    border-radius: 0;
+    box-shadow: none;
+    padding: 1rem;
+  }
+
+
+  .titulo-principal {
+    font-size: 1.5rem;
+  }
+
+
+  .bloque-titulo h5 {
+    font-size: 1.1rem;
+  }
+
+
+  .boton-verde,
+  .boton-naranja,
+  .boton-borde {
+    font-size: 0.95rem;
+    padding: 0.6rem;
+  }
+
+
+  .entrada-texto {
+    font-size: 0.9rem;
+  }
+}
+
+
+@media (min-width: 900px) {
+  .contenedor-principal {
+    max-width: 600px;
+    padding: 2rem;
+  }
+
+
+  .titulo-principal {
+    font-size: 2rem;
+  }
+
+
+  .bloque-titulo h5 {
+    font-size: 1.3rem;
+  }
+
+
+  .boton-verde,
+  .boton-naranja {
+    font-size: 1rem;
+    padding: 0.9rem;
+  }
+
+
+  .entrada-texto {
+    font-size: 1rem;
+  }
+}
+
