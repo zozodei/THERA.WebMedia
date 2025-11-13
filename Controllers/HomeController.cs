@@ -186,6 +186,9 @@ public class HomeController : Controller
     {
         ViewBag.terapeutaLogeado = true;
         ViewBag.estaLogeado = false;
+        Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
+        Terapeuta terapeuta = BD.levantarTerapeuta(usuario);
+        ViewBag.pacientes = BD.levantarPacientes(terapeuta.id);
         return View("HomeTerapeuta");
     }
     [HttpPost]
