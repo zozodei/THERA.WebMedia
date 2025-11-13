@@ -338,6 +338,17 @@ namespace THERA.Models
             }
             return lista;
         }
+        public static Sesión levantarUltimaTareaYRespuesta(int idTerapeuta, int idPaciente)
+        {
+            Sesión ultimaSesion = null;
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "exec ObtenerUltimaTareaYRespuesta @pIdTerapeuta, @pIdPaciente";
+                ultimaSesion = connection.QueryFirstOrDefault<Sesión>(query, new { pIdTerapeuta = idTerapeuta, pIdPaciente = idPaciente });
+            }
+            return ultimaSesion;
+        }
+
 
     }
 }

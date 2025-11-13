@@ -158,6 +158,8 @@ public class HomeController : Controller
     }
     public IActionResult irHomePacienteConTerapeuta(){
         Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
+        ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = false;
         
         return View("HomePacienteConTerapeuta", "Home");
     }
