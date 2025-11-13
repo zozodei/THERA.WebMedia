@@ -338,6 +338,9 @@ namespace THERA.Models
             }
             return lista;
         }
+      /*  public static Sesión levantarUltimaTareaYRespuesta(int idTerapeuta, int idPaciente)
+        {
+            Sesión ultimaSesion = null;
         // public static Sesión levantarUltimaTareaYRespuesta(int idTerapeuta, int idPaciente)
         // {
         //     Sesión ultimaSesion = null;
@@ -358,5 +361,7 @@ namespace THERA.Models
             }
             return terapeuta;   
         }
+*/
+
     }
 }
