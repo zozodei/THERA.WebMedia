@@ -21,6 +21,7 @@ public class AccountController : Controller
             HttpContext.Session.SetString("usuario", Objeto.ObjectToString(usuario));
             if (!usuario.tipoUsuario)
             {
+                Paciente paciente = BD.levantarPaciente(idUsuario);
                 return RedirectToAction("irHomePaciente", "Home");
             }
             else

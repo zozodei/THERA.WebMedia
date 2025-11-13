@@ -134,6 +134,11 @@ public class HomeController : Controller
     }
     public IActionResult irHomePaciente()
     {
+        Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
+        Paciente paciente = BD.levantarPaciente(usuario.id);
+        if(paciente.idTerapeuta == null){
+            return RedirectToAction("irHomePacienteConTerapeuta");
+        }
         ViewBag.estaLogeado = true;
         ViewBag.terapeutaLogeado = false;
         List<Terapeuta> terapeutas = BD.levantarTerapeutas();
@@ -148,8 +153,13 @@ public class HomeController : Controller
         List<int> cantResenasSeleccionadas = new List<int>() {cantResenas[numRandom1], cantResenas[numRandom2]};
         ViewBag.terapeutas = terapeutasSeleccionados;
         ViewBag.cantResenas = cantResenasSeleccionadas;
-        //ViewBag.notas = BD.levantarDiario();
-        return View("HomePaciente");
+        ViewBag.notas = BD.levantarDiario(paciente.id);
+        return View("HomePacienteSinTerapeuta");
+    }
+    public IActionResult irHomePacienteConTerapeuta(){
+        Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
+        
+        return View("HomePacienteConTerapeuta", "Home");
     }
 
 
