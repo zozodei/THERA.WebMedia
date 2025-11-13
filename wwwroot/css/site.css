@@ -1,421 +1,656 @@
-
+/* ==== RESET ==== */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* ==== HEADER ==== */
+header {
+  background-color: #C4661F;
+  color: white;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+/* ==== NAV ==== */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 26px;
+  height: 78px;
+}
+
+/* ==== LOGO ==== */
+.logo img {
+  height: 70px;
+  width: auto;
+  transition: 0.3s ease;
+}
+
+/* ==== LINKS (web) ==== */
+.nav-links {
+  display: flex;
+  gap: 22px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+  letter-spacing: 0.3px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+.cerrar-sesion {
+  color: #ffe8d1 !important;
+}
+
+/* ==== PERFIL Y HAMBURGUESA ==== */
+.right-side {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Foto de perfil */
+.profile img {
+  height: 42px;
+  width: 42px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* ==== HAMBURGUESA ==== */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 6px;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 26px;
+  background-color: white;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+/* ==== MENÃš MOBILE ==== */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 85px;
+  right: 20px;
+  width: 70%;
+  background-color: #fff;
+  border-radius: 14px;
+  border: 2px solid #C4661F;  /* â† Borde naranja */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  text-align: right;
+  padding: 22px 20px;
+  transform: translateY(-15px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu.active {
+  display: flex;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.mobile-menu a {
+  color: #C4661F;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 12px 0;
+  border-bottom: 1px solid #C4661F20;
+  transition: 0.3s;
+}
+
+.mobile-menu a:hover {
+  color: #8a3d10;
+}
+
+/* ==== WEB ==== */
+@media (min-width: 391px) {
+  .mobile-menu {
+    display: none !important;
   }
-  main{
-    margin-left: 10%;
-    margin-right: 10%;
+
+  .hamburger {
+    display: none;
   }
-  
-  body {
-    font-family: Arial, sans-serif;
-  }
-  
-  /* ==== HEADER ==== */
-  header {
-    background-color: #C4661F;
-    color: white;
-    width: 100%;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-  }
-  
-  /* ==== NAV ==== */
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 26px;
-    height: 78px;
-  }
-  
-  /* ==== LOGO ==== */
-  .logo img {
-    height: 70px;
-    width: auto;
-    transition: 0.3s ease;
-  }
-  
-  /* ==== LINKS (web) ==== */
+
   .nav-links {
     display: flex;
-    gap: 22px;
   }
-  
-  .nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.92rem;
-    letter-spacing: 0.3px;
-    transition: 0.3s;
+
+  .logo img {
+    height: 65px;
   }
-  
-  .nav-links a:hover {
-    text-decoration: underline;
+}
+
+/* ==== MOBILE (iPhone 12 Pro â€“ hasta 390 px) ==== */
+@media (max-width: 390px) {
+  nav {
+    justify-content: space-between;
+    height: 88px;
+    padding: 10px 20px;
   }
-  
-  .cerrar-sesion {
-    color: #ffe8d1 !important;
+
+  .nav-links {
+    display: none;
   }
-  
-  /* ==== PERFIL Y HAMBURGUESA ==== */
+
+  .logo img {
+    height: 60px;
+  }
+
   .right-side {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
   }
-  
-  /* Foto de perfil */
+
   .profile img {
-    height: 42px;
-    width: 42px;
-    border-radius: 10px;
-    object-fit: cover;
+    height: 38px;
+    width: 38px;
+    border-radius: 8px;
   }
-  
-  /* ==== HAMBURGUESA ==== */
+
   .hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    gap: 6px;
-  }
-  
-  .hamburger span {
-    height: 3px;
-    width: 26px;
-    background-color: white;
-    border-radius: 4px;
-    transition: 0.3s;
-  }
-  
-  /* ==== MENÚ MOBILE ==== */
-  .mobile-menu {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 85px;
-    right: 20px;
-    width: 70%;
-    background-color: #fff;
-    border-radius: 14px;
-    border: 2px solid #C4661F;  /* ← Borde naranja */
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-    text-align: right;
-    padding: 22px 20px;
-    transform: translateY(-15px);
-    opacity: 0;
-    transition: all 0.3s ease;
-  }
-  
-  .mobile-menu.active {
     display: flex;
-    transform: translateY(0);
-    opacity: 1;
+    height: 38px;
+    width: 38px;
+    align-items: center;
+    justify-content: center;
   }
-  
-  .mobile-menu a {
-    color: #C4661F;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 12px 0;
-    border-bottom: 1px solid #C4661F20;
-    transition: 0.3s;
-  }
-  
-  .mobile-menu a:hover {
-    color: #8a3d10;
-  }
-  
-  /* ==== WEB ==== */
-  @media (min-width: 391px) {
-    .mobile-menu {
-      display: none !important;
-    }
-  
-    .hamburger {
-      display: none;
-    }
-  
-    .nav-links {
-      display: flex;
-    }
-  
-    .logo img {
-      height: 65px;
-    }
-  }
-  
-  /* ==== MOBILE (iPhone 12 Pro – hasta 390 px) ==== */
-  @media (max-width: 390px) {
-    nav {
-      justify-content: space-between;
-      height: 88px;
-      padding: 10px 20px;
-    }
-  
-    .nav-links {
-      display: none;
-    }
-  
-    .logo img {
-      height: 60px;
-    }
-  
-    .right-side {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-  
-    .profile img {
-      height: 38px;
-      width: 38px;
-      border-radius: 8px;
-    }
-  
-    .hamburger {
-      display: flex;
-      height: 38px;
-      width: 38px;
-      align-items: center;
-      justify-content: center;
-    }
-  }
-  
-  
-  
-  
+}
 
-
-
-  
 /*FOOOTER*/
 /* Footer base */
 .footer-custom {
-    background-color: #C4661F;
-    color: white;
-    width: 100%;
-    padding: 40px 0 25px 0;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .footer-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 90%;
-    max-width: 900px;
-  }
-  
-  /* Logo */
+  background-color: #C4661F;
+  color: white;
+  width: 100%;
+  padding: 40px 0 25px 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 900px;
+}
+
+/* Logo */
+.thera-logo {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+/* LÃ­nea divisoria */
+.footer-divider {
+  border: none;
+  height: 2px;
+  width: 60%;
+  background-color: white;
+  opacity: 0.6;
+  margin: 10px auto 20px auto;
+}
+
+/* Ãconos */
+.footer-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.social-icon {
+  width: 32px;
+  height: 32px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.25s ease, filter 0.25s ease;
+  cursor: pointer;
+}
+
+.social-icon:hover {
+  transform: scale(1.15);
+  filter: brightness(0.9) invert(1);
+}
+
+/* Links */
+.footer-links {
+  margin-bottom: 10px;
+}
+
+.footer-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  margin: 0 8px;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #ffe0c2;
+}
+
+.separator {
+  color: white;
+}
+
+/* Copyright */
+.footer-copy {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
   .thera-logo {
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    letter-spacing: 1px;
+    font-size: 1.8rem;
   }
-  
-  /* Línea divisoria */
+
   .footer-divider {
-    border: none;
-    height: 2px;
-    width: 60%;
-    background-color: white;
-    opacity: 0.6;
-    margin: 10px auto 20px auto;
+    width: 80%;
   }
-  
-  /* Íconos */
-  .footer-icons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 25px;
-    margin-bottom: 20px;
-  }
-  
+
   .social-icon {
-    width: 32px;
-    height: 32px;
-    filter: brightness(0) invert(1);
-    transition: transform 0.25s ease, filter 0.25s ease;
-    cursor: pointer;
+    width: 26px;
+    height: 26px;
   }
-  
-  .social-icon:hover {
-    transform: scale(1.15);
-    filter: brightness(0.9) invert(1);
-  }
-  
-  /* Links */
-  .footer-links {
-    margin-bottom: 10px;
-  }
-  
+
   .footer-link {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    margin: 0 8px;
-    transition: color 0.3s ease;
-  }
-  
-  .footer-link:hover {
-    color: #ffe0c2;
-  }
-  
-  .separator {
-    color: white;
-  }
-  
-  /* Copyright */
-  .footer-copy {
     font-size: 0.9rem;
-    opacity: 0.9;
   }
-  
-  /* Responsive */
-  @media (max-width: 600px) {
-    .thera-logo {
-      font-size: 1.8rem;
-    }
-  
-    .footer-divider {
-      width: 80%;
-    }
-  
-    .social-icon {
-      width: 26px;
-      height: 26px;
-    }
-  
-    .footer-link {
-      font-size: 0.9rem;
-    }
+}
+
+
+
+
+
+
+
+
+
+
+/* ==========================
+   MAIN DE PANTALLA DE INICIO
+========================== */
+
+.main-inicio {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 160px); /* Resta el header y footer en web */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CONTENEDOR PRINCIPAL */
+.main-inicio .comenzar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+/* IMAGEN CENTRAL */
+.main-inicio .comenzar img {
+  width: 160px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* BOTÃ“N â€œCOMENZARâ€ ESTILO PREMIUM */
+.btn-comenzar {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 35px;
+  padding: 14px 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #C4661F;
+  letter-spacing: 0.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* HOVER */
+.btn-comenzar:hover {
+  background-color: #C4661F;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(196, 102, 31, 0.4);
+  transform: translateY(-3px);
+}
+
+/* A dentro del botÃ³n (por si usÃ¡s <a> dentro) */
+.main-inicio .comenzar button a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* EFECTO HOVER TAMBIÃ‰N EN EL LINK */
+.main-inicio .comenzar button:hover a {
+  color: #fff;
+}
+
+/* ==========================
+   MOBILE (iPhone 12 Pro)
+   ðŸ”¸ NO TOCAR â€” se mantiene igual
+========================== */
+@media (max-width: 768px) {
+  header,
+  footer {
+    display: none;
   }
-
-
-
-
-
-
-  /*PAGINA COMENZAR*/
 
   .main-inicio {
-    position: relative;
     width: 100%;
-    height: calc(100vh - 160px); /* Resta el header y footer en web */
+    height: 100vh;
+    background-image: url("Imagenes/Shapes/Shape1.png");
+    background-size: cover;
+    background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  
-  /* CONTENEDOR PRINCIPAL */
-  .main-inicio .comenzar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-  }
-  
-  /* IMAGEN CENTRAL */
+
   .main-inicio .comenzar img {
-    width: 160px;
-    height: auto;
-    object-fit: contain;
+    width: 220px; /* ðŸ”¸ tamaÃ±o original */
   }
-  
-  /* BOTÓN “COMENZAR” ESTILO PREMIUM */
+
+  .main-inicio .comenzar a {
+    font-size: 1.3rem;
+    padding: 16px 50px;
+    border-radius: 40px;
+  }
+}
+
+/* ==========================
+   WEB
+========================== */
+@media (min-width: 769px) {
+  .main-inicio {
+    background: #F8F4F1; /* ðŸ”¸ fondo liso y cÃ¡lido */
+    height: calc(100vh - 160px);
+    padding-top: 40px;
+  }
+
+  .main-inicio .comenzar img {
+    width: 180px;
+  }
+
   .btn-comenzar {
-    background-color: #ffffff;
-    border: none;
-    border-radius: 35px;
-    padding: 14px 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
     font-size: 1.1rem;
-    color: #C4661F;
-    letter-spacing: 0.5px;
+    padding: 12px 45px; /* ðŸ”¸ mÃ¡s compacto */
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*INDEX*/
+.INDEX {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ==== SHAPE SUPERIOR ==== */
+.ShapeArriba {
+  position: relative;
+  width: 100%;
+}
+
+.ShapeArriba img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ==== CONTENIDO CENTRAL ==== */
+.Inicio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  z-index: 1;
+  margin-top: 25px;
+}
+
+.Inicio h1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  color: #5F6F52;
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.Inicio p {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  color: #5F6F52;
+  margin-bottom: 25px;
+  font-size: 1rem;
+}
+
+.Inicio img {
+  width: 80%;
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 30px;
+}
+
+/* ==== BOTONES ==== */
+.Inicio button {
+  width: 220px;
+  padding: 12px 0;
+  border-radius: 30px;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 8px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.Inicio button a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* BotÃ³n LOGIN */
+.Inicio button:first-of-type {
+  background-color: #C4661F;
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(196, 102, 31, 0.4);
+}
+
+.Inicio button:first-of-type:hover {
+  background-color: #a65318;
+  transform: translateY(-2px);
+}
+
+/* BotÃ³n REGISTRARSE */
+.Inicio button:last-of-type {
+  background-color: #ffffff;
+  color: #C4661F;
+  border: 2px solid #C4661F;
+}
+
+.Inicio button:last-of-type:hover {
+  background-color: #C4661F;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* ==========================
+   MOBILE (iPhone 12 Pro)
+========================== */
+@media (max-width: 768px) {
+  header,
+  footer {
+    display: none;
+  }
+
+  .INDEX {
+    height: 100vh;
+    justify-content: flex-start;
+  }
+
+  .ShapeArriba {
+    position: relative;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+  }
+
+  .ShapeArriba img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .Inicio {
+    margin-top: 40px;
+  }
+
+  .Inicio h1 {
+    font-size: 1.7rem;
+  }
+
+  .Inicio p {
+    font-size: 0.95rem;
+  }
+
+  .Inicio button {
+    width: 200px;
+    padding: 12px 0;
+  }
+}
+
+/* ==========================
+   WEB
+========================== */
+@media (min-width: 769px) {
+  .ShapeArriba {
+    display: none; /* Sin shape en web */
+  }
+
+  .INDEX {
+    min-height: calc(100vh - 160px);
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-  }
-  
-  /* HOVER */
-  .btn-comenzar:hover {
-    background-color: #C4661F;
-    color: #fff;
-    box-shadow: 0 8px 24px rgba(196, 102, 31, 0.4);
-    transform: translateY(-3px);
-  }
-  
-  /* A dentro del botón (por si usás <a> dentro) */
-  .main-inicio .comenzar button a {
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  /* EFECTO HOVER TAMBIÉN EN EL LINK */
-  .main-inicio .comenzar button:hover a {
-    color: #fff;
-  }
-  
-  /* ==========================
-     MOBILE (iPhone 12 Pro)
-     🔸 NO TOCAR — se mantiene igual
-  ========================== */
-
-  
-    .main-inicio {
-      width: 100%;
-      height: 100vh;
-      background-image: url("Imagenes/Shapes/Shape1.png");
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  
-    .main-inicio .comenzar img {
-      width: 220px; /* 🔸 tamaño original */
-    }
-  
-    .main-inicio .comenzar a {
-      font-size: 1.3rem;
-      padding: 16px 50px;
-      border-radius: 40px;
-    }
-  
-  
-  /* ==========================
-     WEB
-  ========================== */
-  @media (min-width: 769px) {
-    .main-inicio {
-      background: #F8F4F1; /* 🔸 fondo liso y cálido */
-      height: calc(100vh - 160px);
-      padding-top: 40px;
-    }
-  
-    .main-inicio .comenzar img {
-      width: 180px;
-    }
-  
-    .btn-comenzar {
-      font-size: 1.1rem;
-      padding: 12px 45px; /* 🔸 más compacto */
-    }
+    background: linear-gradient(120deg, #fff 60%, #f7f2ec 40%);
+    padding: 40px 0;
   }
 
+  .Inicio {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 60px;
+    width: 85%;
+    max-width: 1200px;
+  }
 
+  /* Columna de texto */
+  .Inicio h1,
+  .Inicio p,
+  .Inicio button {
+    text-align: left;
+  }
 
+  .Inicio h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #5F6F52;
+    margin-bottom: 10px;
+  }
+
+  .Inicio p {
+    font-size: 1.2rem;
+    color: #5F6F52;
+    margin-bottom: 30px;
+    max-width: 400px;
+  }
+
+  /* Imagen a la derecha */
+  .Inicio img {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    justify-self: center;
+    order: 2;
+  }
+
+  /* Botones */
+  .Inicio button {
+    width: 220px;
+    margin-top: 10px;
+    border-radius: 40px;
+  }
+
+  .Inicio button:first-of-type {
+    margin-top: 20px;
+  }
+
+  /* AnimaciÃ³n sutil */
+  .Inicio img {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .Inicio img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(95, 111, 82, 0.3);
+  }
+}
