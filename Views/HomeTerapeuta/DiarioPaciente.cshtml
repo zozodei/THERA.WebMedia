@@ -1,0 +1,27 @@
+<div class = "Diario">
+        <h1>Diario compartido de @ViewBag.paciente.nombre @ViewBag.paciente.apellido</h1>
+    <section class = "Nota">        
+        @if (ViewBag.diario != null)
+        {
+            foreach (Nota nota in ViewBag.diario)
+            {
+                <a href="@Url.Action("irNota", "HomeTerapeuta", new {idNota = @nota.id})">
+                <div class="card border-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header">@nota.titulo</div>
+                <div class="card-body text-primary">
+                    <h5 class="card-title">@nota.fecha</h5>
+                    <p class="card-text">@nota.descripción</p>
+                </div>
+                </div>
+                </a>
+
+            }
+            
+        }
+        else
+        { 
+            <p class="text-muted">No hay notas disponibles compartidas.</p>
+        }
+    <section>
+</div>
+    

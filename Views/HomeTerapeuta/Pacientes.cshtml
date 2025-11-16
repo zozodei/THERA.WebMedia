@@ -6,7 +6,7 @@
         <a href="#" class="btn btn-primary">Datos del paciente</a>
         <a href="@Url.Action("irDatosSesiones", "HomeTerapeuta", new{idPaciente = @paciente.id})" class="btn btn-primary">Datos de las sesiones</a>
         <a href="#" class="btn btn-primary">Mensajes</a>
-        <a href="#" class="btn btn-primary">Notas del paciente</a>
+        <a href="@Url.Action("verDiarioPaciente", "HomeTerapeuta", new{idPaciente = @paciente.id})" class="btn btn-primary">Notas del paciente</a>
     </div>
     </div>
 }

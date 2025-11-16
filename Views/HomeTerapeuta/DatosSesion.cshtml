@@ -6,8 +6,9 @@
         <textarea name="Anotaciones" id="">@ViewBag.sesion.Anotaciones</textarea>
     </div>
     <div>
-    <input type="text" name="Tarea" value="@ViewBag.sesion.Tarea">
-    <p>Respuesta de @ViewBag.paciente.nombre: @ViewBag.sesion.Respuesta</p>
+    <textarea name="Tarea" id="">@ViewBag.sesion.Tarea</textarea>
+    <p>Respuesta de @ViewBag.paciente.nombre: @ViewBag.sesion.RespuestaPaciente</p>
     </div>
+    <input type="submit" value="Guardar cambios">
 </form>
 </section>

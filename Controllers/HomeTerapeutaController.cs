@@ -46,4 +46,22 @@ public class HomeTerapeutaController : Controller
     {
         return View();
     }
+    public IActionResult verDiarioPaciente(int idPaciente)
+    {
+        ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = true;
+        List<Nota> notas = BD.levantarNotasCompartidas(idPaciente);
+        ViewBag.paciente = BD.levantarPacienteConIdPaciente(idPaciente);
+        ViewBag.diario = notas;
+        return View("DiarioPaciente", "HomeTerapeuta");
+    }
+    public IActionResult irNota(int idNota)
+    {
+        ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = true;
+        Nota nota = BD.levantarNota(idNota);
+        ViewBag.nota = nota;
+        ViewBag.paciente = BD.levantarPacienteConIdPaciente(nota.idPaciente);
+        return View("NotaPaciente", "HomeTerapeuta");
+    }
 }

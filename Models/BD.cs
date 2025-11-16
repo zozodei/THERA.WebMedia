@@ -407,7 +407,11 @@ namespace THERA.Models
             List<Sesión> sesiones = new List<Sesión>();
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                string query = "SELECT * FROM Paciente WHERE IdTerapeuta = @pidTerapeuta and IdPaciente = @pidPaciente";
+                string query = @"SELECT *
+                    FROM Sesión 
+                    WHERE IdTerapeuta = @pidTerapeuta 
+                    AND IdPaciente = @pidPaciente
+                    ORDER BY Fecha DESC";
                 sesiones = connection.Query<Sesión>(query, new {pidTerapeuta = idTerapeuta, pidPaciente = idPaciente}).ToList();
             }
             return sesiones;
@@ -422,6 +426,20 @@ namespace THERA.Models
             }
             return sesion;
 
+        }
+        public static List<Nota> levantarNotasCompartidas(int IdPaciente)
+        {
+            List<Nota> notas = new List<Nota>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = @"SELECT *
+                    FROM Notas 
+                    WHERE VisibleParaTerapeuta = 1 
+                    AND IdPaciente = @pidPaciente
+                    ORDER BY Fecha DESC";
+                notas = connection.Query<Nota>(query, new { pidPaciente = IdPaciente}).ToList();
+            }
+            return notas;
         }
 
     }

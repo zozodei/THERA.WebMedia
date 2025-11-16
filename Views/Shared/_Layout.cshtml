@@ -11,7 +11,7 @@
 
 <body>
     <header>
-    @if (ViewBag.estaLogeado)
+    @if (ViewBag.estaLogeado && !ViewBag.terapeutaLogeado)
     {
         <nav>
       <!-- LOGO -->
@@ -46,12 +46,19 @@
      
  
     }
-    else if (ViewBag.terapeutaLogeado)
+    else if (ViewBag.estaLogeado && ViewBag.terapeutaLogeado)
     {
+      <nav>
+            <a href="@Url.Action("irVerPacientes", "HomeTerapeuta")">
+            <div class="container justify-content-center">
+                <img src="Imagenes/AveBlanca.png" alt="Logo" style="height:40px;">
+            </div>
+            </a>
+        </nav>
     }
     else
     {
-        <nav class="navbar bg-light">
+        <nav>
             <a href="@Url.Action("irIndex", "Home")">
             <div class="container justify-content-center">
                 <img src="Imagenes/AveBlanca.png" alt="Logo" style="height:40px;">
