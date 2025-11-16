@@ -4,7 +4,7 @@ namespace THERA.Models
 {
     public static class BD
     {
-        private static string _connectionString = @"Server=localhost;DataBase=Thera;Integrated Security=True;TrustServerCertificate=True;";
+        private static string _connectionString = @"Server=FLORENCIA\SQLEXPRESS;DataBase=Thera;Integrated Security=True;TrustServerCertificate=True;";
         public static List<Nota> levantarDiario(int idPaciente)
         {
             List<Nota> diario = new List<Nota>();
@@ -86,6 +86,16 @@ namespace THERA.Models
             }
             return Paciente;
         }
+        public static Terapeuta levantarTerapeuta(int idUsuario)
+        {
+            Terapeuta terapeuta = null;
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Terapeuta WHERE IdUsuario = @pIdUsuario";
+                terapeuta = connection.QueryFirstOrDefault<Terapeuta>(query, new {pIdUsuario = idUsuario});
+            }
+            return terapeuta;
+        }
         public static Terapeuta levantarTerapeutaConIdTerapeuta(int idTerapeuta)
         {
             Terapeuta terapeuta = null;
@@ -95,6 +105,16 @@ namespace THERA.Models
                 terapeuta = connection.QueryFirstOrDefault<Terapeuta>(query, new {pIdTerapeuta = idTerapeuta});
             }
             return terapeuta;
+        }
+        public static Paciente levantarPacienteConIdPaciente(int idPaciente)
+        {
+            Paciente Paciente = null;
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Paciente WHERE Id = @pIdPaciente";
+                Paciente = connection.QueryFirstOrDefault<Paciente>(query, new {pIdPaciente = idPaciente});
+            }
+            return Paciente;
         }
         public static void enviarMensaje(string mensaje, int idUsuario, int idChat, bool tipoUsuario)
         {
@@ -382,7 +402,27 @@ namespace THERA.Models
                 });
             }
         }
+        public static List<Sesión> levantarSesionesXPaciente(int idPaciente, int idTerapeuta)
+        {
+            List<Sesión> sesiones = new List<Sesión>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Paciente WHERE IdTerapeuta = @pidTerapeuta and IdPaciente = @pidPaciente";
+                sesiones = connection.Query<Sesión>(query, new {pidTerapeuta = idTerapeuta, pidPaciente = idPaciente}).ToList();
+            }
+            return sesiones;
+        }
+        public static Sesión levantarSesión(int idSesion)
+        {
+            Sesión sesion = new Sesión();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Sesión WHERE id = @pidSesion";
+                sesion = connection.QueryFirstOrDefault<Sesión>(query, new {pidSesion = idSesion});
+            }
+            return sesion;
 
+        }
 
     }
 }

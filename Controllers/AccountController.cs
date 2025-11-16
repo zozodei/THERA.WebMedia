@@ -26,7 +26,7 @@ public class AccountController : Controller
             }
             else
             {
-                return RedirectToAction("irHomeTerapeuta", "Home");
+                return RedirectToAction("irVerPacientes", "HomeTerapeuta");
             }
         }
         else
