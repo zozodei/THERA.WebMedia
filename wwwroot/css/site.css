@@ -99,6 +99,97 @@ nav {
   transition: 0.3s;
 }
 
+/*AGREGAR NOTAAAAAAAAAAAAAAAAAAAAAAAAAAA*/
+body.nota-body {
+    font-family: Arial, sans-serif;
+    background-color: #F9F9F9;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+.nota-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 500px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.nota-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.nota-label {
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #5F6F52;
+}
+
+.nota-input,
+.nota-select,
+.nota-textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.nota-textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.nota-checkbox-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.nota-checkbox {
+    width: 20px;
+    height: 20px;
+    accent-color: #C4661F;
+}
+
+.nota-submit {
+    background-color: #C4661F;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.nota-submit:hover {
+    background-color: #a94f14;
+}
+
+
+@media (min-width: 768px) {
+    .nota-form {
+        padding: 30px;
+        gap: 20px;
+    }
+
+    .nota-input,
+    .nota-select,
+    .nota-textarea {
+        font-size: 18px;
+    }
+
+    .nota-submit {
+        font-size: 20px;
+    }
+}
 
 /* ==== MENÃš MOBILE ==== */
 .mobile-menu {
