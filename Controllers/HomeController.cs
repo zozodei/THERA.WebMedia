@@ -20,7 +20,7 @@ public class HomeController : Controller
     {
         ViewBag.estaLogeado = false;
         ViewBag.terapeutaLogeado = false;
-        return RedirectToAction("irAudios");
+        return View("Comenzar");
     }
 
      public IActionResult irIndex()
