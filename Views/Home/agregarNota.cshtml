@@ -6,25 +6,31 @@ else{
 } *@
 <form method = "post" action = '@Url.Action("agregarNota", "Home")'>
 
-    <label>Titulo:</label>
-    <input type="text" value="Añadir título" name = "titulo">
+   <div class="nota-group">
+            <label class="nota-label">Título:</label>
+            <input type="text" value="Añadir título" name="titulo" class="nota-input">
+        </div>
 
-    <label>Disparadora:</label>
-    <select name="idDisparadora">
-    
-        @foreach (Disparadora disparadora in ViewBag.disparadoras)
-        {
-            <option value="@disparadora.id">@disparadora.pregunta</option>
-        }
+        <div class="nota-group">
+            <label class="nota-label">Disparadora:</label>
+            <select name="idDisparadora" class="nota-select">
+                @foreach (Disparadora disparadora in @ViewBag.disparadoras)
+                {
+                    <option value="@disparadora.id">@disparadora.pregunta</option>
+                }
+            </select>
+        </div>
 
-    </select>
+        <div class="nota-group">
+            <label class="nota-label">Descripción:</label>
+            <textarea name="descripcion" class="nota-textarea">Añadir texto</textarea>
+        </div>
 
-    <label>Descripción:</label>
-    <textarea type="text" name = "descripcion">Añadir texto</textarea>
+        <div class="nota-group nota-checkbox-group">
+            <label class="nota-label">Compartir con terapeuta</label>
+            <input type="hidden" name="visibleTerapeuta" value="false" />
+            <input type="checkbox" name="visibleTerapeuta" value="true" class="nota-checkbox">
+        </div>
 
-    <label>Compartir con terapeuta</label>
-    <input type="hidden" name="visibleTerapeuta" value="false" />
-    <input type="checkbox" name="visibleTerapeuta" value="true" />
-
-    <input type="submit" value = "Agregar">
+        <input type="submit" value="Agregar" class="nota-submit">
 </form>
