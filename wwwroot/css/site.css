@@ -484,519 +484,218 @@ nav {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*INDEX*/
-.INDEX {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  background-color: #ffffff;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/*SOPORTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE*/
+.soporteTextoAyuda {
+  background-color: #FFF5ED;     
+  color: #5F6F52;               
+  width: 92%;
+  margin: 4% auto;
+  padding: 6% 6%;
+  border: 1px solid #EACBB3;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(196,102,31,0.12);
 }
-
-
-/* ==== SHAPE SUPERIOR ==== */
-.ShapeArriba {
-  position: relative;
-  width: 100%;
-}
-
-
-.ShapeArriba img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-
-/* ==== CONTENIDO CENTRAL ==== */
-.Inicio {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-  z-index: 1;
-  margin-top: 25px;
-}
-
-
-.Inicio h1 {
-  font-family: "Poppins", sans-serif;
-  font-weight: 800;
-  color: #5F6F52;
-  font-size: 1.8rem;
-  margin-bottom: 8px;
-}
-
-
-.Inicio p {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  color: #5F6F52;
-  margin-bottom: 25px;
-  font-size: 1rem;
-}
-
-
-.Inicio img {
-  width: 80%;
-  max-width: 300px;
-  height: auto;
-  margin-bottom: 30px;
-}
-
-
-/* ==== BOTONES ==== */
-.Inicio button {
-  width: 220px;
-  padding: 12px 0;
-  border-radius: 30px;
-  border: none;
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  font-size: 1rem;
-  margin: 8px 0;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-
-.Inicio button a {
-  text-decoration: none;
-  color: inherit;
-}
-
-
-/* BotÃ³n LOGIN */
-.Inicio button:first-of-type {
-  background-color: #C4661F;
-  color: #fff;
-  box-shadow: 0 6px 16px rgba(196, 102, 31, 0.4);
-}
-
-
-.Inicio button:first-of-type:hover {
-  background-color: #a65318;
-  transform: translateY(-2px);
-}
-
-
-/* BotÃ³n REGISTRARSE */
-.Inicio button:last-of-type {
-  background-color: #ffffff;
+.soporteTextoAyuda h2 {
   color: #C4661F;
-  border: 2px solid #C4661F;
+  margin-bottom: 3%;
+}
+.soporteTextoAyuda p {
+  margin-bottom: 5%;
+  line-height: 1.5;
 }
 
-
-.Inicio button:last-of-type:hover {
-  background-color: #C4661F;
-  color: #ffffff;
-  transform: translateY(-2px);
-}
-
-
-/* ==========================
-   MOBILE (iPhone 12 Pro)
-========================== */
-@media (max-width: 768px) {
-  header,
-  footer {
-    display: none;
-  }
-
-
-  .INDEX {
-    height: 100vh;
-    justify-content: flex-start;
-  }
-
-
-  .ShapeArriba {
-    position: relative;
-    top: 0;
-    width: 100%;
-    z-index: 0;
-  }
-
-
-  .ShapeArriba img {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-
-
-  .Inicio {
-    margin-top: 40px;
-  }
-
-
-  .Inicio h1 {
-    font-size: 1.7rem;
-  }
-
-
-  .Inicio p {
-    font-size: 0.95rem;
-  }
-
-
-  .Inicio button {
-    width: 200px;
-    padding: 12px 0;
-  }
-}
-
-
-/* ==========================
-   WEB
-========================== */
-@media (min-width: 769px) {
-  .ShapeArriba {
-    display: none; /* Sin shape en web */
-  }
-
-
-  .INDEX {
-    min-height: calc(100vh - 160px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(120deg, #fff 60%, #f7f2ec 40%);
-    padding: 40px 0;
-  }
-
-
-  .Inicio {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 60px;
-    width: 85%;
-    max-width: 1200px;
-  }
-
-
-  /* Columna de texto */
-  .Inicio h1,
-  .Inicio p,
-  .Inicio button {
-    text-align: left;
-  }
-
-
-  .Inicio h1 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #5F6F52;
-    margin-bottom: 10px;
-  }
-
-
-  .Inicio p {
-    font-size: 1.2rem;
-    color: #5F6F52;
-    margin-bottom: 30px;
-    max-width: 400px;
-  }
-
-
-  /* Imagen a la derecha */
-  .Inicio img {
-    width: 100%;
-    max-width: 450px;
-    height: auto;
-    justify-self: center;
-    order: 2;
-  }
-
-
-  /* Botones */
-  .Inicio button {
-    width: 220px;
-    margin-top: 10px;
-    border-radius: 40px;
-  }
-
-
-  .Inicio button:first-of-type {
-    margin-top: 20px;
-  }
-
-
-  /* AnimaciÃ³n sutil */
-  .Inicio img {
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-  }
-
-
-  .Inicio img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 20px rgba(95, 111, 82, 0.3);
-  }
-}
-
-
-/* ============================
-   PÁGINA THERA - PACIENTE
-============================ */
-.pagina-thera {
-  background-color: #fafaf8;
-  padding: 1.5rem;
-  display: flex;
-  justify-content: center;
-}
-
-
-.contenedor-principal {
-  max-width: 440px;
-  background-color: #fff;
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  padding: 1.5rem;
-}
-
-
-/* ENCABEZADO */
-.imagen-encabezado {
-  width: 100%;
+.ContactoSoporte,
+.PreguntasFrecuentes {
+  background-color: #FFFFFF;
+  border: 1px solid #F0D7C7;
   border-radius: 12px;
-  object-fit: cover;
+  padding: 5%;
+  margin-top: 5%;
+  box-shadow: 0 2px 8px rgba(196,102,31,0.10);
+}
+.ContactoSoporte h3,
+.PreguntasFrecuentes h3 {
+  color: #C4661F;
+  margin-bottom: 3%;
+}
+
+.ContactoSoporte ul,
+.PreguntasFrecuentes ul {
+  list-style: disc;
+  padding-left: 6%;
+  margin-top: 2%;
+  margin-bottom: 0;
+}
+
+.ContactoSoporte li,
+.PreguntasFrecuentes li {
+  margin-bottom: 2%;
+  color: #5F6F52;
+}
+
+@media (min-width: 769px) {
+  .soporteTextoAyuda {
+    width: 80%;
+    margin: 4% auto;
+    padding: 3.5% 4%;
+    background: #F8F4F1;            
+    border: 1px solid #EACBB3;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(196,102,31,0.10);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3%;
+    align-items: flex-start;
+  }
+
+  .soporteTextoAyuda h2,
+  .soporteTextoAyuda p {
+    width: 100%;
+  }
+  .soporteTextoAyuda h2 { margin-bottom: 1.5%; }
+  .soporteTextoAyuda p  { margin-bottom: 2.5%; }
+
+  .ContactoSoporte,
+  .PreguntasFrecuentes {
+    width: 48%;
+    padding: 3.5%;
+    margin-top: 0;
+    background-color: #FFFFFF;
+    border: 1px solid #F0D7C7;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(196,102,31,0.10);
+  }
+
+  .ContactoSoporte h3,
+  .PreguntasFrecuentes h3 {
+    margin-bottom: 2%;
+  }
+
+  .ContactoSoporte ul,
+  .PreguntasFrecuentes ul {
+    padding-left: 6%;
+    margin-top: 1.5%;
+    margin-bottom: 0;
+  }
+
+  .ContactoSoporte li,
+  .PreguntasFrecuentes li {
+    margin-bottom: 1.5%;
+  }
 }
 
 
-.titulo-principal {
-  font-weight: 700;
-  color: #2c2c2c;
-  margin-bottom: 0.25rem;
-}
+/*AUDIOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS (!!!!!!!!!!!!!)*/
 
+.Audios {
+  /* limpiamos cualquier fondo previo que la pueda tapar */
+  background: none !important;
 
-.subtitulo {
-  color: #7a7a7a;
-}
+  /* necesitamos un contexto para apilar el ::before debajo */
+  position: relative;
+  isolation: isolate;   /* crea un stacking context propio */
 
-
-/* FECHA Y CLIMA */
-.info-fecha {
-  border-bottom: 1px solid #dcdcdc;
-}
-
-
-.texto-fecha {
-  color: #2c2c2c;
-  font-weight: 600;
-}
-
-
-.texto-clima {
-  color: #7a7a7a;
-  font-size: 0.9rem;
-}
-
-
-/* TÍTULO PRINCIPAL */
-.bloque-titulo h5 {
-  color: #2c2c2c;
-  font-weight: 700;
-}
-
-
-/* BOTONES PRINCIPALES */
-.boton-verde {
-  display: block;
-  text-align: center;
-  background-color: #5F6F52;
-  color: #fff;
-  border: none;
-  border-radius: 50px;
-  padding: 0.75rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background-color 0.2s;
-}
-
-
-.boton-verde:hover {
-  background-color: #A9B388;
-}
-
-
-/* BOTÓN “TUS NOTAS” */
-.boton-naranja {
-  display: block;
-  text-align: center;
-  background-color: #C4661F;
-  color: #fff;
-  border: none;
-  border-radius: 50px;
-  padding: 0.8rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background-color 0.2s;
-}
-
-
-.boton-naranja:hover {
-  background-color: #C4661F;
-}
-
-
-/* BLOQUE EJERCICIO */
-.titulo-ejercicio {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #2c2c2c;
-}
-
-
-.tarjeta {
-  background-color: #5F6F52;
-  border: 2px solid #5F6F52;
-  border-radius: 16px;
-  padding: 1rem;
-}
-
-
-.texto-ejercicio {
-  color: #ffffff;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-
-.entrada-texto {
+  /* Asegura altura para que el fondo se vea */
+  min-height: 60vh;
   width: 100%;
-  resize: none;
-  border: 1.5px solid #5F6F52;
-  border-radius: 10px;
-  padding: 0.6rem;
-  font-size: 0.95rem;
-  transition: box-shadow 0.2s;
+  padding: 6% 0;
+  color: #5F6F52;
 }
 
+/* Todo el contenido por encima de la imagen */
+.Audios > * {
+  position: relative;
+  z-index: 1;
+}
 
-.entrada-texto:focus {
-  box-shadow: 0 0 6px rgba(85, 107, 47, 0.4);
+/* La imagen de fondo + velo con opacidad (DETRÁS de todo) */
+.Audios::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  /* Cambiá la ruta por la tuya */
+  background-image:
+    linear-gradient(rgba(255,245,237,0.82), rgba(255,245,237,0.82)),  /* velo suave */
+    url("wwwroot/Imagenes/AveColor.png");  /* ← tu imagen */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  z-index: 0;          /* debajo del contenido */
+  pointer-events: none;/* no bloquea clics */
+}
+
+/* --- Mobile-first: layout de la sección --- */
+.Audios h1,
+.Audio { width: 92%; margin: 0 auto; }
+
+.Audios h1 {
+  color: #C4661F;
+  margin-bottom: 4%;
+  padding-bottom: 2%;
+  border-bottom: 1px solid #EACBB3;
+  letter-spacing: 0.2px;
+}
+
+.Audio { margin-top: 4%; }
+
+.Audio h2 {
+  margin-top: 4%;
+  margin-bottom: 2%;
+  line-height: 1.3;
+  letter-spacing: 0.15px;
+  color: #5F6F52;
+  padding-left: 3%;
+  position: relative;
+}
+.Audio h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12%;
+  bottom: 12%;
+  width: 1%;
+  background: #EACBB3;
+  border-radius: 6px;
+}
+.Audio h2:not(:first-of-type) {
+  padding-top: 3%;
+  border-top: 1px solid #F0D7C7;
+}
+
+.Audio h2 + audio {
+  display: block;
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid #E8D6C8;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(196,102,31,0.08);
+  margin-bottom: 4%;
+}
+.Audio h2 + audio:focus-visible {
   outline: none;
+  box-shadow: 0 0 0 3px rgba(196,102,31,0.18);
+  border-color: #EACBB3;
 }
 
+/* --- Web (>=769px) --- */
+@media (min-width: 769px) {
+  .Audios { min-height: 70vh; padding: 5% 0; }
+  .Audios h1, .Audio { width: 66%; }
+  .Audios h1 { margin-bottom: 3%; padding-bottom: 1.5%; }
+  .Audio { margin-top: 3%; }
 
-/* BLOQUE TERAPEUTA */
-.texto-terapeuta {
-  color: #7a7a7a;
-  font-size: 0.9rem;
-}
+  .Audio h2 { margin-top: 3%; margin-bottom: 1.5%; padding-left: 2%; }
+  .Audio h2::before { width: 0.6%; top: 14%; bottom: 14%; }
 
-
-.boton-borde {
-  display: inline-block;
-  border: 1.5px solid #2c2c2c;
-  color: #2c2c2c;
-  border-radius: 50px;
-  padding: 0.6rem 1.2rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.2s;
-}
-
-
-.boton-borde:hover {
-  background-color: #2c2c2c;
-  color: #fff;
-}
-
-
-/* RESPONSIVE */
-@media (max-width: 480px) {
-  .contenedor-principal {
-    border-radius: 0;
-    box-shadow: none;
-    padding: 1rem;
+  .Audio h2 + audio {
+    margin-bottom: 3%;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(196,102,31,0.10);
   }
-
-
-  .titulo-principal {
-    font-size: 1.5rem;
-  }
-
-
-  .bloque-titulo h5 {
-    font-size: 1.1rem;
-  }
-
-
-  .boton-verde,
-  .boton-naranja,
-  .boton-borde {
-    font-size: 0.95rem;
-    padding: 0.6rem;
-  }
-
-
-  .entrada-texto {
-    font-size: 0.9rem;
+  .Audio h2 + audio:hover {
+    box-shadow: 0 3px 10px rgba(196,102,31,0.12);
+    border-color: #EACBB3;
   }
 }
-
-
-@media (min-width: 900px) {
-  .contenedor-principal {
-    max-width: 600px;
-    padding: 2rem;
-  }
-
-
-  .titulo-principal {
-    font-size: 2rem;
-  }
-
-
-  .bloque-titulo h5 {
-    font-size: 1.3rem;
-  }
-
-
-  .boton-verde,
-  .boton-naranja {
-    font-size: 1rem;
-    padding: 0.9rem;
-  }
-
-
-  .entrada-texto {
-    font-size: 1rem;
-  }
-}
-
