@@ -36,16 +36,33 @@ namespace THERA.Models
             return frases;
         }
 
-        public static int Login(string Username, string Contraseña)
+        public static int Login(string username, string contraseña)
         {
-            int idUsuario = -1;
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            try
             {
-                string query = "SELECT id FROM Usuario WHERE username = @pUsername AND Contrasena = @pContraseña";
-                idUsuario = connection.QueryFirstOrDefault<int>(query, new { pUsername = Username, pContraseña = Contraseña });
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    string query = "SELECT Id, Contrasena FROM Usuario WHERE Username = @pUsername";
+                    
+                    var usuario = connection.QueryFirstOrDefault<Usuario>(query, new { pUsername = username });
+
+                    if (usuario == null){
+                        return -1;
+                    }
+
+                    if (usuario.contrasena != contraseña){
+                        return -1;
+                    }
+
+                    return usuario.id;
+                }
             }
-            return idUsuario;
+            catch
+            {
+                return -2;
+            }
         }
+
         public static int levantarIdChat(int idPaciente, int? idTerapeuta)
         {
             int idChat = -1;
