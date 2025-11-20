@@ -2,51 +2,44 @@
     ViewData["Title"] = "Thera - Tu impulso, tu cambio";
 }
 
-<div class="pagina-thera">
-    <div class="contenedor-principal">
+<div class="HomeconPaciente">
+    <div class="HomecoPacienteContenedor">
 
-        <!-- Encabezado -->
-        <div class="encabezado text-center mb-3">
-            <img src="~/images/thera-header.jpg" alt="Thera" class="imagen-encabezado mb-3" />
+        <div class="ParteDeArribaConTerapeuta">
+            <img src="~/images/thera-header.jpg" alt="Thera" class="imagenArribaDetodo" />
             <h2 class="titulo-principal">Thera</h2>
             <p class="subtitulo">Tu impulso, tu cambio</p>
         </div>
 
-        <!-- Fecha y clima -->
-        <div class="info-fecha d-flex justify-content-between align-items-center mb-3 borde-abajo pb-2">
-            <h6 class="texto-fecha">@DateTime.Now.ToString("dddd d 'de' MMMM")</h6>
-            <span class="texto-clima">55° / 40° ☀️</span>
+        <div class="FechaYClimaHomeConTerapeuta">
+            <h6 class="textoFecha">@DateTime.Now.ToString("dddd d 'de' MMMM")</h6>
+            <span class="textoClima">55° / 40° ☀️</span>
         </div>
 
-        <!-- Título principal -->
-        <div class="bloque-titulo text-center mb-4">
+        <div class="FraseHomeconTerapeuta">
             <h5>Tomá un momento para vos</h5>
         </div>
 
-        <!-- Botones principales -->
-        <div class="botones-principales d-grid gap-2 mb-3">
-            <a href="@Url.Action("irRespiraciones", "Home")" class="boton-verde">Respiración</a>
-            <a href="@Url.Action("irFrases", "Home")" class="boton-verde">Frases</a>
-            <a href="@Url.Action("irAudios", "Home")" class="boton-verde">Audios</a>
-            <a href="@Url.Action("irChatBot", "Home")" class="boton-verde">Chatbot</a>
+        <div class="BotonesOpcionesAyudaConTerapeuta">
+            <a href="@Url.Action("irRespiraciones", "Home")" class="botonOpcionesAT">Respiración</a>
+            <a href="@Url.Action("irFrases", "Home")" class="botonOpcionesAT">Frases</a>
+            <a href="@Url.Action("irAudios", "Home")" class="botonOpcionesAT">Audios</a>
+            <a href="@Url.Action("irChatBot", "Home")" class="botonOpcionesAT">Chatbot</a>
         </div>
 
-        <!-- Texto adicional -->
-        <p class="texto-nota text-center mb-3">También podés escribir lo que necesites</p>
+        <p class="NostasOpcionConTerapeuta">También podés escribir lo que necesites</p>
 
-        <!-- Botón Notas -->
-        <div class="boton-notas d-grid mb-4">
+        <div class="botonNotasConTerapeuta">
             <a href="@Url.Action("irDiario", "Home")" class="boton-naranja">
                 Tus Notas →
             </a>
         </div>
 
-        <!-- Ejercicio de la última sesión -->
-        <div class="bloque-ejercicio mb-4">
-            <p class="titulo-ejercicio">Ejercicio de la última sesión (@ViewBag.fecha)</p>
+        <div class="EjercicioUltimaOpcion">
+            <p class="tituloEjercicio">Ejercicio de la última sesión (@ViewBag.fecha)</p>
             <form method="post" action='@Url.Action("guardarRespuestaPaciente", "Home")'>
                 <div class="tarjeta">
-                    <p class="texto-ejercicio">@ViewBag.tarea</p>
+                    <p class="textoEjercicio">@ViewBag.tarea</p>
                     @if(@ViewBag.respuesta == ""){  
                         <textarea class="entrada-texto" rows="4" placeholder="Escribí aquí..." name="Respuesta"></textarea>
                     }else{
@@ -57,9 +50,8 @@
             </form>
         </div>
 
-        <!-- Cambiar terapeuta -->
-        <div class="bloque-terapeuta text-center mt-4">
-            <p class="texto-terapeuta mb-2">¿Te sentís incómodo con tu terapeuta?<br>No hay problema</p>
+        <div class="BuscarTerapeutaConTerapeuta">
+            <p class="textoTerapeutaCon">¿Te sentís incómodo con tu terapeuta?<br>No hay problema</p>
             <a href="@Url.Action("irBuscarTerapeuta", "Home")" class="boton-borde">
                 Buscar un nuevo terapeuta →
             </a>
