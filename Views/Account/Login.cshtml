@@ -3,7 +3,7 @@
 
 <div class = "Login">
 @if(@ViewBag.segundoIntento){
-     <h3 style="color: red">El usuario o la contraseña eran incorrectos. Intente nuevamente</h3>
+     <h3 style="color: red">@ViewBag.msgError</h3>
 }
 <h1>Iniciar sesión</h1>
 <form action='@Url.Action("Login", "Account")' method = "POST" enctype="multipart/form-data">
@@ -15,6 +15,5 @@
     <input type="password" name = "contraseña" required minlength="8">
     
     <input type ="submit" value = "Entrar">
-    
 </form>
 </div>

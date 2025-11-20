@@ -16,7 +16,7 @@ public class AccountController : Controller
     {
         int idUsuario = BD.Login(username, contraseña);
         Usuario usuario = BD.levantarUsuario(idUsuario);
-        if(idUsuario != -1)
+        if(idUsuario != -1 && idUsuario != -2)
         {
             HttpContext.Session.SetString("usuario", Objeto.ObjectToString(usuario));
             if (!usuario.tipoUsuario)
@@ -34,6 +34,11 @@ public class AccountController : Controller
             ViewBag.estaLogeado = false;
             ViewBag.terapeutaLogeado = false;
             ViewBag.segundoIntento = true;
+            if(idUsuario == -1){
+                ViewBag.msgError = "Ingreso incorrecto. Intente nuevamente";
+            }else if (idUsuario == -2){
+                ViewBag.msgError = "Ocurrió un error inesperado. Intente nuevamente";
+            }
             return View("Login");
         }
     }
