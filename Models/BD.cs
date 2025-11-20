@@ -458,6 +458,21 @@ namespace THERA.Models
             }
             return notas;
         }
+        public static void guardarDatosSesion(string Anotaciones, string Tarea, int idSesion){
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = @"UPDATE Sesión 
+                                SET Anotaciones = @panotaciones, Tarea = @pTarea
+                                WHERE Id = @pId";
+
+                connection.Execute(query, new
+                {
+                    panotaciones = Anotaciones,
+                    pTarea = Tarea,
+                    pid = idSesion
+                });
+            }
+        }
 
     }
 }

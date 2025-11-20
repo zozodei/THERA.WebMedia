@@ -230,5 +230,10 @@ public class HomeController : Controller
         BD.eliminarNota(idNota);
         return RedirectToAction("irDiario", "Home");
     }
+    public IActionResult irSoporte(){
+        ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = false;
+        return View("Soporte");
+    }
 
 }

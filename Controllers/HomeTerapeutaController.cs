@@ -42,9 +42,10 @@ public class HomeTerapeutaController : Controller
         ViewBag.paciente = BD.levantarPacienteConIdPaciente(sesion.idPaciente);
         return View("DatosSesion", "HomeTerapeuta");
     }
-    public IActionResult guardarDatosSesion()
+    public IActionResult guardarDatosSesion(string Anotaciones, string Tarea, int idSesion)
     {
-        return View();
+        BD.guardarDatosSesion(Anotaciones, Tarea, idSesion);
+        return RedirectToAction("DatosSesion", "HomeTerapeuta", new {idSesion = idSesion});
     }
     public IActionResult verDiarioPaciente(int idPaciente)
     {
@@ -63,5 +64,12 @@ public class HomeTerapeutaController : Controller
         ViewBag.nota = nota;
         ViewBag.paciente = BD.levantarPacienteConIdPaciente(nota.idPaciente);
         return View("NotaPaciente", "HomeTerapeuta");
+    }
+    public IActionResult irDatosPaciente(int idPaciente){
+        ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = true;
+        Paciente paciente = BD.levantarPacienteConIdPaciente(idPaciente);
+        ViewBag.paciente = paciente;
+        return View("DatosPaciente");
     }
 }

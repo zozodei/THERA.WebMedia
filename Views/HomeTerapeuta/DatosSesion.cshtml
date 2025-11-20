@@ -2,6 +2,7 @@
 <h2>Anotaciones</h2>
 <section>
 <form action="@Url.Action("GuardarDatosSesión", "HomeTerapeuta")">
+    <input type="hidden" value = "@ViewBag.sesion.id" name = "idSesion">
     <div>
         <textarea name="Anotaciones" id="">@ViewBag.sesion.Anotaciones</textarea>
     </div>
