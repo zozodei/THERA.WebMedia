@@ -1,24 +1,49 @@
 <div class="perfil-paciente">
-    <img src="@ViewBag.paciente.foto" alt="Imagen del paciente">
-    <h1>@ViewBag.paciente.nombre @ViewBag.paciente.apellido</h1>
-    <form action="@Url.Action("guardarPerfilPaciente", "Account")" method="post">
-        Nombre:
-        <input type="text" name="nombre" value="@ViewBag.paciente.nombre" required>
-        Apellido:
-        <input type="text" name="apellido" value="@ViewBag.paciente.apellido" required>
-        Correo electrónico:
-        <input type="email" name="correo" value="@ViewBag.paciente.correo" required>
-        Ubicación:
-        <input type="text" name="ubicacion" value="@ViewBag.paciente.ubicacion" required>
-        Fecha de nacimiento:
-        <input type="date"name="fechaNacimiento" value="@ViewBag.paciente.fechaNacimiento" required>
-        Teléfono:
-        <input type="tel" name="telefono" value="@ViewBag.paciente.telefono" required>
-        Ocupación:
-        <input type="text" name="ocupacion" value="@ViewBag.paciente.ocupacion" required> 
-        Obra social:
-        <select name="idObraSocial">
+    <div class="foto-perfil">
+        <img src="@ViewBag.paciente.foto" alt="Imagen del paciente">
+    </div>
     
+    <h1 class="nombre-completo">@ViewBag.paciente.nombre @ViewBag.paciente.apellido</h1>
+    
+    <form class="form-perfil" action="@Url.Action("guardarPerfilPaciente", "Account")" method="post">
+        <div class="campo">
+            <label>Nombre</label>
+            <input type="text" name="nombre" value="@ViewBag.paciente.nombre" required>
+        </div>
+        
+        <div class="campo">
+            <label>Apellido</label>
+            <input type="text" name="apellido" value="@ViewBag.paciente.apellido" required>
+        </div>
+        
+        <div class="campo">
+            <label>Email</label>
+            <input type="email" name="correo" value="@ViewBag.paciente.correo" required>
+        </div>
+        
+        <div class="campo">
+            <label>Ubicación</label>
+            <input type="text" name="ubicacion" value="@ViewBag.paciente.ubicacion" required>
+        </div>
+        
+        <div class="campo">
+            <label>Fecha de nacimiento</label>
+            <input type="date" name="fechaNacimiento" value="@ViewBag.paciente.fechaNacimiento" required>
+        </div>
+        
+        <div class="campo">
+            <label>Teléfono</label>
+            <input type="tel" name="telefono" value="@ViewBag.paciente.telefono" required>
+        </div>
+        
+        <div class="campo">
+            <label>Ocupación</label>
+            <input type="text" name="ocupacion" value="@ViewBag.paciente.ocupacion" required>
+        </div>
+        
+        <div class="campo">
+            <label>Obra social</label>
+            <select name="idObraSocial">
                 @foreach (ObraSocial obraSocial in ViewBag.obrasSociales)
                 {
                     if (ViewBag.paciente.IdObraSocial == obraSocial.id)
@@ -30,9 +55,13 @@
                         <option value="@obraSocial.id">@obraSocial.nombre</option>
                     }
                 }
-            
-        </select>
-        <input type="submit" value="Guardar cambios">
+            </select>
+        </div>
+        
+        <button type="submit" class="btn-guardar">Guardar cambios</button>
     </form>
-    <a href="@Url.Action("CerrarSesion", "Account")"><button>Cerrar sesión</button></a>
+    
+    <a href="@Url.Action("CerrarSesion", "Account")" class="link-cerrar">
+        <button class="btn-cerrar">Cerrar sesión</button>
+    </a>
 </div>
