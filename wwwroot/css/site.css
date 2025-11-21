@@ -5,22 +5,17 @@
   box-sizing: border-box;
 }
 
-
 body {
   font-family: Arial, sans-serif;
 }
 
-
-/* ==== HEADER ==== */
+/*HEADERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR*/
 header {
   background-color: #C4661F;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
   color: white;
   width: 100%;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
 }
-
-
-/* ==== NAV ==== */
 nav {
   display: flex;
   align-items: center;
@@ -29,23 +24,17 @@ nav {
   height: 78px;
 }
 
-
-/* ==== LOGO ==== */
 .logo img {
   height: 70px;
   width: auto;
   transition: 0.3s ease;
 }
 
-
-/* ==== LINKS (web) ==== */
-.nav-links {
+.navegador {
   display: flex;
   gap: 22px;
 }
-
-
-.nav-links a {
+.navegador a {
   color: white;
   text-decoration: none;
   font-weight: 600;
@@ -53,45 +42,34 @@ nav {
   letter-spacing: 0.3px;
   transition: 0.3s;
 }
-
-
-.nav-links a:hover {
+.navegador a:hover {
   text-decoration: underline;
 }
-
-
-.cerrar-sesion {
-  color: #ffe8d1 !important;
+.cerrarSesion {
+  color: #ffe8d1 ;
 }
 
-
-/* ==== PERFIL Y HAMBURGUESA ==== */
-.right-side {
+.PerfilYHamburguesa {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-
-/* Foto de perfil */
-.profile img {
+.perfil img {
   height: 42px;
   width: 42px;
   border-radius: 10px;
   object-fit: cover;
 }
 
-
-/* ==== HAMBURGUESA ==== */
-.hamburger {
+.MenuHamburguesa {
   display: none;
   flex-direction: column;
   cursor: pointer;
   gap: 6px;
 }
 
-
-.hamburger span {
+.MenuHamburguesa span {
   height: 3px;
   width: 26px;
   background-color: white;
@@ -99,100 +77,7 @@ nav {
   transition: 0.3s;
 }
 
-/*AGREGAR NOTAAAAAAAAAAAAAAAAAAAAAAAAAAA*/
-body.nota-body {
-    font-family: Arial, sans-serif;
-    background-color: #F9F9F9;
-    margin: 0;
-    padding: 20px;
-    color: #333;
-}
-
-.nota-form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    max-width: 500px;
-    margin: 0 auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.nota-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.nota-label {
-    font-weight: bold;
-    margin-bottom: 6px;
-    color: #5F6F52;
-}
-
-.nota-input,
-.nota-select,
-.nota-textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 16px;
-    width: 100%;
-}
-
-.nota-textarea {
-    min-height: 100px;
-    resize: vertical;
-}
-
-.nota-checkbox-group {
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-}
-
-.nota-checkbox {
-    width: 20px;
-    height: 20px;
-    accent-color: #C4661F;
-}
-
-.nota-submit {
-    background-color: #C4661F;
-    color: #fff;
-    border: none;
-    padding: 12px;
-    font-size: 18px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.nota-submit:hover {
-    background-color: #a94f14;
-}
-
-
-@media (min-width: 768px) {
-    .nota-form {
-        padding: 30px;
-        gap: 20px;
-    }
-
-    .nota-input,
-    .nota-select,
-    .nota-textarea {
-        font-size: 18px;
-    }
-
-    .nota-submit {
-        font-size: 20px;
-    }
-}
-
-/* ==== MENÃš MOBILE ==== */
-.mobile-menu {
+.mobileNavegadorMenu {
   display: none;
   flex-direction: column;
   position: absolute;
@@ -201,7 +86,7 @@ body.nota-body {
   width: 70%;
   background-color: #fff;
   border-radius: 14px;
-  border: 2px solid #C4661F;  /* â† Borde naranja */
+  border: 2px solid #C4661F;  
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
   text-align: right;
   padding: 22px 20px;
@@ -209,16 +94,12 @@ body.nota-body {
   opacity: 0;
   transition: all 0.3s ease;
 }
-
-
-.mobile-menu.active {
+.mobileNavegadorMenu.active {
   display: flex;
   transform: translateY(0);
   opacity: 1;
 }
-
-
-.mobile-menu a {
+.mobileNavegadorMenu a {
   color: #C4661F;
   text-decoration: none;
   font-weight: bold;
@@ -226,37 +107,28 @@ body.nota-body {
   border-bottom: 1px solid #C4661F20;
   transition: 0.3s;
 }
-
-
-.mobile-menu a:hover {
+.mobileNavegadorMenu a:hover {
   color: #8a3d10;
 }
 
-
-/* ==== WEB ==== */
 @media (min-width: 391px) {
-  .mobile-menu {
+  .mobileNavegadorMenu {
     display: none !important;
   }
 
-
-  .hamburger {
+  .MenuHamburguesa {
     display: none;
   }
 
-
-  .nav-links {
+  .navegador {
     display: flex;
   }
-
 
   .logo img {
     height: 65px;
   }
 }
 
-
-/* ==== MOBILE (iPhone 12 Pro â€“ hasta 390 px) ==== */
 @media (max-width: 390px) {
   nav {
     justify-content: space-between;
@@ -264,32 +136,27 @@ body.nota-body {
     padding: 10px 20px;
   }
 
-
-  .nav-links {
+  .navegador {
     display: none;
   }
-
 
   .logo img {
     height: 60px;
   }
 
-
-  .right-side {
+  .PerfilYHamburguesa {
     display: flex;
     align-items: center;
     gap: 4px;
   }
 
-
-  .profile img {
+  .perfil img {
     height: 38px;
     width: 38px;
     border-radius: 8px;
   }
 
-
-  .hamburger {
+  .MenuHamburguesa {
     display: flex;
     height: 38px;
     width: 38px;
@@ -298,10 +165,9 @@ body.nota-body {
   }
 }
 
+/*FOOOTERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR*/
 
-/*FOOOTER*/
-/* Footer base */
-.footer-custom {
+.footer {
   background-color: #C4661F;
   color: white;
   width: 100%;
@@ -311,8 +177,7 @@ body.nota-body {
   justify-content: center;
 }
 
-
-.footer-container {
+.footerTextos {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -321,17 +186,14 @@ body.nota-body {
 }
 
 
-/* Logo */
-.thera-logo {
+.TexoTheraFooter {
   font-size: 2.2rem;
   font-weight: 700;
   margin-bottom: 10px;
   letter-spacing: 1px;
 }
 
-
-/* LÃ­nea divisoria */
-.footer-divider {
+.footerLineasDivisoras {
   border: none;
   height: 2px;
   width: 60%;
@@ -341,8 +203,7 @@ body.nota-body {
 }
 
 
-/* Ãconos */
-.footer-icons {
+.footerRedesSociales {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -350,8 +211,7 @@ body.nota-body {
   margin-bottom: 20px;
 }
 
-
-.social-icon {
+.RedesSociales {
   width: 32px;
   height: 32px;
   filter: brightness(0) invert(1);
@@ -359,20 +219,17 @@ body.nota-body {
   cursor: pointer;
 }
 
-
-.social-icon:hover {
+.RedesSociales:hover {
   transform: scale(1.15);
   filter: brightness(0.9) invert(1);
 }
 
 
-/* Links */
-.footer-links {
+.footerSoporteYContacto {
   margin-bottom: 10px;
 }
 
-
-.footer-link {
+.footerLINK {
   color: white;
   text-decoration: none;
   font-weight: 500;
@@ -380,43 +237,34 @@ body.nota-body {
   transition: color 0.3s ease;
 }
 
-
-.footer-link:hover {
+.footerLINK:hover {
   color: #ffe0c2;
 }
-
 
 .separator {
   color: white;
 }
 
-
-/* Copyright */
-.footer-copy {
+.footerThera2025Argentina {
   font-size: 0.9rem;
   opacity: 0.9;
 }
 
-
-/* Responsive */
 @media (max-width: 600px) {
-  .thera-logo {
+  .TexoTheraFooter {
     font-size: 1.8rem;
   }
 
-
-  .footer-divider {
+  .footerLineasDivisoras {
     width: 80%;
   }
 
-
-  .social-icon {
+  .RedesSociales {
     width: 26px;
     height: 26px;
   }
 
-
-  .footer-link {
+  .footerLINK {
     font-size: 0.9rem;
   }
 }
