@@ -4,7 +4,7 @@ namespace THERA.Models
 {
     public static class BD
     {
-        private static string _connectionString = @"Server=localhost;DataBase=Thera;Integrated Security=True;TrustServerCertificate=True;";
+        private static string _connectionString = @"Server=FLORENCIA\SQLEXPRESS;DataBase=Thera;Integrated Security=True;TrustServerCertificate=True;";
         public static List<Nota> levantarDiario(int idPaciente)
         {
             List<Nota> diario = new List<Nota>();
@@ -44,7 +44,7 @@ namespace THERA.Models
                 {
                     string query = "SELECT Id, Contrasena FROM Usuario WHERE Username = @pUsername";
                     
-                    var usuario = connection.QueryFirstOrDefault<Usuario>(query, new { pUsername = username });
+                    Usuario usuario = connection.QueryFirstOrDefault<Usuario>(query, new { pUsername = username });
 
                     if (usuario == null){
                         return -1;
@@ -474,5 +474,26 @@ namespace THERA.Models
             }
         }
 
+        internal static void guardarDatosPacientedelTerapeuta(int idPaciente, string personalidad, string modoVincularse, string evaluacion, string observaciones)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = @"UPDATE Paciente 
+                                SET RasgosPersonalidad = @pPersonalidad,
+                                ModoVincularse = @pModoVincularse,
+                                EvaluacionGeneral = @pEvaluacionGeneral,
+                                Observaciones = @pObservaciones
+                                WHERE Id = @pIdPaciente";
+
+                connection.Execute(query, new
+                {
+                    pPersonalidad = personalidad,
+                    pModoVincularse = modoVincularse,
+                    pEvaluacionGeneral = evaluacion,
+                    pObservaciones = observaciones,
+                    pIdPaciente = idPaciente
+                });
+            }
+        }
     }
 }

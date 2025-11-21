@@ -72,4 +72,9 @@ public class HomeTerapeutaController : Controller
         ViewBag.paciente = paciente;
         return View("DatosPaciente");
     }
+    public IActionResult guardarDatosPaciente(int idPaciente, string personalidad, string modoVincularse, string evaluacion, string observaciones)
+    {
+        BD.guardarDatosPacientedelTerapeuta(idPaciente, personalidad, modoVincularse, evaluacion, observaciones);
+        return RedirectToAction("irDatosPaciente", "HomeTerapeuta", new {idPaciente = idPaciente});
+    }
 }

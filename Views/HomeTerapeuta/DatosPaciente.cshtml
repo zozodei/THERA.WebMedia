@@ -35,8 +35,8 @@
         }else{
             <textarea name="observaciones" id="">@ViewBag.paciente.observaciones</textarea>
         }
+        <input type="hidden" name="idPaciente" value="@ViewBag.paciente.id">
         <input type="submit" value="Guardar cambios">
     </form>
     </section>
-    <a href="@Url.Action("CerrarSesion", "Account")"><button>Cerrar sesión</button></a>
 </div>
