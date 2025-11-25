@@ -11,42 +11,6 @@
   </section>
 </div>
 
-<style>
-.respiraciones {
-  text-align: center;
-  margin-top: 30px;
-}
-
-.guia-respiracion img {
-  width: 180px;
-  height: auto;
-  margin-bottom: 15px;
-  transition: transform 1s ease-in-out;
-}
-
-#temporizador {
-  font-size: 2em;
-  font-weight: bold;
-  margin: 10px 0;
-  color: #5F6F52;
-}
-
-#iniciarBtn {
-  padding: 10px 20px;
-  font-size: 1em;
-  border: none;
-  border-radius: 10px;
-  background-color: #5F6F52;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-#iniciarBtn:hover {
-  background-color: #005bb5;
-}
-</style>
-
 <script>
 const fases = [
   { texto: "Inhalá profundo", img: "/Imagenes/Respiraciones/1.png", duracion: 5 },
@@ -67,14 +31,12 @@ let enEjecucion = false;
 
 iniciarBtn.addEventListener("click", () => {
   if (!enEjecucion) {
-    // Iniciar rutina
     enEjecucion = true;
     iniciarBtn.textContent = "Parar";
     faseActual = 0;
     repeticionActual = 1;
     ejecutarFase();
   } else {
-    // Parar rutina
     detenerEjercicio();
   }
 });
@@ -83,7 +45,6 @@ function ejecutarFase() {
   if (!enEjecucion) return;
 
   if (faseActual >= fases.length) {
-    // Terminó un ciclo
     if (repeticionActual < totalRepeticiones) {
       mostrarRepeticion();
     } else {
@@ -118,11 +79,11 @@ function ejecutarFase() {
 }
 
 function mostrarRepeticion() {
-    if((totalRepeticiones - repeticionActual) > 1){
+  if((totalRepeticiones - repeticionActual) > 1){
     textoFase.textContent = `Repetí ${totalRepeticiones - repeticionActual} veces más`;
-    }else{
+  }else{
     textoFase.textContent = `Repetí ${totalRepeticiones - repeticionActual} vez más`;
-    }
+  }
   imgRespiracion.src = "/Imagenes/Respiraciones/4.png";
   temporizador.textContent = "";
 
