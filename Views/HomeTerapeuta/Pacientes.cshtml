@@ -1,3 +1,8 @@
+<div class="add-note-card mb-4">
+    <h4>Agregar paciente</h4>
+    <a href="@Url.Action("irAgregarPaciente", "HomeTerapeuta")"><span class="plus-icon">+</span></a>
+</div>
+
 @foreach(Paciente paciente in @ViewBag.pacientes){
     <div class="card" style="width: 18rem;">
     <img src="@paciente.foto" class="card-img-top" alt="Foto de perfil paciente">

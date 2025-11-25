@@ -474,7 +474,7 @@ namespace THERA.Models
             }
         }
 
-        internal static void guardarDatosPacientedelTerapeuta(int idPaciente, string personalidad, string modoVincularse, string evaluacion, string observaciones)
+        internal static void guardarDatosPacientedelTerapeuta(int idPaciente, string personalidad, string modoVincularse, string evaluacion, string observaciones, int DNI)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -482,7 +482,8 @@ namespace THERA.Models
                                 SET RasgosPersonalidad = @pPersonalidad,
                                 ModoVincularse = @pModoVincularse,
                                 EvaluacionGeneral = @pEvaluacionGeneral,
-                                Observaciones = @pObservaciones
+                                Observaciones = @pObservaciones,
+                                DNI = @pDNI
                                 WHERE Id = @pIdPaciente";
 
                 connection.Execute(query, new
@@ -491,9 +492,64 @@ namespace THERA.Models
                     pModoVincularse = modoVincularse,
                     pEvaluacionGeneral = evaluacion,
                     pObservaciones = observaciones,
-                    pIdPaciente = idPaciente
+                    pIdPaciente = idPaciente,
+                    pDNI = DNI
                 });
             }
         }
+        public static int agregarSolicitud(int DNI, int idTerapeuta)
+{
+    try
+    {
+        using (SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            string queryPaciente = "SELECT Id, IdTerapeuta FROM Paciente WHERE DNI = @pDNI";
+            Paciente paciente = connection.QueryFirstOrDefault<Paciente>(queryPaciente, new { pDNI = DNI });
+
+            if (paciente == null)
+            {
+                return -1;
+            }
+
+            int idPaciente = paciente.id;
+
+            if (paciente.idTerapeuta == idTerapeuta)
+            {
+                return -4;
+            }
+
+            string queryExiste = @"SELECT Id 
+                                   FROM Solicitudes 
+                                   WHERE idTerapeuta = @pIdTerapeuta 
+                                   AND idPaciente = @pIdPaciente";
+
+            int solicitudExistente = connection.QueryFirstOrDefault<int>(
+                queryExiste,
+                new { pIdTerapeuta = idTerapeuta, pIdPaciente = idPaciente }
+            );
+
+            if (solicitudExistente != 0)
+            {
+                return -2;
+            }
+
+            string queryInsert = @"INSERT INTO Solicitudes (idTerapeuta, idPaciente, aceptada)
+                                   VALUES (@pIdTerapeuta, @pIdPaciente, 0)";
+
+            connection.Execute(queryInsert, new
+            {
+                pIdTerapeuta = idTerapeuta,
+                pIdPaciente = idPaciente
+            });
+
+            return 1;
+        }
+    }
+    catch
+    {
+        return -3;
+    }
+}
+
     }
 }

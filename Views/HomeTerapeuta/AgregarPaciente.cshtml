@@ -1,0 +1,9 @@
+@if(@ViewBag.segundoIntento){
+     <h3 style="color: red">@ViewBag.msgError</h3>
+}
+<form method = "post" action = '@Url.Action("AgregarSolicitud", "HomeTerapeuta")'>
+    <label>Ingrese el DNI del paciente al que quiere agregar:</label>
+    <input type="number" name = "DNI" placeholder="Ej: 12345678">
+    <input type="submit" value = "Enviar">
+</form>
+<p>Se le enviará una solicitud para aceptarte como terapeuta</p>

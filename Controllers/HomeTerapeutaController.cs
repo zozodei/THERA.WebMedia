@@ -72,9 +72,42 @@ public class HomeTerapeutaController : Controller
         ViewBag.paciente = paciente;
         return View("DatosPaciente");
     }
-    public IActionResult guardarDatosPaciente(int idPaciente, string personalidad, string modoVincularse, string evaluacion, string observaciones)
+    public IActionResult guardarDatosPaciente(int idPaciente, string personalidad, string modoVincularse, string evaluacion, string observaciones, int DNI)
     {
-        BD.guardarDatosPacientedelTerapeuta(idPaciente, personalidad, modoVincularse, evaluacion, observaciones);
+        BD.guardarDatosPacientedelTerapeuta(idPaciente, personalidad, modoVincularse, evaluacion, observaciones, DNI);
         return RedirectToAction("irDatosPaciente", "HomeTerapeuta", new {idPaciente = idPaciente});
+    }
+    public IActionResult irAgregarPaciente(){
+        ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = true;
+        ViewBag.segundoIntento = false;
+        return View("AgregarPaciente");
+    }
+    public IActionResult AgregarSolicitud(int DNI){
+        Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
+        Terapeuta terapeuta = BD.levantarTerapeuta(usuario.id);
+        int solicitud = BD.agregarSolicitud(DNI, terapeuta.id);
+            ViewBag.estaLogeado = true;
+            ViewBag.terapeutaLogeado = true;
+        switch(solicitud){
+            case -1:
+                ViewBag.segundoIntento = true;
+                ViewBag.msgError = "No existe un paciente con ese DNI. Intente nuevamente.";
+                return View("AgregarPaciente");
+            case -2:
+                ViewBag.segundoIntento = true;
+                ViewBag.msgError = "Ya le enviaste una solicitud a ese paciente.";
+                return View("AgregarPaciente");
+            case -3:
+                ViewBag.segundoIntento = true;
+                ViewBag.msgError = "Ocurrió un error inesperado. Intente nuevamente.";
+                return View("AgregarPaciente");
+            case -4:
+                ViewBag.segundoIntento = true;
+                ViewBag.msgError = "El paciente ya está asignado como su paciente.";
+                return View("AgregarPaciente");
+            default:
+                return RedirectToAction("irVerPacientes");
+        }
     }
 }
