@@ -2080,3 +2080,774 @@ body {
     margin: 40px auto 25px;
   }
 }
+
+
+
+/*AYUDA RAPIDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: #f5f5f5;
+}
+
+/* Contenedor principal */
+.AyudaRapida {
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fafafa;
+}
+
+/* Título */
+.AyudaRapida h1 {
+  color: #5f6f52;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Sección contenedora */
+.AyudaRapida > section {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Card naranja con fondo de paloma */
+.AyudaRapida section section {
+  width: 100%;
+  background: linear-gradient(135deg, #c87542 0%, #c4661f 100%);
+  border-radius: 20px;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 4px 12px rgba(196, 102, 31, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fondo de paloma usando ruta absoluta en lugar de ~ */
+.AyudaRapida section section::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Ajustando tamaño de la paloma para que sea mediana en mobile y desktop */
+  width: 280px;
+  height: 280px;
+  background-image: url("/Imagenes/AveBlanca.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+/* Enlaces */
+.AyudaRapida a {
+  text-decoration: none;
+  position: relative;
+  z-index: 1;
+}
+
+/* Botones con borde y texto en bold */
+.AyudaRapida button {
+  width: 100%;
+  padding: 14px 24px;
+  background-color: #ffffff;
+  color: #5f6f52;
+  font-size: 16px;
+  font-weight: 700;
+  border: 2px solid #5f6f52;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.AyudaRapida button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: #f8f8f8;
+}
+
+.AyudaRapida button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Media Queries para Tablet */
+@media (min-width: 768px) {
+  .AyudaRapida {
+    padding: 40px;
+  }
+
+  .AyudaRapida h1 {
+    font-size: 26px;
+    margin-bottom: 40px;
+  }
+
+  .AyudaRapida > section {
+    max-width: 450px;
+  }
+
+  .AyudaRapida section section {
+    padding: 50px 40px;
+    gap: 20px;
+    border-radius: 24px;
+  }
+
+  .AyudaRapida section section::before {
+    width: 220px;
+    height: 220px;
+  }
+
+  .AyudaRapida button {
+    padding: 16px 28px;
+    font-size: 17px;
+    border-radius: 28px;
+  }
+}
+
+/* Media Queries para Desktop */
+@media (min-width: 1024px) {
+  .AyudaRapida {
+    padding: 60px;
+  }
+
+  .AyudaRapida h1 {
+    font-size: 28px;
+    margin-bottom: 50px;
+  }
+
+  .AyudaRapida > section {
+    max-width: 500px;
+  }
+
+  .AyudaRapida section section {
+    padding: 60px 50px;
+    gap: 22px;
+    border-radius: 28px;
+  }
+
+  .AyudaRapida section section::before {
+    width: 250px;
+    height: 250px;
+    opacity: 0.12;
+  }
+
+  .AyudaRapida button {
+    padding: 18px 32px;
+    font-size: 18px;
+    border-radius: 30px;
+  }
+
+  .AyudaRapida button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/*DIARIOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Contenedor principal del diario */
+.Diario {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+/* Título principal */
+.Diario h1 {
+  color: #5f6f52;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Sección de notas */
+.Nota {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Card para añadir nota */
+.add-note-card {
+  background: linear-gradient(135deg, #c4661f 0%, #d47a35 100%);
+  border-radius: 25px;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(196, 102, 31, 0.2);
+  margin-bottom: 8px;
+}
+
+.add-note-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(196, 102, 31, 0.3);
+}
+
+.add-note-card h4 {
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.add-note-card a {
+  text-decoration: none;
+}
+
+.plus-icon {
+  color: white;
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+/* Cards individuales de notas */
+.Nota > a {
+  text-decoration: none;
+}
+
+.card {
+  background-color: white;
+  border: 2px solid #5f6f52 !important;
+  border-radius: 20px !important;
+  padding: 16px 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  max-width: 100% !important;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(95, 111, 82, 0.15);
+}
+
+.card-header {
+  background-color: transparent !important;
+  border: none !important;
+  color: #5f6f52 !important;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 0 0 8px 0 !important;
+}
+
+.card-body {
+  padding: 0 !important;
+}
+
+.card-title {
+  font-size: 13px !important;
+  color: #666 !important;
+  font-weight: 400 !important;
+  margin-bottom: 6px !important;
+}
+
+.card-text {
+  color: #333 !important;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Mobile muestra 2 líneas con "..." al final */
+  -webkit-box-orient: vertical;
+}
+
+/* Texto cuando no hay notas */
+.text-muted {
+  text-align: center;
+  color: #999 !important;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+/* Media Queries para Tablet */
+@media (min-width: 768px) {
+  .Diario {
+    padding: 30px 40px;
+  }
+
+  .Diario h1 {
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+
+  .Nota {
+    max-width: 700px;
+    gap: 20px;
+  }
+
+  .add-note-card {
+    padding: 20px 28px;
+    border-radius: 30px;
+  }
+
+  .add-note-card h4 {
+    font-size: 18px;
+  }
+
+  .card {
+    padding: 20px 24px;
+  }
+
+  .card-header {
+    font-size: 18px;
+    padding: 0 0 10px 0 !important;
+  }
+
+  .card-title {
+    font-size: 14px !important;
+  }
+
+  .card-text {
+    font-size: 15px;
+  }
+}
+
+/* Media Queries para Desktop */
+@media (min-width: 1024px) {
+  .Diario {
+    padding: 40px 60px;
+  }
+
+  .Diario h1 {
+    font-size: 32px;
+    margin-bottom: 50px;
+  }
+
+  .Nota {
+    max-width: 800px;
+    gap: 24px;
+  }
+
+  .add-note-card {
+    padding: 22px 32px;
+    border-radius: 35px;
+  }
+
+  .add-note-card h4 {
+    font-size: 20px;
+  }
+
+  .plus-icon {
+    font-size: 36px;
+  }
+
+  .card {
+    padding: 24px 28px;
+    border-radius: 25px !important;
+  }
+
+  .card-header {
+    font-size: 19px;
+  }
+
+  .card-text {
+    font-size: 16px;
+    -webkit-line-clamp: 1; /* Desktop muestra solo 1 línea con "..." al final */
+  }
+}
+
+/*RESPIACIONESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS*/
+/* Mobile First - Base Styles */
+.respiraciones {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px 16px;
+  text-align: center;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.respiraciones h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #5f6f52;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.guia-respiracion {
+  width: 100%;
+  max-width: 400px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 30px 20px;
+  box-shadow: 0 2px 8px rgba(95, 111, 82, 0.08), 0 4px 16px rgba(95, 111, 82, 0.06);
+  transition: box-shadow 0.3s ease;
+}
+
+#fase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+#imgRespiracion {
+  /* Forced consistent size and positioning with object-fit cover */
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 4px 12px rgba(95, 111, 82, 0.15));
+}
+
+#imgRespiracion:hover {
+  transform: scale(1.05);
+}
+
+#textoFase {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #5f6f52;
+  margin: 0;
+  line-height: 1.4;
+  min-height: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#temporizador {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #5f6f52;
+  margin: 10px 0;
+  min-height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+#iniciarBtn {
+  width: 100%;
+  max-width: 280px;
+  padding: 16px 32px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #5f6f52 0%, #4a5841 100%);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(95, 111, 82, 0.3), 0 2px 4px rgba(95, 111, 82, 0.2);
+  text-transform: none;
+}
+
+#iniciarBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(95, 111, 82, 0.4), 0 3px 6px rgba(95, 111, 82, 0.25);
+  background: linear-gradient(135deg, #4a5841 0%, #3d4735 100%);
+}
+
+#iniciarBtn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(95, 111, 82, 0.3), 0 1px 3px rgba(95, 111, 82, 0.2);
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) {
+  .respiraciones {
+    padding: 40px 32px;
+  }
+
+  .respiraciones h1 {
+    font-size: 2.25rem;
+    margin-bottom: 40px;
+  }
+
+  .guia-respiracion {
+    max-width: 500px;
+    padding: 40px 30px;
+    box-shadow: 0 4px 16px rgba(95, 111, 82, 0.1), 0 8px 32px rgba(95, 111, 82, 0.08);
+  }
+
+  #imgRespiracion {
+    width: 240px;
+    height: 240px;
+  }
+
+  #textoFase {
+    font-size: 1.75rem;
+    min-height: 3.5rem;
+  }
+
+  #temporizador {
+    font-size: 5rem;
+    min-height: 6rem;
+  }
+
+  #iniciarBtn {
+    max-width: 320px;
+    padding: 18px 36px;
+    font-size: 1.25rem;
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+  .respiraciones {
+    /* Reduced padding and min-height so header is visible */
+    padding: 30px 40px;
+    max-width: 1400px;
+    min-height: auto;
+  }
+
+  .respiraciones h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+  }
+
+  .guia-respiracion {
+    /* Reduced max-width and padding for more compact desktop view */
+    max-width: 500px;
+    padding: 40px 30px;
+  }
+
+  .guia-respiracion:hover {
+    box-shadow: 0 6px 24px rgba(95, 111, 82, 0.12), 0 12px 48px rgba(95, 111, 82, 0.1);
+  }
+
+  #imgRespiracion {
+    /* Reduced image size for more compact desktop view */
+    width: 220px;
+    height: 220px;
+  }
+
+  #textoFase {
+    font-size: 1.875rem;
+    min-height: 3.75rem;
+  }
+
+  #temporizador {
+    font-size: 5rem;
+    min-height: 6rem;
+  }
+
+  #iniciarBtn {
+    max-width: 340px;
+    padding: 18px 36px;
+    font-size: 1.25rem;
+  }
+}
+
+
+/*FRASESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+/* Contenedor principal de Frases */
+.Frases {
+  width: 100%;
+  padding: 20px;
+}
+
+/* Título principal */
+.Frases > h1 {
+  text-align: center;
+  color: #5f6f52;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  padding: 0 20px;
+}
+
+/* Contenedor de las cards */
+.Frases section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Cards individuales */
+.Frases .card {
+  width: 100% !important;
+  float: none !important;
+  background: white;
+  border: 2px solid #5f6f52;
+  border-radius: 20px;
+  padding: 30px 25px;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.Frases .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* Comillas decorativas */
+.Frases .card::before,
+.Frases .card::after {
+  content: '"';
+  position: absolute;
+  font-size: 48px;
+  font-weight: 700;
+  color: #c4661f;
+  line-height: 1;
+  z-index: 0; /* Added z-index to place behind text */
+}
+
+.Frases .card::before {
+  top: 10px; /* Adjusted position for mobile */
+  left: 15px; /* Adjusted position for mobile */
+}
+
+.Frases .card::after {
+  bottom: 10px; /* Adjusted position for mobile */
+  right: 15px; /* Adjusted position for mobile */
+}
+
+/* Body de la card */
+.Frases .card-body {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: relative; /* Added position for z-index */
+  z-index: 1; /* Added z-index to place text above quotes */
+}
+
+/* Texto de la frase */
+.Frases .card-title {
+  color: #333;
+  font-size: 18px; /* Increased font size from 16px to 18px */
+  font-weight: 500;
+  line-height: 1.6;
+  text-align: center;
+  margin: 0;
+  padding: 0 20px; /* Increased padding from 10px to 20px */
+}
+
+/* Autor de la frase */
+.Frases .card-subtitle {
+  color: #c4661f !important;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: right;
+  margin: 0 !important;
+  padding-right: 10px;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .Frases {
+    padding: 30px 40px;
+  }
+
+  .Frases > h1 {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+
+  .Frases section {
+    max-width: 700px;
+    gap: 25px;
+  }
+
+  .Frases .card {
+    padding: 35px 30px;
+  }
+
+  .Frases .card-title {
+    font-size: 19px; /* Increased font size from 17px to 19px */
+  }
+
+  .Frases .card-subtitle {
+    font-size: 16px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .Frases {
+    padding: 40px 60px;
+  }
+
+  .Frases > h1 {
+    font-size: 36px;
+    margin-bottom: 50px;
+  }
+
+  .Frases section {
+    max-width: 800px;
+    gap: 30px;
+  }
+
+  .Frases .card {
+    padding: 40px 35px;
+  }
+
+  .Frases .card-title {
+    font-size: 20px; /* Increased font size from 18px to 20px */
+    line-height: 1.7;
+  }
+
+  .Frases .card-subtitle {
+    font-size: 17px;
+  }
+
+  .Frases .card::before,
+  .Frases .card::after {
+    font-size: 56px;
+  }
+}

@@ -14,9 +14,9 @@
             {
                 <a href="@Url.Action("irNota", "Home", new {id = @nota.id})">
                 <div class="card border-primary mb-3" style="max-width: 18rem;">
+                <h5 class="card-title">@nota.fecha</h5>
                 <div class="card-header">@nota.titulo</div>
-                <div class="card-body text-primary">
-                    <h5 class="card-title">@nota.fecha</h5>
+                <div class="card-body text-primary">  
                     <p class="card-text">@nota.descripción</p>
                 </div>
                 </div>
