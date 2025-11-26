@@ -2,6 +2,12 @@
     ViewData["Title"] = "Thera - Tu impulso, tu cambio";
 }
 
+@if(ViewBag.solicitudesCantidad > 0){
+    <a href="@Url.Action("irNotificaciones", "Home")"><div>
+        Tenés @ViewBag.solicitudesCantidad notificaciones pendientes!
+    </div></a>
+}
+
 <div class="HomeconPaciente">
     <div class="HomecoPacienteContenedor">
 

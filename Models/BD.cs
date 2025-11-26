@@ -550,7 +550,7 @@ namespace THERA.Models
                 return -3;
             }
         }
-        public list<Solicitudes> levantarSolicitudesPaciente(int idPaciente){
+        public static List<Solicitudes> levantarSolicitudesPaciente(int idPaciente){
             List<Solicitudes> solicitudes = new List<Solicitudes>();
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -564,7 +564,7 @@ namespace THERA.Models
 
             return solicitudes;
         }
-        public Terapeuta levantarTerapeutaDePaciente(int idPaciente){
+        public static Terapeuta levantarTerapeutaDePaciente(int idPaciente){
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 string queryPaciente = "SELECT IdTerapeuta FROM Paciente WHERE Id = @pIdPaciente";
@@ -581,7 +581,7 @@ namespace THERA.Models
                 return terapeuta;
             }
         }
-        public void eliminarSolicitud(int id){
+        public static void eliminarSolicitud(int id){
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 string query = "DELETE FROM Solicitudes WHERE Id = @pId";

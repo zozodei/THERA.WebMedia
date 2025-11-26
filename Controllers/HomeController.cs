@@ -149,7 +149,7 @@ public class HomeController : Controller
         }
         ViewBag.estaLogeado = true;
         ViewBag.terapeutaLogeado = false;
-        Solicitudes solicitudes = BD.levantarSolicitudesPaciente(paciente.id);
+        List<Solicitudes> solicitudes = BD.levantarSolicitudesPaciente(paciente.id);
         ViewBag.solicitudesCantidad = solicitudes.Count;
         List<Terapeuta> terapeutas = BD.levantarTerapeutas();
         List<int> cantResenas = BD.levantarCantidadResenas();
@@ -249,14 +249,7 @@ public class HomeController : Controller
         return View("Notificaciones");
     }
     public IActionResult eliminarNotificacion(int idSolicitud){
-        int resultado = BD.eliminarSolicitud(idSolicitud);
-        switch (resultado)
-        {
-            case -1:
-                ViewBag.msgError = "No se encontró la solicitud. Intente nuevamente.";
-            case -2:
-                ViewBag.msgError = "Ocurrió un error inesperado. Intente nuevamente.";
-        }
+        BD.eliminarSolicitud(idSolicitud);
         return RedirectToAction("verNotificaciones");
     }
 
