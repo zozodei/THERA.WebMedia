@@ -252,5 +252,15 @@ public class HomeController : Controller
         BD.eliminarSolicitud(idSolicitud);
         return RedirectToAction("verNotificaciones");
     }
+    public IActionResult aceptarNotificacion(int idSolicitud){
+        int resultado = BD.aceptarSolicitud(idSolicitud);
+        switch(resultado){
+            case -1:
+                ViewBag.msgError = "No se encontró la solicitud. Intente nuevamente.";
+            case -2:
+                ViewBag.msgError = "Ocurrió un error inesperado. Intente nuevamente.";
+        }
+        return RedirectToAction("verNotificaciones");
+    }
 
 }

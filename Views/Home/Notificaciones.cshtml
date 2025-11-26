@@ -37,7 +37,7 @@ else
                     ✔
                 </button>
 
-                <form method="post" action="@Url.Action("eliminarSolicitud", "Home")" style="display:inline;">
+                <form method="post" action="@Url.Action("eliminarNotificacion", "Home")" style="display:inline;">
                     <input type="hidden" name="idSolicitud" value="@solicitud.Id" />
                     <button class="btn btn-danger">🗑️</button>
                 </form>
@@ -72,7 +72,7 @@ else
             </div>
 
             <div class="modal-footer">
-                <form method="post" action="/Paciente/AceptarSolicitud">
+                <form method="post" action="@Url.Action("aceptarNotificacion", "Home")">
                     <input type="hidden" id="solicitud-id" name="idSolicitud" />
                     <button type="submit" class="btn btn-success">Aceptar</button>
                 </form>
