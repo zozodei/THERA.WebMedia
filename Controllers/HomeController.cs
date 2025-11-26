@@ -149,6 +149,8 @@ public class HomeController : Controller
         }
         ViewBag.estaLogeado = true;
         ViewBag.terapeutaLogeado = false;
+        Solicitudes solicitudes = BD.levantarSolicitudesPaciente(paciente.id);
+        ViewBag.solicitudesCantidad = solicitudes.Count;
         List<Terapeuta> terapeutas = BD.levantarTerapeutas();
         List<int> cantResenas = BD.levantarCantidadResenas();
         Random random = new Random();
@@ -234,6 +236,17 @@ public class HomeController : Controller
         ViewBag.estaLogeado = true;
         ViewBag.terapeutaLogeado = false;
         return View("Soporte");
+    }
+    public IActionResult verNotificaciones(){
+        ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = false;
+        Paciente paciente = BD.levantarPaciente(Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario")).id);
+        Terapeuta terapeutaActual = BD.levantarTerapeutaDePaciente(paciente.id);
+        ViewBag.terapeutaActual = terapeutaActual;
+        List<Solicitudes> solicitudes = BD.levantarSolicitudesPaciente(paciente.id);
+        ViewBag.solicitudes = solicitudes;
+        ViewBag.terapeutas = BD.levantarTerapeutas();
+        return View("Notificaciones");
     }
 
 }

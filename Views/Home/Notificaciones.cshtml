@@ -1,0 +1,76 @@
+@if(ViewBag.terapeutaActual != null)
+{
+    <div class="alert alert-warning text-center" style="font-size:17px;">
+        Si aceptás una solicitud, tu terapeuta actual 
+        <strong>@ViewBag.terapeutaActual.Nombre @ViewBag.terapeutaActual.Apellido</strong> 
+        dejará de serlo.
+    </div>
+}
+
+@{
+    List<Solicitudes> solicitudes = ViewBag.solicitudes as List<Solicitudes>;
+    List<Terapeuta> terapeutas = ViewBag.terapeutas as List<Terapeuta>;
+}
+
+@if(solicitudes.Count == 0)
+{
+    <p class="text-center mt-4">No tenés notificaciones nuevas.</p>
+}
+else
+{
+    foreach(Solicitudes solicitud in @ViewBag.solicitudes)
+    {
+        Terapeuta terapeuta = terapeutas.FirstOrDefault(x => x.Id == solicitud.idTerapeuta);
+
+        <div class="card p-3 mb-3" style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+                <strong>@terapeuta.Nombre @terapeuta.Apellido</strong> quiere ser tu terapeuta.
+            </div>
+
+            <div style="display:flex; gap:10px;">
+                <button class="btn btn-success" data-toggle="modal" data-target="#modalAceptar" 
+                        onclick="setSolicitud(@solicitud.id)">
+                    ✔
+                </button>
+
+                <form method="post" action="@Url.Action("eliminarSolicitud", "Home")" style="display:inline;">
+                    <input type="hidden" name="idSolicitud" value="@solicitud.id" />
+                    <button class="btn btn-danger">🗑️</button>
+                </form>
+            </div>
+        </div>
+    }
+}
+<!-- Modal -->
+<div class="modal fade" id="modalAceptar" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar aceptación</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                ¿Seguro que querés aceptar esta solicitud?
+                Se cambiará tu terapeuta actual.
+            </div>
+
+            <div class="modal-footer">
+                <form method="post" action="/Paciente/AceptarSolicitud">
+                    <input type="hidden" id="solicitud-id" name="idSolicitud" />
+                    <button type="submit" class="btn btn-success">Aceptar</button>
+                </form>
+
+                <button class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function setSolicitud(id) {
+        document.getElementById("solicitud-id").value = id;
+    }
+</script>

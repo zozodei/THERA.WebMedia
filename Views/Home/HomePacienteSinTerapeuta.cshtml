@@ -1,6 +1,9 @@
-
-
 <div class="homePaciente">
+@if(ViewBag.solicitudesCantidad > 0){
+    <a href="@Url.Action("irNotificaciones", "Home")"><div>
+        Tenés @ViewBag.solicitudesCantidad notificaciones!
+    </div></a>
+}
 <img src=""> @*IMAGEN DEL FIGMA*@
     @for (int i = 0; i< @ViewBag.terapeutas.Count; i++)
     {
