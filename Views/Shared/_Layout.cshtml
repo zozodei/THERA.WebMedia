@@ -46,10 +46,10 @@
 
     <div class="mobileNavegadorMenu" id="mobileNavegadorMenu">
       <a href="#">CHATBOT</a>
-      <a href="#">TERAPEUTAS</a>
-      <a href="#">DIARIO</a>
-      <a href="#">AYUDA RÁPIDA</a>
-      <a href="#" class="cerrarSesion">CERRAR SESIÓN</a>
+        <a href="@Url.Action("irBuscarTerapeuta", "Home")">TERAPEUTAS</a>
+        <a href="#">DIARIO</a>
+        <a href="@Url.Action("irAyudaRapida", "Home")">AYUDA RÁPIDA</a>
+        <a href="@Url.Action("irCerrarSesion", "Account")" class="cerrarSesion">CERRAR SESIÓN</a>
     </div>
   </header>
 
