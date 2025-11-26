@@ -581,6 +581,46 @@ namespace THERA.Models
                 return terapeuta;
             }
         }
+        public void eliminarSolicitud(int id){
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "DELETE FROM Solicitudes WHERE Id = @pId";
+                connection.Execute(query, new { pId = id });
+            }
+        }
+        public static int aceptarSolicitud(int idSolicitud)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    string querySolicitud = "SELECT idTerapeuta, idPaciente FROM Solicitudes WHERE Id = @pId";
+                    Solicitudes solicitud = connection.QueryFirstOrDefault<Solicitudes>(querySolicitud, new { pId = idSolicitud });
+
+                    if (solicitud == null)
+                    {
+                        return -1;
+                    }
+
+                    int idTerapeuta = solicitud.idTerapeuta;
+                    int idPaciente = solicitud.idPaciente;
+
+                    string queryAceptar = "UPDATE Solicitudes SET aceptada = 1 WHERE Id = @pId";
+                    connection.Execute(queryAceptar, new { pId = idSolicitud });
+
+                    string queryUpdatePaciente = "UPDATE Paciente SET IdTerapeuta = @pIdTerapeuta WHERE Id = @pIdPaciente";
+                    connection.Execute(queryUpdatePaciente, new { pIdTerapeuta = idTerapeuta, pIdPaciente = idPaciente });
+
+                    return 1;
+                }
+            }
+            catch
+            {
+                return -2;
+            }
+        }
+
+
 
     }
 }

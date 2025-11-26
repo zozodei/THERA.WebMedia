@@ -1,3 +1,7 @@
+@if(!String.IsNullOrEmpty(@ViewBag.msgError)){
+     <h3 style="color: red">@ViewBag.msgError</h3>
+}
+
 @if(ViewBag.terapeutaActual != null)
 {
     <div class="alert alert-warning text-center" style="font-size:17px;">
@@ -41,7 +45,6 @@ else
         </div>
     }
 }
-<!-- Modal -->
 <div class="modal fade" id="modalAceptar" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -52,8 +55,20 @@ else
             </div>
 
             <div class="modal-body">
-                ¿Seguro que querés aceptar esta solicitud?
-                Se cambiará tu terapeuta actual.
+                @if (ViewBag.terapeutaActual == null)
+                {
+                    <p>
+                        ¿Querés aceptar esta solicitud?  
+                        Este terapeuta se convertirá en tu terapeuta asignado.
+                    </p>
+                }
+                else
+                {
+                    <p>
+                        ¿Querés aceptar esta solicitud?  
+                        <strong>@ViewBag.terapeutaActual.Nombre @ViewBag.terapeutaActual.Apellido</strong> dejará de ser tu terapeuta.
+                    </p>
+                }
             </div>
 
             <div class="modal-footer">
@@ -68,6 +83,7 @@ else
         </div>
     </div>
 </div>
+
 
 <script>
     function setSolicitud(id) {
