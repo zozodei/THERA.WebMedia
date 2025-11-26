@@ -15,8 +15,8 @@
 
 /*HEADERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR*/
 header {
-  background-color: #C4661F;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  background-color: #c4661f;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   color: white;
   width: 100%;
 }
@@ -50,7 +50,7 @@ nav {
   text-decoration: underline;
 }
 .cerrarSesion {
-  color: #ffe8d1 ;
+  color: #ffe8d1;
 }
 
 .PerfilYHamburguesa {
@@ -90,13 +90,14 @@ nav {
   width: 70%;
   background-color: #fff;
   border-radius: 14px;
-  border: 2px solid #C4661F;  
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  border: 2px solid #c4661f;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   text-align: right;
   padding: 22px 20px;
   transform: translateY(-15px);
   opacity: 0;
   transition: all 0.3s ease;
+  z-index: 9999; /* Added high z-index to ensure menu appears above all content */
 }
 .mobileNavegadorMenu.active {
   display: flex;
@@ -104,11 +105,11 @@ nav {
   opacity: 1;
 }
 .mobileNavegadorMenu a {
-  color: #C4661F;
+  color: #c4661f;
   text-decoration: none;
   font-weight: bold;
   padding: 12px 0;
-  border-bottom: 1px solid #C4661F20;
+  border-bottom: 1px solid #c4661f20;
   transition: 0.3s;
 }
 .mobileNavegadorMenu a:hover {
@@ -2684,12 +2685,6 @@ body {
 
 
 /*FRASESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS*/
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background-color: #f5f5f5;
@@ -2766,20 +2761,23 @@ body {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  position: relative; /* Added position for z-index */
-  z-index: 1; /* Added z-index to place text above quotes */
+  justify-content: center;
+  min-height: 120px;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
 }
 
 /* Texto de la frase */
 .Frases .card-title {
-  color: #333;
-  font-size: 18px; /* Increased font size from 16px to 18px */
-  font-weight: 500;
+  color: #000 !important;
+  font-size: 22px;
+  font-weight: 700 !important;
   line-height: 1.6;
-  text-align: center;
-  margin: 0;
-  padding: 0 20px; /* Increased padding from 10px to 20px */
+  text-align: center !important;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
 }
 
 /* Autor de la frase */
@@ -2790,6 +2788,7 @@ body {
   text-align: right;
   margin: 0 !important;
   padding-right: 10px;
+  margin-top: auto !important;
 }
 
 /* Tablet */
@@ -2813,7 +2812,8 @@ body {
   }
 
   .Frases .card-title {
-    font-size: 19px; /* Increased font size from 17px to 19px */
+    font-size: 24px;
+    font-weight: 700 !important;
   }
 
   .Frases .card-subtitle {
@@ -2842,12 +2842,9 @@ body {
   }
 
   .Frases .card-title {
-    font-size: 20px; /* Increased font size from 18px to 20px */
+    font-size: 26px;
     line-height: 1.7;
-  }
-
-  .Frases .card-subtitle {
-    font-size: 17px;
+    font-weight: 700 !important;
   }
 
   .Frases .card::before,
@@ -2855,3 +2852,4 @@ body {
     font-size: 56px;
   }
 }
+
