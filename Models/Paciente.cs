@@ -20,5 +20,6 @@ namespace THERA.Models
         public string ocupacion{get; private set;}
         public int idUsuario { get; private set; }
         public int IdObraSocial { get; private set; }
+        public int DNI {get; private set;}
     }
 }
