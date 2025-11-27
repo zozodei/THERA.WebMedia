@@ -2,11 +2,11 @@
      <h3 style="color: red">@ViewBag.msgError</h3>
 }
 
-@if(ViewBag.terapeutaActual != null)
+@if(ViewBag.terapeutaActual != null && solicitudes.Count > 0)
 {
     <div class="alert alert-warning text-center" style="font-size:17px;">
         Si aceptás una solicitud, tu terapeuta actual 
-        <strong>@ViewBag.terapeutaActual.Nombre @ViewBag.terapeutaActual.Apellido</strong> 
+        <strong>@ViewBag.terapeutaActual.nombre @ViewBag.terapeutaActual.apellido</strong> 
         dejará de serlo.
     </div>
 }
@@ -75,7 +75,7 @@ else
                 {
                     <p>
                         ¿Querés aceptar esta solicitud?<br />
-                        <strong>@ViewBag.terapeutaActual.Nombre @ViewBag.terapeutaActual.Apellido</strong> dejará de ser tu terapeuta.
+                        <strong>@ViewBag.terapeutaActual.nombre @ViewBag.terapeutaActual.apellido</strong> dejará de ser tu terapeuta.
                     </p>
                 }
             </div>

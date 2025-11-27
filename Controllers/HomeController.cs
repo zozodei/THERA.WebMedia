@@ -179,6 +179,8 @@ public class HomeController : Controller
         ViewBag.tarea = ultimaTarea.Tarea;
         ViewBag.respuesta = ultimaTarea.RespuestaPaciente;
         ViewBag.fecha = ultimaTarea.Fecha;
+        List<Solicitudes> solicitudes = BD.levantarSolicitudesPaciente(BD.levantarPaciente(usuario.id).id);
+        ViewBag.solicitudesCantidad = solicitudes.Count;
         return View("HomePacienteConTerapeuta", "Home");
     }
 
