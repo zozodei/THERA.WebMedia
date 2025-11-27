@@ -22,7 +22,12 @@ public class HomeController : Controller
         ViewBag.terapeutaLogeado = false;
         return View("Comenzar");
     }
-
+    public IActionResult irLanding()
+    {
+        ViewBag.estaLogeado = false;
+        ViewBag.terapeutaLogeado = false;
+        return View("Landing");
+    }
      public IActionResult irIndex()
     {
         ViewBag.estaLogeado = false;
