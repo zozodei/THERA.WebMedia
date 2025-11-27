@@ -110,4 +110,26 @@ public class HomeTerapeutaController : Controller
                 return RedirectToAction("irVerPacientes");
         }
     }
+    public IActionResult irChatPaciente(int idPaciente)
+    {
+        ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = false;
+        Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
+        ViewBag.idChat = null;
+        Terapeuta terapeuta = BD.levantarTerapeuta(usuario.id);
+        ViewBag.idChat = BD.levantarIdChat(terapeuta.id, idPaciente);
+        ViewBag.mensajes = BD.levantarMensajes(ViewBag.idChat);
+        return View("ChatPaciente");
+    }
+    [HttpPost]
+    public IActionResult enviarMensaje(string mensaje, int idChat)
+    {
+        ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = false;
+        Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
+        BD.enviarMensaje(mensaje, usuario.id, idChat, usuario.tipoUsuario);
+        ViewBag.mensajes = BD.levantarMensajes(idChat);
+        ViewBag.idChat = idChat;
+        return View("ChatPaciente");
+    }
 }

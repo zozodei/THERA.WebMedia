@@ -63,7 +63,7 @@ namespace THERA.Models
             }
         }
 
-        public static int levantarIdChat(int idPaciente, int? idTerapeuta)
+        public static int levantarIdChat(int idPaciente, int idTerapeuta)
         {
             int idChat = -1;
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -380,7 +380,7 @@ namespace THERA.Models
             }
             return lista;
         }
-      public static Sesión levantarUltimaTareaYRespuesta(int idPaciente)
+        public static Sesión levantarUltimaTareaYRespuesta(int idPaciente)
         {
             Sesión ultimaSesion = null;
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -389,6 +389,26 @@ namespace THERA.Models
                 ultimaSesion = connection.QueryFirstOrDefault<Sesión>(query, new {pIdPaciente = idPaciente});
             }
             return ultimaSesion;
+        // public static Sesión levantarUltimaTareaYRespuesta(int idTerapeuta, int idPaciente)
+        // {
+        //     Sesión ultimaSesion = null;
+        //     using (SqlConnection connection = new SqlConnection(_connectionString))
+        //     {
+        //         string query = "exec ObtenerUltimaTareaYRespuesta @pIdTerapeuta, @pIdPaciente";
+        //         ultimaSesion = connection.QueryFirstOrDefault<Sesión>(query, new { pIdTerapeuta = idTerapeuta, pIdPaciente = idPaciente });
+        //     }
+        //     return ultimaSesion;
+        // }
+        }
+        public static Terapeuta levantarTerapeuta(Usuario usuario)
+        {
+            Terapeuta terapeuta = null;
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Terapeutas WHERE IdUsuario = @pIdUsuario";
+                terapeuta = connection.QueryFirstOrDefault<Terapeuta>(query, new {pIdUsuario = usuario.id});
+            }
+            return terapeuta;
         }
         public static Sesión levantarUltimaSesion(int idPaciente){
             Sesión ultimaSesion = null;

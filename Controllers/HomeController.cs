@@ -124,13 +124,9 @@ public class HomeController : Controller
         ViewBag.terapeutaLogeado = false;
         Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
         ViewBag.idChat = null;
-        if (!usuario.tipoUsuario)
-        {
-            Paciente paciente = BD.levantarPaciente(usuario.id);
-            ViewBag.idChat = BD.levantarIdChat(paciente.id, idTerapeuta);
-            ViewBag.mensajes = BD.levantarMensajes(ViewBag.idChat);
-            return View("ChatTerapeuta");
-        }
+        Paciente paciente = BD.levantarPaciente(usuario.id);
+        ViewBag.idChat = BD.levantarIdChat(paciente.id, idTerapeuta);
+        ViewBag.mensajes = BD.levantarMensajes(ViewBag.idChat);
         return View("ChatTerapeuta");
     }
     public IActionResult irChatNuevoTerapeuta(int idTerapeuta)
@@ -226,6 +222,9 @@ public class HomeController : Controller
     {
         ViewBag.terapeutaLogeado = true;
         ViewBag.estaLogeado = false;
+        Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
+        Terapeuta terapeuta = BD.levantarTerapeuta(usuario);
+        ViewBag.pacientes = BD.levantarPacientes(terapeuta.id);
         return View("HomeTerapeuta");
     }
     [HttpPost]
