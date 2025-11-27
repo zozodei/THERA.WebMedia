@@ -51,6 +51,8 @@ public class HomeController : Controller
         Nota nota = BD.levantarNota(id);
         ViewBag.nota = nota;
         ViewBag.disparadoras = BD.levantarDisparadoras();
+        Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
+        ViewBag.paciente = BD.levantarPaciente(usuario.id);
         return View("Nota");
     }
     public IActionResult irAgregarNota(int id)
@@ -227,6 +229,8 @@ public class HomeController : Controller
         Nota nota = BD.levantarNota(idNota);
         ViewBag.nota = nota;
         ViewBag.disparadoras = BD.levantarDisparadoras();
+        Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
+        ViewBag.paciente = BD.levantarPaciente(usuario.id);
         return View("Nota");
     }
     [HttpPost]

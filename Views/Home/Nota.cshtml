@@ -30,11 +30,19 @@ else{
 
     <label>Descripción:</label>
     <textarea type="text" name = "descripcion">@ViewBag.nota.descripción</textarea>
+<!-- hacer un if para ver si tiene terapeuta? -->
 
-    <label>Compartir con terapeuta</label>
-    <input type="checkbox" name="visibleTerapeuta" value="true" @(ViewBag.nota.visibleParaTerapeuta ? "checked" : "") />
-    <input type="hidden" name="visibleTerapeuta" value="false" />
+    @if (ViewBag.paciente.idTerapeuta != null)
+    {
+        <label>Compartir con terapeuta</label>
+        <input type="checkbox" name="visibleTerapeuta" value="true" @(ViewBag.nota.visibleParaTerapeuta ? "checked" : "") />
+        <input type="hidden" name="visibleTerapeuta" value="false" />
 
+    }
+    else
+    {
+        <input type="hidden" name="visibleTerapeuta" value="false" />
+    }
     <input type="submit" value = "Editar">
 
 </form>
