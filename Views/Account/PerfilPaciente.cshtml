@@ -5,6 +5,10 @@
     
     <h1 class="nombre-completo">@ViewBag.paciente.nombre @ViewBag.paciente.apellido</h1>
     
+    <a href="@Url.Action("irPerfilTerapeutaPublico", "Home", new{idTerapeuta = @ViewBag.paciente.idTerapeuta})"
+    class="list-group-item list-group-item-action d-flex align-items-center">
+        
+    </a>
     <form class="form-perfil" action="@Url.Action("guardarPerfilPaciente", "Account")" method="post">
         <div class="campo">
             <label>Nombre</label>

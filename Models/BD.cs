@@ -173,9 +173,16 @@ namespace THERA.Models
             try{
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
-                    string query = "exec Registrarse @pusername, @pcontrasena, @ptipoDeUsuario";
+                    string query = "INSERT INTO Usuario (Username, Contrasena, TipoUsuario) VALUES (@pusername, @pcontrasena, @ptipoDeUsuario)";
                     connection.Execute(query, new {pusername = username, pcontrasena = contraseña, ptipoDeUsuario = tipoDeUsuario});
                     int idUsuario = Login(username, contraseña);
+                    if(tipoDeUsuario == 1){
+                        query = "INSERT INTO Terapeuta (idUsuario) VALUES (@pidUsuario)";
+                        connection.Execute(query, new {pidUsuario = idUsuario});
+                    }else{
+                        query = "INSERT INTO Paciente (idUsuario) VALUES (@pidUsuario)";
+                        connection.Execute(query, new {pidUsuario = idUsuario});
+                    }
                     return (idUsuario);
                 }
             }catch (SqlException ex){

@@ -48,7 +48,7 @@ public class AccountController : Controller
         if(idUsuario!=-1 && idUsuario !=-2){ 
             Usuario usuario = BD.levantarUsuario(idUsuario); 
             HttpContext.Session.SetString("usuario", Objeto.ObjectToString(usuario)); 
-            return RedirectToAction("Login", "Account"); 
+            return RedirectToAction("Login", "Account", new{contraseña = contraseña, username = username}); 
         }else if(idUsuario ==-1){ 
             ViewBag.error = "El username ya está en uso. Intente nuevamente."; 
             ViewBag.segundoIntento = true; 
@@ -90,6 +90,8 @@ public class AccountController : Controller
             Paciente paciente = BD.levantarPaciente(usuario.id);
             ViewBag.paciente = paciente;
             ViewBag.obrasSociales = BD.levantarObrasSociales();
+            Terapeuta terapeuta = BD.levantarTerapeutaConIdTerapeuta(paciente.idTerapeuta);
+            ViewBag.terapeuta = terapeuta;
             return View("PerfilPaciente", "Account");
         }else{
             return RedirectToAction("irHomePaciente", "Home");
