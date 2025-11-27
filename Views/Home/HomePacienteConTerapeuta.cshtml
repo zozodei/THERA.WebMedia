@@ -43,11 +43,18 @@
 
         <!-- Ejercicio de la última sesión -->
         <div class="bloque-ejercicio mb-4">
-            <p class="titulo-ejercicio">Ejercicio de la última sesión (12/11)</p>
-            <div class="tarjeta">
-                <p class="texto-ejercicio">Reflexionar sobre tu actitud ante tus papás en la pelea</p>
-                <textarea class="entrada-texto" rows="4" placeholder="Escribí aquí..."></textarea>
-            </div>
+            <p class="titulo-ejercicio">Ejercicio de la última sesión (@ViewBag.fecha)</p>
+            <form method="post" action='@Url.Action("guardarRespuestaPaciente", "Home")'>
+                <div class="tarjeta">
+                    <p class="texto-ejercicio">@ViewBag.tarea</p>
+                    @if(@ViewBag.respuesta == ""){  
+                        <textarea class="entrada-texto" rows="4" placeholder="Escribí aquí..." name="Respuesta"></textarea>
+                    }else{
+                        <textarea class="entrada-texto" rows="4" name="Respuesta">@ViewBag.respuesta</textarea>
+                    }
+                    <input type="submit" value = "Guardar">
+                </div>
+            </form>
         </div>
 
         <!-- Cambiar terapeuta -->

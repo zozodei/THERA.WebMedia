@@ -46,7 +46,7 @@ namespace THERA.Models
             }
             return idUsuario;
         }
-        public static int levantarIdChat(int idPaciente, int idTerapeuta)
+        public static int levantarIdChat(int idPaciente, int? idTerapeuta)
         {
             int idChat = -1;
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -86,6 +86,16 @@ namespace THERA.Models
             }
             return Paciente;
         }
+        public static Terapeuta levantarTerapeuta(int idUsuario)
+        {
+            Terapeuta terapeuta = null;
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Terapeuta WHERE IdUsuario = @pIdUsuario";
+                terapeuta = connection.QueryFirstOrDefault<Terapeuta>(query, new {pIdUsuario = idUsuario});
+            }
+            return terapeuta;
+        }
         public static Terapeuta levantarTerapeutaConIdTerapeuta(int idTerapeuta)
         {
             Terapeuta terapeuta = null;
@@ -95,6 +105,16 @@ namespace THERA.Models
                 terapeuta = connection.QueryFirstOrDefault<Terapeuta>(query, new {pIdTerapeuta = idTerapeuta});
             }
             return terapeuta;
+        }
+        public static Paciente levantarPacienteConIdPaciente(int idPaciente)
+        {
+            Paciente Paciente = null;
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Paciente WHERE Id = @pIdPaciente";
+                Paciente = connection.QueryFirstOrDefault<Paciente>(query, new {pIdPaciente = idPaciente});
+            }
+            return Paciente;
         }
         public static void enviarMensaje(string mensaje, int idUsuario, int idChat, bool tipoUsuario)
         {
@@ -113,6 +133,13 @@ namespace THERA.Models
                     string query = "INSERT INTO Mensaje (IdChat, IdTerapeuta, Mensaje, Hora) VALUES (@pIdChat, @pIdUsuario, @pMensaje, GETDATE())";
                     connection.Execute(query, new {pIdChat = idChat, pIdUsuario = idUsuario, pMensaje = mensaje});
                 }
+            }
+        }
+        public static void CrearNuevoChat(int idPaciente, int idTerapeuta){
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "INSERT INTO Chat (IdTerapeuta, IdPaciente) VALUES (@pIdTerapeuta, @pIdPaciente)";
+                connection.Execute(query, new {pIdPaciente = idPaciente, pIdTerapeuta = idTerapeuta});
             }
         }
         // public static void CompartirTarea(Tarea tarea, string usernameCompartir)
@@ -338,9 +365,15 @@ namespace THERA.Models
             }
             return lista;
         }
-      /*  public static Sesión levantarUltimaTareaYRespuesta(int idTerapeuta, int idPaciente)
+        public static Sesión levantarUltimaTareaYRespuesta(int idPaciente)
         {
             Sesión ultimaSesion = null;
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "exec ObtenerUltimaTareaYRespuesta @pIdPaciente";
+                ultimaSesion = connection.QueryFirstOrDefault<Sesión>(query, new {pIdPaciente = idPaciente});
+            }
+            return ultimaSesion;
         // public static Sesión levantarUltimaTareaYRespuesta(int idTerapeuta, int idPaciente)
         // {
         //     Sesión ultimaSesion = null;
@@ -351,17 +384,83 @@ namespace THERA.Models
         //     }
         //     return ultimaSesion;
         // }
+        }
         public static Terapeuta levantarTerapeuta(Usuario usuario)
         {
             Terapeuta terapeuta = null;
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                string query = "SELECT * FROM Terapeuta WHERE IdUsuario = @pIdUsuario";
+                string query = "SELECT * FROM Terapeutas WHERE IdUsuario = @pIdUsuario";
                 terapeuta = connection.QueryFirstOrDefault<Terapeuta>(query, new {pIdUsuario = usuario.id});
             }
-            return terapeuta;   
+            return terapeuta;
         }
-*/
+        public static Sesión levantarUltimaSesion(int idPaciente){
+            Sesión ultimaSesion = null;
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = @"select *
+                    from Sesión
+                    INNER JOIN Paciente p ON Sesión.IdTerapeuta = p.IdTerapeuta AND Sesión.IdPaciente = p.Id
+                    WHERE p.Id = @pIdPaciente
+                    ORDER BY Sesión.Fecha DESC";
+                ultimaSesion = connection.QueryFirstOrDefault<Sesión>(query, new {pIdPaciente = idPaciente});
+            }
+            return ultimaSesion;
+        }
+        public static void guardarRespuestaPaciente(string respuesta, int idSesion){
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = @"UPDATE Sesión 
+                                SET RespuestaPaciente = @pRespuestaPaciente
+                                WHERE Id = @pId";
+
+                connection.Execute(query, new
+                {
+                    pRespuestaPaciente = respuesta,
+                    pid = idSesion
+                });
+            }
+        }
+        public static List<Sesión> levantarSesionesXPaciente(int idPaciente, int idTerapeuta)
+        {
+            List<Sesión> sesiones = new List<Sesión>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = @"SELECT *
+                    FROM Sesión 
+                    WHERE IdTerapeuta = @pidTerapeuta 
+                    AND IdPaciente = @pidPaciente
+                    ORDER BY Fecha DESC";
+                sesiones = connection.Query<Sesión>(query, new {pidTerapeuta = idTerapeuta, pidPaciente = idPaciente}).ToList();
+            }
+            return sesiones;
+        }
+        public static Sesión levantarSesión(int idSesion)
+        {
+            Sesión sesion = new Sesión();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Sesión WHERE id = @pidSesion";
+                sesion = connection.QueryFirstOrDefault<Sesión>(query, new {pidSesion = idSesion});
+            }
+            return sesion;
+
+        }
+        public static List<Nota> levantarNotasCompartidas(int IdPaciente)
+        {
+            List<Nota> notas = new List<Nota>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = @"SELECT *
+                    FROM Notas 
+                    WHERE VisibleParaTerapeuta = 1 
+                    AND IdPaciente = @pidPaciente
+                    ORDER BY Fecha DESC";
+                notas = connection.Query<Nota>(query, new { pidPaciente = IdPaciente}).ToList();
+            }
+            return notas;
+        }
 
     }
 }

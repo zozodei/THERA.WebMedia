@@ -11,7 +11,7 @@
 
 <body>
     <header>
-    @if (ViewBag.estaLogeado)
+    @if (ViewBag.estaLogeado && !ViewBag.terapeutaLogeado)
     {
         <nav>
       <!-- LOGO -->
@@ -21,10 +21,10 @@
 
       <!-- LINKS (web) -->
       <div class="nav-links" id="navLinks">
-        <a href="#">CHATBOT</a>
+        <a href="@Url.Action("irChatBot", "Home")">CHATBOT</a>
         <a href="@Url.Action("irBuscarTerapeuta", "Home")">TERAPEUTAS</a>
-        <a href="#">DIARIO</a>
-        <a href="#">AYUDA RÁPIDA</a>
+        <a href="@Url.Action("irDiario", "Home")">DIARIO</a>
+        <a href="@Url.Action("irAyudaRapida", "Home")">AYUDA RÁPIDA</a>
         <a href='@Url.Action("CerrarSesion", "Account")' class="cerrar-sesion">CERRAR SESIÓN</a>
       </div>
 
@@ -46,12 +46,19 @@
      
  
     }
-    else if (ViewBag.terapeutaLogeado)
+    else if (ViewBag.estaLogeado && ViewBag.terapeutaLogeado)
     {
+      <nav>
+            <a href="@Url.Action("irVerPacientes", "HomeTerapeuta")">
+            <div class="container justify-content-center">
+                <img src="Imagenes/AveBlanca.png" alt="Logo" style="height:40px;">
+            </div>
+            </a>
+        </nav>
     }
     else
     {
-        <nav class="navbar bg-light">
+        <nav>
             <a href="@Url.Action("irIndex", "Home")">
             <div class="container justify-content-center">
                 <img src="Imagenes/AveBlanca.png" alt="Logo" style="height:40px;">
@@ -76,15 +83,15 @@
   
       <!-- Íconos -->
       <div class="footer-icons">
-        <img src="img/facebook.png" alt="Facebook" class="social-icon">
-        <img src="img/youtube.png" alt="YouTube" class="social-icon">
-        <img src="img/linkedin.png" alt="LinkedIn" class="social-icon">
-        <img src="img/instagram.png" alt="Instagram" class="social-icon">
+        <img src="/Icons_footer/facebook.png" alt="Facebook" class="social-icon">
+        <img src="/Icons_footer/instagram.png" alt="YouTube" class="social-icon">
+        <img src="/Icons_footer/linkedin.webp" alt="LinkedIn" class="social-icon">
+        <img src="/Icons_footer/x.png" alt="Instagram" class="social-icon">
       </div>
   
       <!-- Links -->
       <div class="footer-links">
-        <a href="#" class="footer-link">Soporte</a>
+        <a href="@Url.Action("irIndex", "Home")" class="footer-link">Soporte</a>
         <span class="separator">|</span>
         <a href="#" class="footer-link">Contacto</a>
       </div>

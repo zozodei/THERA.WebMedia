@@ -1,0 +1,14 @@
+<h1>@ViewBag.paciente.nombre @ViewBag.paciente.apellido: Sesión @ViewBag.sesion.Fecha</h1>
+<h2>Anotaciones</h2>
+<section>
+<form action="@Url.Action("GuardarDatosSesión", "HomeTerapeuta")">
+    <div>
+        <textarea name="Anotaciones" id="">@ViewBag.sesion.Anotaciones</textarea>
+    </div>
+    <div>
+    <textarea name="Tarea" id="">@ViewBag.sesion.Tarea</textarea>
+    <p>Respuesta de @ViewBag.paciente.nombre: @ViewBag.sesion.RespuestaPaciente</p>
+    </div>
+    <input type="submit" value="Guardar cambios">
+</form>
+</section>

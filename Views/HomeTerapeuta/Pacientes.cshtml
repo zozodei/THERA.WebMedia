@@ -1,0 +1,12 @@
+@foreach(Paciente paciente in @ViewBag.pacientes){
+    <div class="card" style="width: 18rem;">
+    <img src="@paciente.foto" class="card-img-top" alt="Foto de perfil paciente">
+    <div class="card-body">
+        <h5 class="card-title">@paciente.nombre @paciente.apellido</h5>
+        <a href="#" class="btn btn-primary">Datos del paciente</a>
+        <a href="@Url.Action("irDatosSesiones", "HomeTerapeuta", new{idPaciente = @paciente.id})" class="btn btn-primary">Datos de las sesiones</a>
+        <a href="#" class="btn btn-primary">Mensajes</a>
+        <a href="@Url.Action("verDiarioPaciente", "HomeTerapeuta", new{idPaciente = @paciente.id})" class="btn btn-primary">Notas del paciente</a>
+    </div>
+    </div>
+}

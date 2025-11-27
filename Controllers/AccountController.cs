@@ -26,7 +26,7 @@ public class AccountController : Controller
             }
             else
             {
-                return RedirectToAction("irHomeTerapeuta", "Home");
+                return RedirectToAction("irVerPacientes", "HomeTerapeuta");
             }
         }
         else
@@ -59,7 +59,7 @@ public class AccountController : Controller
     public IActionResult CerrarSesion()
     {
         HttpContext.Session.Remove("usuario");
-        return View("irIndex", "Home");
+        return RedirectToAction("irIndex", "Home");
     }
     public IActionResult LoginView()
     {

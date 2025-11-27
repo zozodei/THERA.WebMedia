@@ -1,0 +1,9 @@
+@foreach(Sesión sesion in @ViewBag.sesiones){
+    <div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">Sesión @sesion.Fecha</h5>
+        <p class="card-text">Tarea: @sesion.Tarea</p>
+        <a href="@Url.Action("irDatosSesion", "HomeTerapeuta", new {idSesion = @sesion.Id})" class="card-link">Datos de la sesión</a>
+    </div>
+    </div>
+}
