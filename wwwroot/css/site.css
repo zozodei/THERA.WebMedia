@@ -2853,3 +2853,207 @@ body {
   }
 }
 
+
+/*INICIO SESIONNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN*/
+.InicioSesion{
+  width: 100%;
+  min-height: 100vh;
+  background: #FFFFFF;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 6% 0;
+  color: #5F6F52;
+}
+
+
+.InicioSesion .login{
+  width: 90%;
+  max-width: 640px;                
+  margin: 0 auto;
+  padding: 6% 6%;
+  background: #FFFFFF;
+  border: 1px solid #EACBB3;        
+  border-radius: 16px;              
+  box-shadow: 0 2px 10px rgba(196,102,31,0.12);
+  text-align: center;
+}
+
+
+.InicioSesion .login h1{
+  color: #5F6F52;
+  margin-bottom: 2.5%;
+  letter-spacing: 0.3px;
+  font-weight: 800;
+}
+.InicioSesion .login h2{
+  color: #5F6F52;
+  opacity: 0.85;
+  margin-bottom: 5%;
+  font-weight: 600;
+}
+
+
+.InicioSesion .login > img{
+  display: block;
+  width: 62%;
+  height: auto;
+  margin: 0 auto 6% auto;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.10)); 
+}
+
+
+.InicioSesion .login form{
+  display: flex;
+  flex-direction: column;
+  gap: 3.6%;
+  width: 100%;
+  text-align: left;
+}
+
+.InicioSesion .login form label{
+  font-weight: 600;
+  color: #5F6F52;
+  margin-bottom: 1%;
+}
+
+.InicioSesion .login form input[type="text"],
+.InicioSesion .login form input[type="password"]{
+  width: 100%;
+  padding: 3.2% 3.4%;
+  border: 1px solid #E0D5C9;     
+  border-radius: 10px;              
+  background: #FFFFFF;
+  color: #5F6F52;
+  outline: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06) inset; 
+}
+.InicioSesion .login form input::placeholder{
+  color: #98A391;
+}
+
+
+.InicioSesion .login form input[type="text"]:focus,
+.InicioSesion .login form input[type="password"]:focus{
+  border-color: #C4661F;
+  box-shadow: 0 0 0 3px rgba(196,102,31,0.18);  
+}
+
+.InicioSesion .login form input[type="submit"]{
+  width: 100%;
+  margin-top: 4%;
+  padding: 3.4% 3%;
+  background: #C4661F;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 12px;              
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(196,102,31,0.18); 
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.InicioSesion .login form input[type="submit"]:hover{
+  transform: translateY(-3%);
+  box-shadow: 0 8px 18px rgba(196,102,31,0.24);
+}
+.InicioSesion .login form input[type="submit"]:active{
+  transform: translateY(-1%);
+}
+
+.InicioSesion .login h3{
+  width: 100%;
+  margin: 4% 0 0 0;
+  padding: 3%;
+  background: #FFECEC;                 
+  border: 1px solid #F4A7A7;            
+  border-radius: 10px;                   
+  color: #B00020 !important;             
+  text-align: center;
+  font-weight: 700;
+}
+
+@media (min-width: 769px){
+  .InicioSesion{
+    background: #F8F4F1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;                 
+    justify-content: center;
+    padding: 4.5% 0;
+  }
+
+
+  .InicioSesion .login{
+    width: 88%;             
+    max-width: 1300px;        
+    padding: 3% 3.6%;
+    border-radius: 18px;
+    box-shadow: 0 3px 12px rgba(196,102,31,0.12);
+
+    display: grid;
+    grid-template-columns: 50% 46%;
+    column-gap: 4%;
+    row-gap: 2.4%;
+    text-align: left;
+  }
+
+
+  .InicioSesion .login h1,
+  .InicioSesion .login h2{
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 1.2%;
+  }
+  .InicioSesion .login h1{ font-size: 200%; }  
+  .InicioSesion .login h2{ font-size: 120%; margin-bottom: 2.2%; }
+
+
+  .InicioSesion .login > img{
+    grid-column: 1;
+    justify-self: center;
+    align-self: start;
+    width: 90%;               
+    margin: 0;
+  }
+
+
+  .InicioSesion .login form{
+    grid-column: 2;
+    width: 100%;
+    gap: 2.1%;
+  }
+  .InicioSesion .login form label{
+    font-size: 106%;
+  }
+  .InicioSesion .login form input[type="text"],
+  .InicioSesion .login form input[type="password"]{
+    padding: 2.6% 2.8%;
+    font-size: 104%;          
+  }
+  .InicioSesion .login form input[type="submit"]{
+    width: 100%;
+    padding: 2.6% 2.8%;
+    font-size: 108%;          
+    margin-left: 0;
+  }
+
+
+  .InicioSesion .login h3{
+    grid-column: 1 / -1;
+    margin-top: 2%;
+    font-size: 104%;
+  }
+}
+
+@media (min-width: 1200px){ .InicioSesion .login{ width: 82%; max-width: 1350px; } }
+@media (min-width: 1440px){ .InicioSesion .login{ width: 76%; max-width: 1400px; } }
+@media (min-width: 1680px){ .InicioSesion .login{ width: 70%; max-width: 1500px; } }
+@media (min-width: 1920px){ .InicioSesion .login{ width: 64%; max-width: 1600px; } }
+
+
+
+
+
+
+
