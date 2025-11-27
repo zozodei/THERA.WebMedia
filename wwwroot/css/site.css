@@ -3216,7 +3216,7 @@ body {
 
 /*NOTASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS*/
 
-form[action*="modificarNota"]{
+.ota{
   width: 92%;
   max-width: 680px;
   margin: 6% auto 4% auto;
@@ -3231,7 +3231,7 @@ form[action*="modificarNota"]{
   gap: 3.5%;
 }
 
-form[action*="modificarNota"] label{
+.nota label{
   font-weight: 600;
   color: #5F6F52;
   margin-bottom: 1%;
@@ -3239,9 +3239,9 @@ form[action*="modificarNota"] label{
   display: block;
 }
 
-form[action*="modificarNota"] input[type="text"],
-form[action*="modificarNota"] select,
-form[action*="modificarNota"] textarea{
+.nota input[type="text"],
+.nota select,
+.nota textarea{
   width: 100%;
   padding: 3.2% 3.4%;
   border: 1px solid #E0D5C9;        
@@ -3253,12 +3253,12 @@ form[action*="modificarNota"] textarea{
   font-size: 0.95rem;
 }
 
-form[action*="modificarNota"] textarea{
+.nota textarea{
   min-height: 26vh;
   resize: vertical;
 }
 
-form[action*="modificarNota"] select{
+.nota select{
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -3270,23 +3270,23 @@ form[action*="modificarNota"] select{
 }
 
 
-form[action*="modificarNota"] input[type="text"]:focus,
-form[action*="modificarNota"] select:focus,
-form[action*="modificarNota"] textarea:focus{
+.nota input[type="text"]:focus,
+.nota select:focus,
+.nota textarea:focus{
   border-color: #C4661F;
   box-shadow: 0 0 0 3px rgba(196,102,31,0.18);
 }
 
-form[action*="modificarNota"] label + input[type="checkbox"]{
+.nota label + input[type="checkbox"]{
   margin-top: 2%;
 }
-form[action*="modificarNota"] input[type="checkbox"]{
+.nota input[type="checkbox"]{
   transform: scale(1.2);             
   margin-right: 2%;
 }
 
 
-form[action*="modificarNota"] input[type="submit"]{
+.nota input[type="submit"]{
   width: 100%;
   margin-top: 4%;
   padding: 3.4% 3%;
@@ -3300,11 +3300,11 @@ form[action*="modificarNota"] input[type="submit"]{
   box-shadow: 0 6px 14px rgba(196,102,31,0.18); 
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-form[action*="modificarNota"] input[type="submit"]:hover{
+.nota input[type="submit"]:hover{
   transform: translateY(-3%);
   box-shadow: 0 8px 18px rgba(196,102,31,0.24);
 }
-form[action*="modificarNota"] input[type="submit"]:active{
+.nota input[type="submit"]:active{
   transform: translateY(-1%);
 }
 
