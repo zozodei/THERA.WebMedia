@@ -173,8 +173,8 @@ namespace THERA.Models
             try{
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
-                    string query = "exec Registrarse @pusername, @pcontraseña, @ptipoDeUsuario";
-                    connection.Execute(query, new {pusername = username, pcontraseña = contraseña, ptipoDeUsuario = tipoDeUsuario});
+                    string query = "exec Registrarse @pusername, @pcontrasena, @ptipoDeUsuario";
+                    connection.Execute(query, new {pusername = username, pcontrasena = contraseña, ptipoDeUsuario = tipoDeUsuario});
                     int idUsuario = Login(username, contraseña);
                     return (idUsuario);
                 }
@@ -188,8 +188,6 @@ namespace THERA.Models
                     return -2;
                 }
             }
-
-
         }
         public static Nota levantarNota(int idNota)
         {

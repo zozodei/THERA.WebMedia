@@ -177,9 +177,18 @@ public class HomeController : Controller
         ViewBag.estaLogeado = true;
         ViewBag.terapeutaLogeado = false;
         Sesión ultimaTarea = BD.levantarUltimaTareaYRespuesta(BD.levantarPaciente(usuario.id).id);
-        ViewBag.tarea = ultimaTarea.Tarea;
-        ViewBag.respuesta = ultimaTarea.RespuestaPaciente;
-        ViewBag.fecha = ultimaTarea.Fecha;
+        if(ultimaTarea == null)
+        {
+            ViewBag.tarea = null;
+            ViewBag.respuesta = null;
+            ViewBag.fecha = null;
+        }
+        else
+        {
+            ViewBag.tarea = ultimaTarea.Tarea;
+            ViewBag.respuesta = ultimaTarea.RespuestaPaciente;
+            ViewBag.fecha = ultimaTarea.Fecha;
+        }
         List<Solicitudes> solicitudes = BD.levantarSolicitudesPaciente(BD.levantarPaciente(usuario.id).id);
         ViewBag.solicitudesCantidad = solicitudes.Count;
         return View("HomePacienteConTerapeuta", "Home");

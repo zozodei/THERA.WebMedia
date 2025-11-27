@@ -41,20 +41,38 @@
             </a>
         </div>
 
-        <div class="EjercicioUltimaOpcion">
-            <p class="tituloEjercicio">Ejercicio de la última sesión (@ViewBag.fecha)</p>
-            <form method="post" action='@Url.Action("guardarRespuestaPaciente", "Home")'>
+        @if (ViewBag.tarea == null)
+        {
+            <div class="EjercicioUltimaOpcion">
+                <p class="tituloEjercicio">Todavía no tenés ejercicios asignados</p>
+
                 <div class="tarjeta">
-                    <p class="textoEjercicio">@ViewBag.tarea</p>
-                    @if(@ViewBag.respuesta == ""){  
-                        <textarea class="entrada-texto" rows="4" placeholder="Escribí aquí..." name="Respuesta" style="font-weight:300;"></textarea>
-                    }else{
-                        <textarea class="entrada-texto" rows="4" name="Respuesta" style="font-weight:300;">@ViewBag.respuesta</textarea>
-                    }
-                    <input type="submit" value = "Guardar">
+                    <p class="textoEjercicio">Tu terapeuta aún no te dejó una actividad. Podés volver más tarde o escribirle.</p>
                 </div>
-            </form>
-        </div>
+            </div>
+        }
+        else
+        {
+            <div class="EjercicioUltimaOpcion">
+                <p class="tituloEjercicio">Ejercicio de la última sesión (@ViewBag.fecha)</p>
+                <form method="post" action='@Url.Action("guardarRespuestaPaciente", "Home")'>
+                    <div class="tarjeta">
+                        <p class="textoEjercicio">@ViewBag.tarea</p>
+
+                        @if(@ViewBag.respuesta == "")
+                        {  
+                            <textarea class="entrada-texto" rows="4" placeholder="Escribí aquí..." name="Respuesta"></textarea>
+                        }
+                        else
+                        {
+                            <textarea class="entrada-texto" rows="4" name="Respuesta">@ViewBag.respuesta</textarea>
+                        }
+
+                        <input type="submit" value="Guardar" />
+                    </div>
+                </form>
+            </div>
+        }
 
         <div class="BuscarTerapeutaConTerapeuta">
             <p class="textoTerapeutaCon">¿Te sentís incómodo con tu terapeuta?<br>No hay problema</p>

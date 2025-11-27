@@ -24,7 +24,7 @@
                 <a href="@Url.Action("irChatTerapeuta", "Home", new { idTerapeuta = terapeuta.id })" 
                    class="list-group-item list-group-item-action d-flex align-items-center">
 
-                    <img src="/Imagenes/FotosTerapeuta/@ViewBag.terapeuta.foto" style="width:55px;height:55px;object-fit:cover;border-radius:50%;margin-right:15px;" />
+                    <img src="/Imagenes/FotosTerapeuta/@terapeuta.foto" style="width:55px;height:55px;object-fit:cover;border-radius:50%;margin-right:15px;" />
 
                     <div>
                         <strong>@(terapeuta != null ? terapeuta.nombre + " " + terapeuta.apellido : "Terapeuta")</strong><br />
