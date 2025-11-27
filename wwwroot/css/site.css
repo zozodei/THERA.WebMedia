@@ -2855,6 +2855,7 @@ body {
 
 
 /*INICIO SESIONNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN*/
+
 .InicioSesion{
   width: 100%;
   min-height: 100vh;
@@ -2896,10 +2897,10 @@ body {
 
 .InicioSesion .login > img{
   display: block;
-  width: 62%;
+  width: 50%;
   height: auto;
   margin: 0 auto 6% auto;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.10)); 
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.10));
 }
 
 
@@ -2936,7 +2937,7 @@ body {
 .InicioSesion .login form input[type="text"]:focus,
 .InicioSesion .login form input[type="password"]:focus{
   border-color: #C4661F;
-  box-shadow: 0 0 0 3px rgba(196,102,31,0.18);  
+  box-shadow: 0 0 0 3px rgba(196,102,31,0.18);
 }
 
 .InicioSesion .login form input[type="submit"]{
