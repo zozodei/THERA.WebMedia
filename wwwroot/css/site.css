@@ -1049,280 +1049,232 @@ body {
   transform: translateY(0);
 }
 
-/* Sección buscar terapeuta con mejor diseño */
+/* BUSCAR TERAPEUTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: #fefae0;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Contenedor principal */
 .BuscarTerapeutaConTerapeuta {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.BuscarTerapeutaConTerapeuta h1 {
+  font-size: 26px;
+  color: #5f6f52;
+  font-weight: 700;
+  margin-bottom: 10px;
   text-align: center;
-  max-width: 1400px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 40px 24px 50px;
-  background-color: transparent;
 }
 
 .textoTerapeutaCon {
   font-size: 15px;
   color: #5f6f52;
-  margin-bottom: 20px;
-  line-height: 1.6;
-  font-weight: 500;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
-.boton-borde {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 14px 28px;
-  border: 2px solid #5f6f52;
-  border-radius: 12px;
-  color: #5f6f52;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  letter-spacing: 0.2px;
+/* Cards horizontales apiladas verticalmente como las notas del diario */
+.card {
+  background-color: #fff;
+  border: 2px solid #5f6f52 !important;
+  border-radius: 20px !important;
+  padding: 16px;
+  margin-bottom: 16px;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: auto !important;
+  max-width: none !important;
+  float: none !important;
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 16px;
+  align-items: flex-start;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
 }
 
-.boton-borde:hover {
-  background-color: #5f6f52;
-  color: #fff;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(95, 111, 82, 0.2);
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(95, 111, 82, 0.15);
 }
 
-.boton-borde:active {
-  transform: translateY(0);
+/* Imagen cuadrada redondeada sin bordes de color */
+.card-img-top {
+  width: 90px !important;
+  height: 90px !important;
+  border-radius: 12px !important;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: none !important;
+}
+
+/* Card body alineado verticalmente dentro del layout horizontal */
+.card-body {
+  padding: 0 !important;
+  text-align: left;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Título (nombre del terapeuta) */
+.card-title {
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  color: #5f6f52 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Subtítulo (universidad y reseñas) */
+.card-subtitle {
+  font-size: 13px !important;
+  color: #666 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Sobrescribir estilos celestes de Bootstrap */
+.text-body-secondary {
+  color: #666 !important;
+}
+
+/* Descripción del terapeuta */
+.card-text {
+  font-size: 14px !important;
+  color: #333 !important;
+  line-height: 1.5;
+  margin-bottom: 8px !important;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+
+/* Botón naranja en vez de azul Bootstrap */
+.btn-primary {
+  display: inline-block !important;
+  padding: 8px 20px !important;
+  background-color: #c4661f !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  border: none !important;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: flex-start;
+}
+
+.btn-primary:hover {
+  background-color: #b85a1a !important;
+  color: #fff !important;
+  text-decoration: none !important;
 }
 
 /* Media Queries para Tablet */
 @media (min-width: 768px) {
-  /* Mantiene el hero optimizado en tablet */
-  .ParteDeArribaConTerapeuta {
-    padding-bottom: 50%;
-  }
-
-  .titulo-principal {
-    font-size: 68px;
-    bottom: 180px;
-    left: 52px;
-    letter-spacing: -1px;
-  }
-
-  .subtitulo {
-    font-size: 20px;
-    bottom: 150px;
-    left: 52px;
-  }
-
-  .FechaYClimaHomeConTerapeuta {
-    padding: 24px 48px;
-    margin-top: -30px;
-  }
-
-  .textoFecha,
-  .textoClima {
-    font-size: 16px;
-  }
-
-  .FraseHomeconTerapeuta {
-    padding: 50px 48px 40px;
-  }
-
-  .FraseHomeconTerapeuta h5 {
-    font-size: 36px;
-  }
-
-  .BotonesOpcionesAyudaConTerapeuta {
-    padding: 0 48px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-    margin-bottom: 12px;
-  }
-
-  .botonOpcionesAT {
-    padding: 22px 28px;
-    font-size: 18px;
-  }
-
-  .NostasOpcionConTerapeuta {
-    padding: 32px 48px 8px;
-    font-size: 16px;
-  }
-
-  .botonNotasConTerapeuta {
-    padding: 0 48px 40px;
-  }
-
-  .boton-naranja {
-    padding: 22px 28px;
-    font-size: 18px;
-  }
-
-  .EjercicioUltimaOpcion {
-    padding: 32px 48px;
-  }
-
-  .tituloEjercicio {
-    font-size: 16px;
-  }
-
-  .tarjeta {
-    padding: 40px 36px;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .textoEjercicio {
-    font-size: 19px;
-    margin-bottom: 28px;
-  }
-
-  .entrada-texto {
-    padding: 18px 20px;
-    font-size: 16px;
-  }
-
-  .tarjeta input[type="submit"] {
-    padding: 16px 42px;
-    font-size: 16px;
-  }
-
   .BuscarTerapeutaConTerapeuta {
-    padding: 50px 48px 60px;
+    padding: 40px 50px;
+    max-width: 800px;
+  }
+
+  .BuscarTerapeutaConTerapeuta h1 {
+    font-size: 30px;
+    margin-bottom: 12px;
   }
 
   .textoTerapeutaCon {
     font-size: 16px;
+    margin-bottom: 36px;
   }
 
-  .boton-borde {
-    padding: 16px 34px;
-    font-size: 16px;
+  .card {
+    padding: 18px;
+    margin-bottom: 18px;
+    margin-left: 40px;
+    margin-right: 40px;
+    gap: 18px;
+  }
+
+  .card-img-top {
+    width: 110px !important;
+    height: 110px !important;
+    border-radius: 14px !important;
+  }
+
+  .card-title {
+    font-size: 19px !important;
+  }
+
+  .card-subtitle {
+    font-size: 14px !important;
+  }
+
+  .card-text {
+    font-size: 15px !important;
+  }
+
+  .btn-primary {
+    padding: 10px 24px !important;
+    font-size: 15px !important;
   }
 }
 
 /* Media Queries para Desktop */
 @media (min-width: 1024px) {
-  .HomecoPacienteContenedor {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-
-  /* Hero optimizado para desktop con 28% de altura */
-  .ParteDeArribaConTerapeuta {
-    padding-bottom: 28%;
-    width: 100%;
-  }
-
-  .titulo-principal {
-    font-size: 88px;
-    bottom: 160px;
-    left: 88px;
-    letter-spacing: -1.6px;
-  }
-
-  .subtitulo {
-    font-size: 26px;
-    bottom: 125px;
-    left: 88px;
-    letter-spacing: 0.4px;
-  }
-
-  .FechaYClimaHomeConTerapeuta {
-    padding: 28px 80px;
-    margin-top: -40px;
-    border-radius: 30px 30px 0 0;
-  }
-
-  .textoFecha,
-  .textoClima {
-    font-size: 17px;
-  }
-
-  .FraseHomeconTerapeuta {
-    padding: 60px 80px 50px;
-  }
-
-  .FraseHomeconTerapeuta h5 {
-    font-size: 42px;
-  }
-
-  .BotonesOpcionesAyudaConTerapeuta {
-    padding: 0 80px;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    margin-bottom: 16px;
-  }
-
-  .botonOpcionesAT {
-    padding: 24px 32px;
-    font-size: 18px;
-  }
-
-  .NostasOpcionConTerapeuta {
-    padding: 40px 80px 12px;
-    font-size: 17px;
-  }
-
-  .botonNotasConTerapeuta {
-    padding: 0 80px 50px;
-  }
-
-  .boton-naranja {
-    padding: 24px 32px;
-    font-size: 18px;
-  }
-
-  .EjercicioUltimaOpcion {
-    padding: 40px 80px;
-  }
-
-  .tituloEjercicio {
-    font-size: 17px;
-  }
-
-  .tarjeta {
-    padding: 48px 44px;
-    max-width: 900px;
-  }
-
-  .textoEjercicio {
-    font-size: 21px;
-    margin-bottom: 32px;
-  }
-
-  .entrada-texto {
-    padding: 20px 22px;
-    font-size: 16px;
-  }
-
-  .tarjeta input[type="submit"] {
-    padding: 18px 48px;
-    font-size: 17px;
-  }
-
   .BuscarTerapeutaConTerapeuta {
-    padding: 60px 80px 80px;
+    padding: 50px 80px;
+    max-width: 1000px;
+  }
+
+  .BuscarTerapeutaConTerapeuta h1 {
+    font-size: 34px;
+    margin-bottom: 14px;
   }
 
   .textoTerapeutaCon {
     font-size: 17px;
+    margin-bottom: 42px;
   }
 
-  .boton-borde {
-    padding: 18px 40px;
-    font-size: 17px;
+  .card {
+    padding: 22px;
+    margin-bottom: 22px;
+    margin-left: 60px;
+    margin-right: 60px;
+    gap: 22px;
+    border-radius: 24px !important;
   }
-}
 
-/* Animaciones suaves para mejor UX */
-@media (prefers-reduced-motion: no-preference) {
-  .botonOpcionesAT,
-  .boton-naranja,
-  .boton-borde,
-  .tarjeta input[type="submit"] {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  .card-img-top {
+    width: 130px !important;
+    height: 130px !important;
+    border-radius: 16px !important;
+  }
+
+  .card-title {
+    font-size: 21px !important;
+  }
+
+  .card-subtitle {
+    font-size: 15px !important;
+  }
+
+  .card-text {
+    font-size: 16px !important;
+  }
+
+  .btn-primary {
+    padding: 12px 28px !important;
+    font-size: 16px !important;
   }
 }
 
