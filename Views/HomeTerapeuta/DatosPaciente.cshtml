@@ -1,0 +1,42 @@
+<div class="perfil-paciente">
+    <img src="@ViewBag.paciente.foto" alt="Imagen del paciente">
+    <h1>@ViewBag.paciente.nombre @ViewBag.paciente.apellido</h1>
+    <section>
+        <h3>Fecha de nacimiento: @ViewBag.paciente.fechaNacimiento</h3>
+        <h3>Correo electrónico: @ViewBag.paciente.correo</h3>
+        <h3>Teléfono: @ViewBag.paciente.telefono</h3>
+        <h3>Ocupación: @ViewBag.paciente.ocupacion</h3>
+        <h3>Ubicación: @ViewBag.paciente.ubicacion</h3> 
+    </section>
+    <h2>Datos observacionales</h2>
+    <section>
+    <form action="@Url.Action("guardarDatosPaciente", "HomeTerapeuta")" method="post">
+        <label>Rasgos predominantes de personalidad</label>
+        @if(string.IsNullOrEmpty(@ViewBag.paciente.rasgosPersonalidad)){
+            <textarea name="personalidad" id="">Escribe algo aquí...</textarea>
+        }else{
+            <textarea name="personalidad" id="">@ViewBag.paciente.rasgosPersonalidad</textarea>
+        }
+        <label>Modo de vincularse</label>
+        @if(string.IsNullOrEmpty(@ViewBag.paciente.modoVincularse)){
+            <textarea name="modoVincularse" id="">Escribe algo aquí...</textarea>
+        }else{
+            <textarea name="modoVincularse" id="">@ViewBag.paciente.modoVincularse</textarea>
+        }
+        <label>Evaluación general</label>
+        @if(string.IsNullOrEmpty(@ViewBag.paciente.evaluacionGeneral)){
+            <textarea name="evaluacion" id="">Escribe algo aquí...</textarea>
+        }else{
+            <textarea name="evaluacion" id="">@ViewBag.paciente.evaluacionGeneral</textarea>
+        }
+        <label>Observaciones relevantes</label>
+        @if(string.IsNullOrEmpty(@ViewBag.paciente.observaciones)){
+            <textarea name="observaciones" id="">Escribe algo aquí...</textarea>
+        }else{
+            <textarea name="observaciones" id="">@ViewBag.paciente.observaciones</textarea>
+        }
+        <input type="hidden" name="idPaciente" value="@ViewBag.paciente.id">
+        <input type="submit" value="Guardar cambios">
+    </form>
+    </section>
+</div>

@@ -1,7 +1,19 @@
-
-
 <div class="homePaciente">
-<img src=""> @*IMAGEN DEL FIGMA*@
+@if(ViewBag.solicitudesCantidad > 0){
+    <a href="@Url.Action("verNotificaciones", "Home")"><div>
+        Tenés @ViewBag.solicitudesCantidad notificaciones pendientes!
+    </div></a>
+}
+<div class="ParteDeArribaConTerapeuta">
+    <img src="~/imagenes/header.jpg" alt="Thera" class="imagenArribaDetodo"/>
+    <h2 class="titulo-principal">Thera</h2>
+    <p class="subtitulo">Tu impulso, tu cambio</p>
+</div>
+
+<div class="FechaYClimaHomeConTerapeuta">
+    <h6 class="textoFecha">@DateTime.Now.ToString("dddd d 'de' MMMM")</h6>
+    <span class="textoClima">55° / 40° ☀️</span>
+</div>
     @for (int i = 0; i< @ViewBag.terapeutas.Count; i++)
     {
     <a href="@Url.Action("irPerfilTerapeutaPublico", "Home", new {idTerapeuta = @ViewBag.terapeutas[i].id})">

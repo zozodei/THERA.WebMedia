@@ -20,48 +20,55 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-<div>
+<div class="perfil-header">
     <h1>@ViewBag.terapeuta.nombre @ViewBag.terapeuta.apellido</h1>
     <h3>@ViewBag.rating</h3>
     <h3>@ViewBag.terapeuta.Universidad</h3>
 </div>
-<div>
+
+<div class="especialidades">
     @foreach(string especialidad in @ViewBag.especialidades){
         <h3>@especialidad</h3>
     }
-    <h3>@ViewBag.terapeuta.nombre @ViewBag.terapeuta.apellido atiende estas obras sociales/prepagas:</h3>
+</div>
+<div class="obrassociales">
+  <h3>@ViewBag.terapeuta.nombre @ViewBag.terapeuta.apellido atiende estas obras sociales/prepagas:</h3>
     @foreach(ObraSocial obraSocial in @ViewBag.obrasSociales){
         <h3>@obraSocial.nombre</h3>
     }
 </div>
-<div>
+
+<div class="bio">
     <p>@ViewBag.terapeuta.descripcion</p>
 </div>
-<div>
+
+<div class="resenas">
     <h2>Reseñas</h2>
-    @foreach(Resenas resena in @ViewBag.resenas){
-        <div class="card" style="width: 18rem; float:left;">
-        <div class="card-body">
-            <h5 class="card-title">@resena.Titulo</h5>
-            <h6 class="card-subtitle mb-2 text-body-secondary">@resena.rating</h6>
-            <p class="card-text">@resena.Contenido</p>
-        </div>
-        </div>
-    }
+    <div class="resenas-lista">
+        @foreach(Resenas resena in @ViewBag.resenas){
+            <div class="resena-item">
+                <h5 class="titulo">@resena.Titulo</h5>
+                <h6 class="rating">@resena.rating</h6>
+                <p class="contenido">@resena.Contenido</p>
+            </div>
+        }
+    </div>
 </div>
-<div>
+
+<div class="frases">
     <h2>Frases favoritas</h2>
-    @foreach(Frase frase in @ViewBag.frasesFav){
-        <div class="card" style="width: 18rem; float:left;">
-        <div class="card-body">
-            <h5 class="card-title">"@frase.frase"</h5>
-            <h6 class="card-subtitle mb-2 text-body-secondary">@frase.autor</h6>
-        </div>
-        </div>
-    }
+    <div class="frases-lista">
+        @foreach(Frase frase in @ViewBag.frasesFav){
+            <div class="frase-item">
+                <h5 class="texto">"@frase.frase"</h5>
+                <h6 class="autor">@frase.autor</h6>
+            </div>
+        }
+    </div>
 </div>
-<div>
+
+<div class="contacto">
     <a href="@Url.Action("irChatNuevoTerapeuta", "Home", new {idTerapeuta = @ViewBag.terapeuta.id})">
-        <button>Contactar</button>
+        <button class="btn-contactar">Contactar</button>
     </a>
 </div>

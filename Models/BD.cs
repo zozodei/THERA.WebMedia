@@ -36,17 +36,34 @@ namespace THERA.Models
             return frases;
         }
 
-        public static int Login(string Username, string Contraseña)
+        public static int Login(string username, string contraseña)
         {
-            int idUsuario = -1;
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            try
             {
-                string query = "SELECT id FROM Usuario WHERE username = @pUsername AND Contrasena = @pContraseña";
-                idUsuario = connection.QueryFirstOrDefault<int>(query, new { pUsername = Username, pContraseña = Contraseña });
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    string query = "SELECT Id, Contrasena FROM Usuario WHERE Username = @pUsername";
+                    
+                    Usuario usuario = connection.QueryFirstOrDefault<Usuario>(query, new { pUsername = username });
+
+                    if (usuario == null){
+                        return -1;
+                    }
+
+                    if (usuario.contrasena != contraseña){
+                        return -1;
+                    }
+
+                    return usuario.id;
+                }
             }
-            return idUsuario;
+            catch
+            {
+                return -2;
+            }
         }
-        public static int levantarIdChat(int idPaciente, int? idTerapeuta)
+
+        public static int levantarIdChat(int idPaciente, int idTerapeuta)
         {
             int idChat = -1;
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -461,6 +478,180 @@ namespace THERA.Models
             }
             return notas;
         }
+        public static void guardarDatosSesion(string Anotaciones, string Tarea, int idSesion){
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = @"UPDATE Sesión 
+                                SET Anotaciones = @panotaciones, Tarea = @pTarea
+                                WHERE Id = @pId";
+
+                connection.Execute(query, new
+                {
+                    panotaciones = Anotaciones,
+                    pTarea = Tarea,
+                    pid = idSesion
+                });
+            }
+        }
+
+        internal static void guardarDatosPacientedelTerapeuta(int idPaciente, string personalidad, string modoVincularse, string evaluacion, string observaciones, int DNI)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = @"UPDATE Paciente 
+                                SET RasgosPersonalidad = @pPersonalidad,
+                                ModoVincularse = @pModoVincularse,
+                                EvaluacionGeneral = @pEvaluacionGeneral,
+                                Observaciones = @pObservaciones,
+                                DNI = @pDNI
+                                WHERE Id = @pIdPaciente";
+
+                connection.Execute(query, new
+                {
+                    pPersonalidad = personalidad,
+                    pModoVincularse = modoVincularse,
+                    pEvaluacionGeneral = evaluacion,
+                    pObservaciones = observaciones,
+                    pIdPaciente = idPaciente,
+                    pDNI = DNI
+                });
+            }
+        }
+        public static int agregarSolicitud(int DNI, int idTerapeuta)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    string queryPaciente = "SELECT Id, IdTerapeuta FROM Paciente WHERE DNI = @pDNI";
+                    Paciente paciente = connection.QueryFirstOrDefault<Paciente>(queryPaciente, new { pDNI = DNI });
+
+                    if (paciente == null)
+                    {
+                        return -1;
+                    }
+
+                    int idPaciente = paciente.id;
+
+                    if (paciente.idTerapeuta == idTerapeuta)
+                    {
+                        return -4;
+                    }
+
+                    string queryExiste = @"SELECT Id 
+                                        FROM Solicitudes 
+                                        WHERE idTerapeuta = @pIdTerapeuta 
+                                        AND idPaciente = @pIdPaciente";
+
+                    int solicitudExistente = connection.QueryFirstOrDefault<int>(
+                        queryExiste,
+                        new { pIdTerapeuta = idTerapeuta, pIdPaciente = idPaciente }
+                    );
+
+                    if (solicitudExistente != 0)
+                    {
+                        return -2;
+                    }
+
+                    string queryInsert = @"INSERT INTO Solicitudes (idTerapeuta, idPaciente, aceptada)
+                                        VALUES (@pIdTerapeuta, @pIdPaciente, 0)";
+
+                    connection.Execute(queryInsert, new
+                    {
+                        pIdTerapeuta = idTerapeuta,
+                        pIdPaciente = idPaciente
+                    });
+
+                    return 1;
+                }
+            }
+            catch
+            {
+                return -3;
+            }
+        }
+        public static List<Solicitudes> levantarSolicitudesPaciente(int idPaciente){
+            List<Solicitudes> solicitudes = new List<Solicitudes>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = @"SELECT *
+                                FROM Solicitudes
+                                WHERE idPaciente = @pIdPaciente
+                                AND aceptada = 0";
+
+                solicitudes = connection.Query<Solicitudes>(query, new { pIdPaciente = idPaciente }).ToList();
+            }
+
+            return solicitudes;
+        }
+        public static Terapeuta levantarTerapeutaDePaciente(int idPaciente){
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string queryPaciente = "SELECT IdTerapeuta FROM Paciente WHERE Id = @pIdPaciente";
+                int? idTerapeuta = connection.QueryFirstOrDefault<int?>(queryPaciente, new { pIdPaciente = idPaciente });
+
+                if (idTerapeuta == null)
+                {
+                    return null;
+                }
+
+                string queryTerapeuta = "SELECT * FROM Terapeuta WHERE Id = @pIdTerapeuta";
+                Terapeuta terapeuta = connection.QueryFirstOrDefault<Terapeuta>(queryTerapeuta, new { pIdTerapeuta = idTerapeuta });
+                
+                return terapeuta;
+            }
+        }
+        public static void eliminarSolicitud(int id){
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "DELETE FROM Solicitudes WHERE Id = @pId";
+                connection.Execute(query, new { pId = id });
+            }
+        }
+        public static int aceptarSolicitud(int idSolicitud)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    string querySolicitud = "SELECT idTerapeuta, idPaciente FROM Solicitudes WHERE Id = @pId";
+                    Solicitudes solicitud = connection.QueryFirstOrDefault<Solicitudes>(querySolicitud, new { pId = idSolicitud });
+
+                    if (solicitud == null)
+                    {
+                        return -1;
+                    }
+
+                    int idTerapeuta = solicitud.idTerapeuta;
+                    int idPaciente = solicitud.idPaciente;
+
+                    string queryAceptar = "UPDATE Solicitudes SET aceptada = 1 WHERE Id = @pId";
+                    connection.Execute(queryAceptar, new { pId = idSolicitud });
+
+                    string queryUpdatePaciente = "UPDATE Paciente SET IdTerapeuta = @pIdTerapeuta WHERE Id = @pIdPaciente";
+                    connection.Execute(queryUpdatePaciente, new { pIdTerapeuta = idTerapeuta, pIdPaciente = idPaciente });
+
+                    return 1;
+                }
+            }
+            catch
+            {
+                return -2;
+            }
+        }
+        public static List<Chat> levantarChats(int idPaciente){
+            List<Chat> chats = new List<Chat>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = @"SELECT *
+                    FROM Chat 
+                    WHERE IdPaciente = @pidPaciente";
+                chats = connection.Query<Chat>(query, new {pidPaciente = idPaciente}).ToList();
+            }
+            return chats;
+        }
+
+
 
     }
 }

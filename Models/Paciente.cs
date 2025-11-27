@@ -3,7 +3,7 @@ namespace THERA.Models
     public class Paciente
     {
         public int id {get; private set;}
-        public int? idTerapeuta {get; private set;}
+        public int idTerapeuta {get; private set;}
         public string nombre {get; private set;}
         public string apellido {get; private set;}
         public DateTime fechaNacimiento {get; private set;}
@@ -20,5 +20,6 @@ namespace THERA.Models
         public string ocupacion{get; private set;}
         public int idUsuario { get; private set; }
         public int IdObraSocial { get; private set; }
+        public int DNI {get; private set;}
     }
 }

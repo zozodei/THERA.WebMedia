@@ -4,38 +4,40 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - NombreProyecto</title>
+    <title>@ViewData["Title"] - Thera</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 <body>
     <header>
     @if (ViewBag.estaLogeado && !ViewBag.terapeutaLogeado)
     {
-        <nav>
-      <!-- LOGO -->
+        <header>
+    <nav>
       <div class="logo">
         <a href="@Url.Action("irHomePaciente", "Home")"><img src="/Imagenes/AveBlanca.png" alt="Logo"></a>
       </div>
-
-      <!-- LINKS (web) -->
-      <div class="nav-links" id="navLinks">
-        <a href="@Url.Action("irChatBot", "Home")">CHATBOT</a>
+      
+      <div class="navegador" id="navegador">
+        <a href="#">CHATBOT</a>
         <a href="@Url.Action("irBuscarTerapeuta", "Home")">TERAPEUTAS</a>
         <a href="@Url.Action("irDiario", "Home")">DIARIO</a>
         <a href="@Url.Action("irAyudaRapida", "Home")">AYUDA RÁPIDA</a>
-        <a href='@Url.Action("CerrarSesion", "Account")' class="cerrar-sesion">CERRAR SESIÓN</a>
+        <a href="@Url.Action("irChats", "Home")">MENSAJES</a>
       </div>
 
-      <!-- PERFIL + MENÚ -->
-        <div class="right-side">
-          <a href="@Url.Action("verPerfilPaciente", "Account")">
-          <div class="profile">
-            <img src="/Imagenes/FotoPerfil" alt="Foto de perfil">
-          </div>
-          </a>
-        <div class="hamburger" id="hamburger">
+      <div class="PerfilYHamburguesa">
+        <a href="@Url.Action("verPerfilPaciente", "Account")">
+        <div class="perfil">
+          <img src="/Imagenes/FotoPerfil" alt="Foto de perfil">
+        </div>
+        </a>
+        <div class="MenuHamburguesa" id="MenuHamburguesa">
           <span></span>
           <span></span>
           <span></span>
@@ -43,7 +45,16 @@
       </div>
     </nav>
 
-     
+    <div class="mobileNavegadorMenu" id="mobileNavegadorMenu">
+      <a href="#">CHATBOT</a>
+        <a href="@Url.Action("irBuscarTerapeuta", "Home")">TERAPEUTAS</a>
+        <a href="@Url.Action("irDiario", "Home")">DIARIO</a>
+        <a href="@Url.Action("irAyudaRapida", "Home")">AYUDA RÁPIDA</a>
+        <a href="@Url.Action("irChats", "Home")">MENSAJES</a>
+
+    </div>
+  </header>
+
  
     }
     else if (ViewBag.estaLogeado && ViewBag.terapeutaLogeado)
@@ -51,17 +62,18 @@
       <nav>
             <a href="@Url.Action("irVerPacientes", "HomeTerapeuta")">
             <div class="container justify-content-center">
-                <img src="Imagenes/AveBlanca.png" alt="Logo" style="height:40px;">
+                <img src="/Imagenes/AveBlanca.png" alt="Logo" style="height:40px;">
             </div>
             </a>
         </nav>
     }
     else
+    
     {
         <nav>
             <a href="@Url.Action("irIndex", "Home")">
-            <div class="container justify-content-center">
-                <img src="Imagenes/AveBlanca.png" alt="Logo" style="height:40px;">
+            <div class="logo">
+                <img src="/Imagenes/AveBlanca.png" alt="Logo" style="height:40px;">
             </div>
             </a>
         </nav>
@@ -73,46 +85,47 @@
         @RenderBody()
     </main>
 
-    <footer class="footer-custom">
-    <div class="footer-container">
-      <!-- Logo -->
-      <h2 class="thera-logo">Thera</h2>
+   <footer class="footer">
+    <div class="footerTextos">
+      <h2 class="TexoTheraFooter">Thera</h2>
   
-      <!-- Línea divisoria -->
-      <hr class="footer-divider">
+      <hr class="footerLineasDivisoras">
   
-      <!-- Íconos -->
-      <div class="footer-icons">
-        <img src="/Icons_footer/facebook.png" alt="Facebook" class="social-icon">
-        <img src="/Icons_footer/instagram.png" alt="YouTube" class="social-icon">
-        <img src="/Icons_footer/linkedin.webp" alt="LinkedIn" class="social-icon">
-        <img src="/Icons_footer/x.png" alt="Instagram" class="social-icon">
+      <div class="footerRedesSociales">
+        <img src="~/imagenes/Icons_footer/facebook.png" alt="Facebook" class="RedesSociales">
+        <a href="https://www.instagram.com/thera.ort/"><img src="~/imagenes/Icons_footer/instagram.png" alt="YouTube" class="RedesSociales"> </a>
+        <img src="~/imagenes/Icons_footer/linkedin.webp" alt="LinkedIn" class="RedesSociales">
+        <img src="~/imagenes/Icons_footer/x.png" alt="Instagram" class="RedesSociales">
       </div>
   
-      <!-- Links -->
-      <div class="footer-links">
-        <a href="@Url.Action("irIndex", "Home")" class="footer-link">Soporte</a>
+      <div class="footerSoporteYContacto">
+        <a href="#" class="footerLINK">Soporte</a>
         <span class="separator">|</span>
-        <a href="#" class="footer-link">Contacto</a>
+        <a href="#" class="footerLINK">Contacto</a>
       </div>
   
-      <!-- Copyright -->
-      <p class="footer-copy">© 2025 THERA Argentina</p>
+      <p class="footerThera2025Argentina">© 2025 THERA Argentina</p>
     </div>
   </footer>
   
- <script>
+  
+<script>
   document.addEventListener("DOMContentLoaded", () => {
-    const hamburger = document.getElementById("hamburger");
-    const mobileMenu = document.getElementById("mobileMenu");
+    const hamburger = document.getElementById("MenuHamburguesa");
+    const mobileMenu = document.getElementById("mobileNavegadorMenu");
+
+    if (!hamburger || !mobileMenu) return;
 
     hamburger.addEventListener("click", () => {
       mobileMenu.classList.toggle("active");
     });
-  });
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
+    // Cierra el menú al tocar un link del menú móvil
+    mobileMenu.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => mobileMenu.classList.remove("active"));
+    });
+  });
+</script>
 
 </body>
 

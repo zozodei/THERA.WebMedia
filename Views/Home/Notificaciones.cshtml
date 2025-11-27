@@ -1,0 +1,102 @@
+@{
+    List<Solicitudes> solicitudes = ViewBag.solicitudes as List<Solicitudes>;
+    List<Terapeuta> terapeutas = ViewBag.terapeutas as List<Terapeuta>;
+}
+@if(!String.IsNullOrEmpty(@ViewBag.msgError)){
+     <h3 style="color: red">@ViewBag.msgError</h3>
+}
+
+@if(ViewBag.terapeutaActual != null && solicitudes.Count > 0)
+{
+    <div class="alert alert-warning text-center" style="font-size:17px;">
+        Si aceptás una solicitud, tu terapeuta actual 
+        <strong>@ViewBag.terapeutaActual.nombre @ViewBag.terapeutaActual.apellido</strong> 
+        dejará de serlo.
+    </div>
+}
+
+
+
+@if(solicitudes.Count == 0)
+{
+    <p class="text-center mt-4">No tenés notificaciones nuevas.</p>
+}
+else
+{
+    foreach(Solicitudes solicitud in @ViewBag.solicitudes)
+    {
+        Terapeuta terapeuta = terapeutas.FirstOrDefault(x => x.id == solicitud.idTerapeuta);
+
+        <div class="card p-3 mb-3 d-flex flex-row justify-content-between align-items-center">
+
+            <div>
+                <strong>@terapeuta.nombre @terapeuta.apellido</strong> quiere ser tu terapeuta.
+            </div>
+
+            <div class="d-flex gap-2">
+
+                <!-- BOTÓN ABRIR MODAL (Bootstrap 5) -->
+                <button class="btn btn-success"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modalAceptar"
+                        onclick="setSolicitud(@solicitud.Id)">
+                    ✔
+                </button>
+
+                <form method="post" action="@Url.Action("eliminarNotificacion", "Home")" style="display:inline;">
+                    <input type="hidden" name="idSolicitud" value="@solicitud.Id" />
+                    <button class="btn btn-danger">🗑️</button>
+                </form>
+
+            </div>
+        </div>
+    }
+}
+
+
+<!-- MODAL (Bootstrap 5) -->
+<div class="modal fade" id="modalAceptar" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar aceptación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                @if (ViewBag.terapeutaActual == null)
+                {
+                    <p>
+                        ¿Querés aceptar esta solicitud?<br />
+                        Este terapeuta se convertirá en tu terapeuta asignado.
+                    </p>
+                }
+                else
+                {
+                    <p>
+                        ¿Querés aceptar esta solicitud?<br />
+                        <strong>@ViewBag.terapeutaActual.nombre @ViewBag.terapeutaActual.apellido</strong> dejará de ser tu terapeuta.
+                    </p>
+                }
+            </div>
+
+            <div class="modal-footer">
+                <form method="post" action="@Url.Action("aceptarNotificacion", "Home")">
+                    <input type="hidden" id="solicitud-id" name="idSolicitud" />
+                    <button type="submit" class="btn btn-success">Aceptar</button>
+                </form>
+
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function setSolicitud(id) {
+        document.getElementById("solicitud-id").value = id;
+    }
+</script>
