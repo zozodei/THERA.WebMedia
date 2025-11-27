@@ -1,12 +1,14 @@
 
-
-
-<div class = "Login">
-@if(@ViewBag.segundoIntento){
+ <main class = "InicioSesion">
+      
+     <div class = "login">
+        <h1>Hola otra vez!</h1>
+        <h2>Login</h2>
+        @if(@ViewBag.segundoIntento){
      <h3 style="color: red">@ViewBag.msgError</h3>
 }
-<h1>Iniciar sesión</h1>
-<form action='@Url.Action("Login", "Account")' method = "POST" enctype="multipart/form-data">
+      <img src="Imagenes/Canva/InicioSesion.png" alt="">
+    <form action='@Url.Action("Login", "Account")' method = "POST" enctype="multipart/form-data">
 
     <label>Usuario:</label>
     <input type="text" name = "username" required>
@@ -15,5 +17,8 @@
     <input type="password" name = "contraseña" required minlength="8">
     
     <input type ="submit" value = "Entrar">
-</form>
-</div>
+    
+    </form>
+
+     </div>   
+    </main>
