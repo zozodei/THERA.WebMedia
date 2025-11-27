@@ -64,7 +64,7 @@ public class AccountController : Controller
     public IActionResult CerrarSesion()
     {
         HttpContext.Session.Remove("usuario");
-        return View("irIndex", "Home");
+        return RedirectToAction("irLanding", "Home");
     }
     public IActionResult LoginView()
     {
