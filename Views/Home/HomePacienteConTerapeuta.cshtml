@@ -47,9 +47,9 @@
                 <div class="tarjeta">
                     <p class="textoEjercicio">@ViewBag.tarea</p>
                     @if(@ViewBag.respuesta == ""){  
-                        <textarea class="entrada-texto" rows="4" placeholder="Escribí aquí..." name="Respuesta"></textarea>
+                        <textarea class="entrada-texto" rows="4" placeholder="Escribí aquí..." name="Respuesta" style="font-weight:300;"></textarea>
                     }else{
-                        <textarea class="entrada-texto" rows="4" name="Respuesta">@ViewBag.respuesta</textarea>
+                        <textarea class="entrada-texto" rows="4" name="Respuesta" style="font-weight:300;">@ViewBag.respuesta</textarea>
                     }
                     <input type="submit" value = "Guardar">
                 </div>

@@ -13,7 +13,7 @@
             foreach (Nota nota in ViewBag.diario)
             {
                 <a href="@Url.Action("irNota", "Home", new {id = @nota.id})">
-                <div class="card border-primary mb-3" style="max-width: 18rem;">
+                <div class="card border-primary mb-3" style="max-width: 18rem; border: 2px solid #c4661f">
                 <h5 class="card-title">@nota.fecha</h5>
                 <div class="card-header">@nota.titulo</div>
                 <div class="card-body text-primary">  
