@@ -1,3 +1,7 @@
+@{
+    List<Solicitudes> solicitudes = ViewBag.solicitudes as List<Solicitudes>;
+    List<Terapeuta> terapeutas = ViewBag.terapeutas as List<Terapeuta>;
+}
 @if(!String.IsNullOrEmpty(@ViewBag.msgError)){
      <h3 style="color: red">@ViewBag.msgError</h3>
 }
@@ -11,10 +15,7 @@
     </div>
 }
 
-@{
-    List<Solicitudes> solicitudes = ViewBag.solicitudes as List<Solicitudes>;
-    List<Terapeuta> terapeutas = ViewBag.terapeutas as List<Terapeuta>;
-}
+
 
 @if(solicitudes.Count == 0)
 {
