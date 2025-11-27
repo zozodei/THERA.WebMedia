@@ -108,7 +108,17 @@ public class HomeController : Controller
         ViewBag.obrasSociales = BD.levantarObrasSocialesXTerapeuta(idTerapeuta);
         return View ("PerfilTerapeutaPublico");
     }
-    public IActionResult irChatTerapeuta()
+    public IActionResult irChats(){
+        ViewBag.estaLogeado = true;
+        ViewBag.terapeutaLogeado = false;
+        Usuario usuario = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usuario"));
+        Paciente paciente = BD.levantarPaciente(usuario.id);
+        List<Chat> chats = BD.levantarChats(paciente.id);
+        ViewBag.chats = chats;
+        ViewBag.terapeutas = BD.levantarTerapeutas();
+        return View("Chats");
+    }
+    public IActionResult irChatTerapeuta(int idTerapeuta)
     {
         ViewBag.estaLogeado = true;
         ViewBag.terapeutaLogeado = false;
@@ -117,18 +127,11 @@ public class HomeController : Controller
         if (!usuario.tipoUsuario)
         {
             Paciente paciente = BD.levantarPaciente(usuario.id);
-            ViewBag.idChat = BD.levantarIdChat(paciente.id, paciente.idTerapeuta);
+            ViewBag.idChat = BD.levantarIdChat(paciente.id, idTerapeuta);
             ViewBag.mensajes = BD.levantarMensajes(ViewBag.idChat);
             return View("ChatTerapeuta");
         }
         return View("ChatTerapeuta");
-
-        // else
-        // {
-        //     Terapeuta terapeuta = BD.levantarTerapeuta();
-        //     ViewBag.pacientes = BD.levantarPacientes(terapeuta.id);
-        //     return View("VerChatsPacientes");
-        // }
     }
     public IActionResult irChatNuevoTerapeuta(int idTerapeuta)
     {

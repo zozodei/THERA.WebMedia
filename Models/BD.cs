@@ -619,6 +619,17 @@ namespace THERA.Models
                 return -2;
             }
         }
+        public static List<Chat> levantarChats(int idPaciente){
+            List<Chat> chats = new List<Chat>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = @"SELECT *
+                    FROM Chat 
+                    WHERE IdPaciente = @pidPaciente";
+                chats = connection.Query<Chat>(query, new {pidPaciente = IdPaciente}).ToList();
+            }
+            return chats;
+        }
 
 
 
